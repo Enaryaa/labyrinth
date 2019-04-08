@@ -1,16 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Fenetre extends JFrame{
-	
+public class Fenetre extends Base implements ActionListener {
+
 	public Fenetre(){
-		this.setSize(500, 500);
-		this.setLocation(100, 100);
-		this.drawGrid();
+		super();
 		
 		GridLayout gestionnaire = new GridLayout(2, 1);
 		this.setLayout(gestionnaire);
-		
+
 		JPanel panneau = new JPanel();
 		JLabel etiquette = new JLabel("Algorithme Ariane");
 		
@@ -18,23 +18,36 @@ public class Fenetre extends JFrame{
 	    etiquette.setVerticalAlignment(JLabel.BOTTOM);
 		this.add(etiquette);
 
-		panneau.add(new JButton("Grille existante"));
+		JButton exis = new JButton("Grille existante");
+		JButton news = new JButton("Nouvelle Grille");
+
+		panneau.add(exis);
+		panneau.add(news);
+		exis.addActionListener(this);
 		//goto etape 2
-		panneau.add(new JButton("Nouvelle Grille"));
+		news.addActionListener(this);
 		//choix grille vide ou aléatoire
 
-	
+
 		this.add(panneau, BorderLayout.CENTER);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 
-	private void drawGrid(){
-	GridLayout grille = new GridLayout(8,8);
-	this.setLayout(grille);
-	for (int i = 0; i < 8*8 ; i++ ) {
-		Cell cell = new Cell(i);
-		this.getContentPane().add(cell);
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String bouton = e.getActionCommand();
+
+		if (bouton.equals("Nouvelle Grille")){
+			Fenetre1 f1  = new Fenetre1();
+			f1.setVisible(true);
+			this.dispose();
 		}
-		//fait la grille avec les JPanel
+		if (bouton.equals("Grille existante")) {
+			Fenetre f = new Fenetre();
+			f.setVisible(true);
+			this.dispose();
+		}
 	}
 }
