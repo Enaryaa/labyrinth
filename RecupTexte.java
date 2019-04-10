@@ -18,15 +18,12 @@ public class RecupTexte implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         try{
             String bouton = event.getActionCommand();
-            if (bouton.equals("Générer")){
-                Integer.parseInt(text.getText());
-            }
-            else{
-
-            }
+            if (bouton.equals("Generer"))
+             	Integer.parseInt(text.getText());
+          
         }
         catch (NumberFormatException e){
-            System.err.println("Taille non valide, veuillez réessayer");
+            System.err.println("Taille non valide, veuillez reessayer");
         }
     }
 }

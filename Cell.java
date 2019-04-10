@@ -22,7 +22,7 @@ public class Cell extends JPanel implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (!this.getBackground().equals(Color.WHITE)) {
+		 if (this.getBackground().equals(Color.WHITE)) {
 			return;
 		} else {
 			this.setBackground(Color.BLACK);
@@ -43,6 +43,5 @@ public class Cell extends JPanel implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 
 	}
-
 
 }

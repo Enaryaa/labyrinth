@@ -26,7 +26,7 @@ public class Fenetre extends Base implements ActionListener {
 		exis.addActionListener(this);
 		//goto etape 2
 		news.addActionListener(this);
-		//choix grille vide ou aléatoire
+		//choix grille vide ou aleatoire
 
 
 		this.add(panneau, BorderLayout.CENTER);
