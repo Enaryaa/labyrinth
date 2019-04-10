@@ -10,8 +10,7 @@ public class Grille extends JFrame {
         for (int i = 0; i < ligne*col ; i++ ) {
             Cell cell = new Cell(i);
             this.getContentPane().add(cell);
-            Cell obsv = new Cell();
-            cell.addMouseListener(obsv);
+            cell.addMouseListener(cell);
         }
         //fait la grille avec les JPanel
     }

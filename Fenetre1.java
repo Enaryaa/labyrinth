@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Fenetre1 extends Base implements ActionListener{
 
@@ -26,14 +28,9 @@ public class Fenetre1 extends Base implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String bouton = e.getActionCommand();
 
-        if (bouton.equals("Nouvelle Grille")){
+        if (bouton.equals("Generer la grille")){
             Fenetre1 f1  = new Fenetre1();
             f1.setVisible(true);
-            this.dispose();
-        }
-        if (bouton.equals("Grille existante")) {
-            Fenetre f = new Fenetre();
-            f.setVisible(true);
             this.dispose();
         }
     }

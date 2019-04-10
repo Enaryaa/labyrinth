@@ -15,7 +15,7 @@ public class Fenetre extends Base implements ActionListener {
 		JLabel etiquette = new JLabel("Algorithme Ariane");
 		
 		etiquette.setHorizontalAlignment(JLabel.CENTER);
-	    etiquette.setVerticalAlignment(JLabel.BOTTOM);
+		etiquette.setVerticalAlignment(JLabel.BOTTOM);
 		this.add(etiquette);
 
 		JButton exis = new JButton("Grille existante");
@@ -32,7 +32,14 @@ public class Fenetre extends Base implements ActionListener {
 		this.add(panneau, BorderLayout.CENTER);
 
 	}
-
+         
+    public JButton getJButton(){
+        return exis;
+    }
+     
+     public JButton getJButton1(){
+        return news;
+    }
 
 
 	@Override
@@ -40,8 +47,8 @@ public class Fenetre extends Base implements ActionListener {
 		String bouton = e.getActionCommand();
 
 		if (bouton.equals("Nouvelle Grille")){
-			Fenetre1 f1  = new Fenetre1();
-			f1.setVisible(true);
+			this.getJButton().setVisible(false);
+			this.getJButton1().setVisible(false);
 			this.dispose();
 		}
 		if (bouton.equals("Grille existante")) {
