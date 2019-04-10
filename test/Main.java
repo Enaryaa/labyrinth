@@ -1,9 +1,13 @@
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Main{
+
 	public static void main(String[] args) {
-		Fenetretest f = new Fenetretest();
-		f.setVisible(true);
+		Fenetre f = new Fenetre();
+		f.menu1();
+		f.visible();
 	}
+
 }
