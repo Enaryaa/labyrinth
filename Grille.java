@@ -1,18 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Grille extends JFrame {
+public class Grille extends Base {
     
     public Grille(int ligne, int col){
-        
+        super();
         GridLayout grille = new GridLayout(ligne,col);
         this.setLayout(grille);
-        for (int i = 0; i < ligne*col ; i++ ) {
+        for (int i = 0; i < ligne*col ; i++ )
+        {
             Cell cell = new Cell(i);
-            this.getContentPane().add(cell);
-            Cell obsv = new Cell();
-            cell.addMouseListener(obsv);
+            this.add(cell);     
         }
-        //fait la grille avec les JPanel
     }
 }

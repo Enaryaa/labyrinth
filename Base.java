@@ -8,5 +8,4 @@ public abstract class Base extends JFrame {
         this.setBackground(Color.PINK);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
 }
