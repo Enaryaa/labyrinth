@@ -6,13 +6,11 @@ import java.awt.event.MouseListener;
 public class Observateur implements MouseListener{
 
 	private Fenetre cible;
-	int bout;
-	private Bouton bouton;
+
 
 	public Observateur (Fenetre cible){
 		this.cible = cible;
-		bout = 0;
-		bouton = new Bouton(bout);
+	
 
 
 	}
@@ -24,9 +22,9 @@ public class Observateur implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		//Bouton bouton = (Bouton ) e.getComponent();
-		Bouton bout = bouton.getId();
-		if (bout == 1){
+		Bouton bout = (Bouton ) e.getComponent();
+		//Bouton bout = bouton.getId();
+		if (bout.getId().equals("1")){
 			System.out.println("bouton 1");
 			cible.clearContent();
 			cible.menu2();
