@@ -8,7 +8,6 @@ public class Bouton extends JButton{
 
 	public Bouton(int id){
 		this.id = id;
-	
 	}
 
 	public int getId(){
