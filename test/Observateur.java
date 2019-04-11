@@ -5,14 +5,14 @@ import java.awt.event.MouseListener;
 
 public class Observateur implements MouseListener{
 
+	private Bouton bouton;
+	private int bout;
 	private Fenetre cible;
 
 
 	public Observateur (Fenetre cible){
 		this.cible = cible;
-	
-
-
+		bout = 0;
 	}
 
 	@Override
@@ -22,9 +22,9 @@ public class Observateur implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		Bouton bout = (Bouton ) e.getComponent();
-		//Bouton bout = bouton.getId();
-		if (bout.getId().equals("1")){
+		this.bouton = (Bouton ) e.getComponent();
+		this.bout = bouton.getId();
+		if (bout == 1){
 			System.out.println("bouton 1");
 			cible.clearContent();
 			cible.menu2();
@@ -37,6 +37,7 @@ public class Observateur implements MouseListener{
 		}
 		if (bout == 3){
 			cible.clearContent();
+			cible.saisi();
 			cible.visible();
 		}
 		if (bout == 4){
