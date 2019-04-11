@@ -8,7 +8,8 @@ public class Observateur implements MouseListener{
 	private Bouton bouton;
 	private int bout;
 	private Fenetre cible;
-
+	private int bout;
+	private Bouton bouton;
 
 	public Observateur (Fenetre cible){
 		this.cible = cible;
@@ -37,8 +38,15 @@ public class Observateur implements MouseListener{
 		}
 		if (bout == 3){
 			cible.clearContent();
+<<<<<<< HEAD
 			cible.saisi();
+=======
+			this.cible.setLayout(new BorderLayout());
+			Grille grille = new Grille(8,8);
+			this.cible.add(grille,BorderLayout.CENTER);
+>>>>>>> 8661d9b57e65c7c28744ea212ad6f26ac43cd230
 			cible.visible();
+
 		}
 		if (bout == 4){
 			cible.clearContent();
