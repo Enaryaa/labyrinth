@@ -31,7 +31,9 @@ public class Controletaille implements MouseListener{
 		if (bout == 9){
 			cible.clearContent();
 			taille = Integer.parseInt(text.getText());
-			System.out.println(taille);
+			this.cible.setLayout(new BorderLayout());
+			Grille grille = new Grille(taille,taille);
+			this.cible.add(grille,BorderLayout.CENTER);
 			cible.visible();
 		}
 	}
