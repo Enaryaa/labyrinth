@@ -7,6 +7,7 @@ public class RecupTexte implements ActionListener {
     private JButton bouton;
     private JTextField text;
     private Base base;
+    private int taille;
 
     public RecupTexte(JButton bouton, JTextField text, Base base) {
         this.bouton = bouton;
@@ -17,9 +18,10 @@ public class RecupTexte implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         try{
+            
             String bouton = event.getActionCommand();
             if (bouton.equals("Generer"))
-             	Integer.parseInt(text.getText());
+             	taille = Integer.parseInt(text.getText());
           
         }
         catch (NumberFormatException e){
