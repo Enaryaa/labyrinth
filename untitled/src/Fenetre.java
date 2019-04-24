@@ -6,8 +6,8 @@ import java.awt.event.MouseListener;
 public class Fenetre extends JFrame {
 
     private static final String APP_NAME = "Algorithme Ariane";
-    private static final int SCREEN_WIDTH = 300;
-    private static final int SCREEN_HEIGHT = 300;
+    public static final int SCREEN_WIDTH = 300;
+    public static final int SCREEN_HEIGHT = 300;
 
     public Fenetre() {
 
@@ -17,6 +17,13 @@ public class Fenetre extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(false);
 
+    }
+    public Fenetre(int width, int height){
+        this.setTitle(APP_NAME);
+        this.setSize(width, height);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setResizable(false);
     }
 
 

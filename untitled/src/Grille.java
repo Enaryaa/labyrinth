@@ -5,24 +5,43 @@ public class Grille extends JPanel
 {
 	private int colonnes;
 	private int lignes;
+
+
 	public Grille(int c, int l)
 	{
-		Fenetre f = new Fenetre();
-		JPanel panel = new JPanel();
+		Fenetre f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+100);
+		FlowLayout div = new FlowLayout(FlowLayout.CENTER,0,0);
+		f.setLayout(div);
 
 		//Creation de la barre de menu
-		menubarre(f);
+		menuBarre(f);
 
 		this.colonnes = c;
 		this.lignes = l;
+
+		createGrid(f);
+		actionBarre(f);
+
+		f.setVisible(true);
+	}
+
+	private void createGrid(Fenetre f) {
+		JPanel p = new JPanel();
+		p.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT));
 		GridLayout grille = new GridLayout(colonnes,lignes);
-		f.setLayout(grille);
+		p.setLayout(grille);
 
 		for (int i = 0 ; i < (colonnes*lignes) ; i++)
 		{
 			Cell cell = new Cell(i);
-			f.add(cell);
+			p.add(cell);
 		}
+		f.getContentPane().add(p);
+	}
+
+	private void actionBarre(Fenetre f) {
+		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT-200));
 
 		JRadioButton sortie = new JRadioButton("Sortie");
 		panel.add(sortie);
@@ -40,20 +59,11 @@ public class Grille extends JPanel
 		choix.add(mur);
 		choix.add(chemin);
 
-		f.add(panel, BorderLayout.CENTER);
-
-    	panel.setBackground(Color.CYAN);
-    	f.getContentPane().add(panel);
-
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.add(panel);
-		f.setSize(500, 300);
-		f.setLocationRelativeTo(null);
-		f.setVisible(true);
+		panel.setBackground(Color.PINK);
+		f.getContentPane().add(panel);
 	}
 
-	public void menubarre(Fenetre f){
-
+	private void menuBarre(Fenetre f){
 		JMenuBar barre = new JMenuBar();
 
 		//Creation onglet fichier
@@ -65,8 +75,6 @@ public class Grille extends JPanel
 		JMenuItem erase = new JMenuItem("Effacer");
 		fichier.add(erase);
 
-		f.add(barre, BorderLayout.NORTH);
-
-
+		f.setJMenuBar(barre);
 	}
 }
