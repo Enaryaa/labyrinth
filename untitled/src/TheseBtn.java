@@ -1,5 +1,8 @@
 public class TheseBtn extends DefaultBtn {
-    public TheseBtn(/*ajouter action en parametre*/){
-        super(new Thesee());
+    public TheseBtn(Action a){
+
+        super(new Thesee(),a);
+        this.setText("Thesee");
+
     }
 }

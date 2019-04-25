@@ -5,13 +5,11 @@ import java.awt.event.MouseListener;
 
 public class Coloration implements MouseListener
 {
-	private Color couleur;
-	private Cell cell;
+	private Action action;
 
-	public Coloration()
+	public Coloration(Action action)
 	{
-		// inutile ici c'est une interface elle a pas de constructeur
-		super();
+		this.action = action;
 	}
 
 	@Override
@@ -22,19 +20,27 @@ public class Coloration implements MouseListener
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
-		this.cell = (Cell) e.getComponent();
-		this.couleur = this.cell.getBackground();
-		if(this.couleur.equals(Color.WHITE))
-		{
-			cell.setBackground(Color.BLACK);
-			this.cell.repaint();
+		final Cell cell = (Cell) e.getComponent();
+		final Element elem = this.action.getElem();
+		if (elem instanceof Sortie) {
+			if (this.action.isSortieLa()) {
+				return;
+				//si il y est deja, ça fait rien (quitte fonction)
+			} else {
+				this.action.sortieLa(true);
+			}
 		}
+		if (elem instanceof Thesee){
+			if (this.action.isTheseeLa()){
+				return;
+			}
+			else{
+				this.action.theseeLa(true);
+			}
+		}
+		cell.setBackground(elem.getCouleur());
 
-		else if(this.couleur.equals(Color.BLACK))
-		{
-			cell.setBackground(Color.WHITE);
-			this.cell.repaint();
-		}
+
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 public class ChemBtn extends DefaultBtn {
-    public ChemBtn(/*ajouter action en parametre*/){
-        super(new Chemin());
+    public ChemBtn(Action a){
+
+        super(new Chemin(),a);
+        this.setText("Chemin");
     }
 }

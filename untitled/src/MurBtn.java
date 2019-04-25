@@ -1,5 +1,6 @@
 public class MurBtn extends DefaultBtn {
-    public MurBtn(/*ajouter action en parametre*/){
-        super(new Mur());
+    public MurBtn(Action a){
+        super(new Mur(), a);
+        this.setText("Mur");
     }
 }

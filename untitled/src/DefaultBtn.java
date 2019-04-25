@@ -2,9 +2,17 @@ import javax.swing.*;
 
 public class DefaultBtn extends JRadioButton {
     private Element elem;
+    private Action action;
 
-    public DefaultBtn(Element elem){
+    public DefaultBtn(Element elem, Action action){
         this.elem = elem;
-        //ajout action (ou element selecteur)apres, qui garde en mémoire quel element mettre sur la grille
+        this.action = action;
+        this.addMouseListener(new Selection());
+    }
+
+    public void setEleminAction(){
+        this.action.saveElem(this.elem);
+        //stock l'element du bouton cliqué dans l'action, qui permet de mettre
+        //les bons parametres apres
     }
 }
