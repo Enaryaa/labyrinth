@@ -10,10 +10,12 @@ public abstract class Element {
     }
 
     public boolean isTraversable() {
+
         return isTraversable;
     }
 
     public boolean isMovable() {
+
         return isMovable;
     }
 

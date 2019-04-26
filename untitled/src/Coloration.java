@@ -14,7 +14,6 @@ public class Coloration implements MouseListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
 	}
 
 	@Override
@@ -22,23 +21,39 @@ public class Coloration implements MouseListener
 	{
 		final Cell cell = (Cell) e.getComponent();
 		final Element elem = this.action.getElem();
+		//recupere propriete du bouton
+
+		final Element propcell = cell.getPropriete();
+		//recup propriete de la cellule
+
 		if (elem instanceof Sortie) {
+			//permet de savoir si elem est une instance de sortie (qui hérite de la classe element
+
 			if (this.action.isSortieLa()) {
 				return;
-				//si il y est deja, ça fait rien (quitte fonction)
+				//si false
 			} else {
 				this.action.sortieLa(true);
+				//sinon le met a vrai et permet d'obtenir une seule sortie (idem thesee)
 			}
 		}
 		if (elem instanceof Thesee){
 			if (this.action.isTheseeLa()){
 				return;
+				//si false
 			}
 			else{
 				this.action.theseeLa(true);
+				//sinon met a true
 			}
 		}
-		cell.setBackground(elem.getCouleur());
+		if (propcell instanceof Thesee){
+			this.action.theseeLa(false);
+		}
+		if (propcell instanceof Sortie){
+			this.action.sortieLa(false);
+		}
+		cell.setPropriete(elem);
 
 
 	}

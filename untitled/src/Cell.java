@@ -15,6 +15,7 @@ public class Cell extends JPanel
 		setPropriete(new Chemin());
 		//met element par defaut à chemin
 	}
+
 	public void setPropriete(Element elem){
 		this.elem = elem;
 		this.setBackground(elem.getCouleur());
@@ -22,5 +23,6 @@ public class Cell extends JPanel
 
 	public Element getPropriete(){
 		return elem;
+		//associé à la cellule
 	}
 }

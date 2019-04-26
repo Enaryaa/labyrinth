@@ -11,6 +11,7 @@ public class Grille extends JPanel implements Action
 
 	public Grille(int c, int l)
 	{
+		this.e = new Chemin();
 		Fenetre f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+100);
 		FlowLayout div = new FlowLayout(FlowLayout.CENTER,0,0);
 		f.setLayout(div);
@@ -83,30 +84,39 @@ public class Grille extends JPanel implements Action
 
 	@Override
 	public void saveElem(Element e) {
+
 		this.e = e;
 	}
+
 	@Override
 	public Element getElem(){
+
 		return e;
 	}
 
 	@Override
 	public void theseeLa(boolean bool) {
+
 		theseeLa = bool;
+		//permet de determiner si thesee est deja present sur la grille
 	}
 
 	@Override
 	public boolean isTheseeLa() {
+
 		return theseeLa;
 	}
 
 	@Override
 	public void sortieLa(boolean bool) {
+
 		sortieLa = bool;
 	}
 
 	@Override
 	public boolean isSortieLa() {
+
 		return sortieLa;
+		//return si false (non present) ou  true (present)
 	}
 }
