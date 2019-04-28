@@ -36,11 +36,10 @@ public class Observateur implements MouseListener{
 			cible.clearContent();
 			cible.saisi();
 			cible.visible();
-
 		}
 		if (bout == 4){
 			cible.clearContent();
-			cible.menu3();
+			cible.saisiRand();
 			cible.visible();
 		}
 		if (bout == 5 || bout == 6){

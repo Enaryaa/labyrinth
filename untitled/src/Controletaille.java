@@ -33,15 +33,17 @@ public class Controletaille implements MouseListener{
 			taille = Integer.parseInt(text.getText());
 			Grille grille = new Grille(taille,taille);
 		}
+		else if (bout == 10){
+			cible.setVisible(false);
+			taille = Integer.parseInt(text.getText());
+			GrilleRand grilleR = new GrilleRand(taille,taille);
+		}
 	}
 	catch (NumberFormatException t){
 		System.err.println("Taille non valide, veuillez reessayer");
 	}
-	
 
 	}
-
-
 
 	@Override
 	public void mouseReleased(MouseEvent e) {

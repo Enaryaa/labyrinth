@@ -166,6 +166,33 @@ public void saisi(){
    this.getContentPane().add(panel);
 }
 
+    public void saisiRand(){
+        GridLayout gestionnaire = new GridLayout(2, 1);
+        this.setLayout(gestionnaire);
+        JPanel panel = new JPanel();
+
+        JLabel etiquette = new JLabel("Taille de la grille");
+
+        etiquette.setHorizontalAlignment(JLabel.CENTER);
+        etiquette.setVerticalAlignment(JLabel.BOTTOM);
+        this.add(etiquette);
+
+        Bouton generer = new Bouton(10);
+        generer.setText(" Generer");
+
+        panel.add(generer);
+        JTextField zone = new JTextField();
+        zone.setPreferredSize( new Dimension( 50, 25 ) );
+        panel.add(zone);
+        Controletaille o = new Controletaille(this,zone);
+        generer.addMouseListener(o);
+
+        this.add(panel, BorderLayout.CENTER);
+        panel.setBackground(Color.GREEN);
+        this.getContentPane().add(panel);
+    }
+
+
 
 
 
