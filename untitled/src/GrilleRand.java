@@ -17,6 +17,10 @@ public class GrilleRand extends Fenetre {
     private int posy;
     private int theseex;
     private int theseey;
+    private int maxUp = 10;
+    private int maxDown = 10;
+    private int maxLeft = 10;
+    private int maxRight = 10;
 
 
     public GrilleRand(int c, int l) {
@@ -37,6 +41,8 @@ public class GrilleRand extends Fenetre {
 
         this.colonnes = c;
         this.lignes = l;
+
+
 
         this.setVisible(true);
     }
@@ -67,15 +73,20 @@ public class GrilleRand extends Fenetre {
         int[][] grille = new int[colonnes][lignes];
         for (int i = 0; i < colonnes; i++){
             for (int j = 0; j < lignes; j++){
-                grille[i][j] = MUR;
+                boolean randXouY = new Random().nextBoolean();
+                if (randXouY) {
+                    grille[i][j] = MUR;
+                } else {
+                    grille[i][j] = CHEMIN;
+                }
             }
         }
-     return grille;
+        return grille;
     }
 
     private void placerThesee(){
-         posx = (int) (Math.random()*(colonnes-1));
-         posy = (int) (Math.random()*(lignes-1));
+        posx = (int) (Math.random()*(colonnes-1));
+        posy = (int) (Math.random()*(lignes-1));
 
         grille[posx][posy] = THESEE;
 
@@ -84,18 +95,139 @@ public class GrilleRand extends Fenetre {
     }
 
     private void deplacement(){
-        int nbchemin = (colonnes*lignes)-2;
+        int nbchemin = (colonnes*lignes*2);
+        boolean randXouY;
+        boolean randDirect;
 
         for (int i = 0; i < nbchemin; i++){
-            boolean randXouY = new Random().nextBoolean(); // choisi x ou y
+            if (i+1 == nbchemin){
+                grille[posx][posy] = SORTIE;
+                break;
+            }
+            randXouY = new Random().nextBoolean(); // choisi x ou y
             if (randXouY) { // x si c'est true
-                boolean randdirect = new Random().nextBoolean(); // choisi gauche ou droite
-                if (randdirect) { // gauche si c'est true
-                    if()
-
+                randDirect = new Random().nextBoolean(); // choisi gauche ou droite
+                if (randDirect) { // gauche si c'est true
+                    if (!moveLeft()) {
+                        if (!moveRight()) {
+                            randDirect = new Random().nextBoolean();
+                            if (randDirect) { // haut ici
+                                if (!moveUp()) {
+                                    moveDown();
+                                }
+                            } else { //bas ici
+                                if (!moveDown()) {
+                                    moveUp();
+                                }
+                            }
+                        }
+                    }
+                } else { // droite ici
+                    if (!moveRight()) {
+                        if (!moveLeft()) {
+                            randDirect = new Random().nextBoolean();
+                            if (randDirect) { // haut ici
+                                if (!moveUp()) {
+                                    moveDown();
+                                }
+                            } else { //bas ici
+                                if (!moveDown()) {
+                                    moveUp();
+                                }
+                            }
+                        }
+                    }
+                }
+            } else { // start Y
+                randDirect = new Random().nextBoolean();
+                if (randDirect) { // haut ici
+                    if (!moveUp()) {
+                        if (!moveDown()) {
+                            randDirect = new Random().nextBoolean();
+                            if (randDirect) { //gauche
+                                if (!moveLeft()) {
+                                    moveRight();
+                                }
+                            } else {
+                                if (!moveRight()) {
+                                    moveLeft();
+                                }
+                            }
+                        }
+                    }
+                } else { //bas ici
+                    if (!moveDown()) {
+                        if (!moveUp()) {
+                            randDirect = new Random().nextBoolean();
+                            if (randDirect) { //gauche
+                                if (!moveLeft()) {
+                                    moveRight();
+                                }
+                            } else {
+                                if (!moveRight()) {
+                                    moveLeft();
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+
+    private boolean moveLeft() {
+        int rand = (int) (Math.random()) * 5;
+        for (int i = 0; i < rand; i ++) {
+            if (posx > 0 && (posx-1 != theseex)) {
+                posx --;
+                grille[posx][posy] = CHEMIN;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean moveRight() {
+        int rand = (int) (Math.random()) * 5;
+        for (int i = 0; i < rand; i ++) {
+            if (posx < (colonnes - 1) && (posx + 1 != theseex)) {
+                posx++;
+                grille[posx][posy] = CHEMIN;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean moveUp() {
+        int rand = (int) (Math.random()) * 5;
+        for (int i = 0; i < rand; i ++) {
+            if (posy > 0 && (posy - 1 != theseey)) {
+                posy--;
+                grille[posx][posy] = CHEMIN;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean moveDown() {
+        int rand = (int) (Math.random()) * 5;
+        for (int i = 0; i < rand; i ++) {
+            if (posy < (lignes - 1) && (posy + 1 != theseey)) {
+                posy++;
+                grille[posx][posy] = CHEMIN;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
 
