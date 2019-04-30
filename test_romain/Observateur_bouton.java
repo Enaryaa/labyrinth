@@ -23,6 +23,8 @@ public class Observateur_bouton implements MouseListener
 	@Override
 	public void mousePressed(MouseEvent evenement)	// un bouton appuyé
 	{
+		FlowLayout affichage = new FlowLayout(FlowLayout.CENTER,0,0);
+		fenetre.setLayout(affichage);
 		this.bouton = (Bouton) evenement.getComponent();
 		this.id_bouton = bouton.getId();
 		if(id_bouton == 0)
@@ -58,9 +60,34 @@ public class Observateur_bouton implements MouseListener
 				System.err.println("Erreur de lecture");
 			}
 			Grille grille = new Grille_existante(taille,thesee,sortie,etats);
+			grille.setPreferredSize(new Dimension(fenetre.getWidth()-100,fenetre.getHeight()-100-30));
 			fenetre.add(grille);
+			/*Barre_action barre = new Barre_action(fenetre);
+			fenetre.add(barre);*/
+			Bouton coucou = new Bouton(19);
+			Observateur_bouton sauvegarde = new Observateur_bouton(fenetre);
+			coucou.addMouseListener(sauvegarde);
+			coucou.setPreferredSize(new Dimension(fenetre.getWidth()-100,100));
+			fenetre.add(coucou);
 			fenetre.repaint();
 			fenetre.setVisible(true);
+		}
+		if (id_bouton == 19)
+		{
+			JFrame fenetre_sauvegarde = new JFrame();
+			fenetre_sauvegarde.setSize(fenetre.getWidth()-50, fenetre.getHeight()-200);
+			fenetre_sauvegarde.setLocationRelativeTo(fenetre);
+			FlowLayout gestionnaire = new FlowLayout(FlowLayout.CENTER,0,0);
+			fenetre_sauvegarde.setLayout(gestionnaire);
+			JLabel choix = new JLabel("Nom du fichier de sauvegarde :");
+			choix.setPreferredSize(new Dimension(fenetre_sauvegarde.getWidth()-20,(fenetre_sauvegarde.getHeight()-34)/2));
+			JTextField champ = new JTextField();
+			champ.setPreferredSize(new Dimension(fenetre_sauvegarde.getWidth()-20,(fenetre_sauvegarde.getHeight()-34)/2));
+			Observateur_sauvegarde sauvegarde = new Observateur_sauvegarde(fenetre_sauvegarde);
+			champ.addActionListener(sauvegarde);
+			fenetre_sauvegarde.add(choix);
+			fenetre_sauvegarde.add(champ);
+			fenetre_sauvegarde.setVisible(true);
 		}
 	}
 	public void mouseReleased(MouseEvent evenement){};	// un bouton relâché

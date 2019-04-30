@@ -25,9 +25,6 @@ public class Grille_existante extends Grille
 				this.add(cell);
 			}
 		}
-
-
-
 		/*for (int i = 0 ; i < taille ; i++)
 		{
 			for (int j = 0 ; j < taille ; j++)

@@ -19,6 +19,10 @@ public class Bouton extends JButton
 		{
 			this.setText("Quitter");
 		}
+		else if(this.id==19)
+		{
+			this.setText("Sauvegarder");
+		}
 	}
 
 	// Méthode pour récupérer l'id du bouton
