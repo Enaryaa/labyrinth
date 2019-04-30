@@ -11,8 +11,7 @@ public class Grille_manuelle extends Grille
 		this.taille = t;
 		for (int i = 0 ; i < (taille*taille) ; i++)
 		{
-			//System.out.println(i);
-			Case cell = new Case(i);
+			Case cell = new Case(i,'0');
 			this.add(cell);
 		}
 	}

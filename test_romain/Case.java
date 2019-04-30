@@ -5,11 +5,20 @@ public class Case extends JPanel
 {
 	private int index;
 	private Color couleur;
-	public Case(int index)
+	private char etat;
+	public Case(int index, char e)
 	{
 		super();
 		this.index = index;
-		this.setBackground(Color.WHITE);
+		this.etat = e;
+		if (etat=='1')
+		{
+			this.setBackground(Color.BLACK);
+		}
+		else
+		{
+			this.setBackground(Color.WHITE);
+		}
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		Coloration coloration = new Coloration();
 		this.addMouseListener(coloration);
