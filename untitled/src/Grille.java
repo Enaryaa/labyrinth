@@ -1,14 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Grille extends JPanel
+public class Grille extends JPanel implements Action
 {
 	private int colonnes;
 	private int lignes;
-
+	private Element e;
+	private boolean theseeLa = false;
+	private boolean sortieLa = false;
 
 	public Grille(int c, int l)
 	{
+		this.e = new Chemin();
 		Fenetre f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+100);
 		FlowLayout div = new FlowLayout(FlowLayout.CENTER,0,0);
 		f.setLayout(div);
@@ -30,10 +33,11 @@ public class Grille extends JPanel
 		p.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT));
 		GridLayout grille = new GridLayout(colonnes,lignes);
 		p.setLayout(grille);
+		Coloration coloration = new Coloration(this);
 
 		for (int i = 0 ; i < (colonnes*lignes) ; i++)
 		{
-			Cell cell = new Cell(i);
+			Cell cell = new Cell(i,coloration);
 			p.add(cell);
 		}
 		f.getContentPane().add(p);
@@ -43,13 +47,13 @@ public class Grille extends JPanel
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT-200));
 
-		JRadioButton sortie = new JRadioButton("Sortie");
+		SortieBtn sortie = new SortieBtn(this);
 		panel.add(sortie);
-		JRadioButton thesee = new JRadioButton("Thesee");
+		TheseBtn thesee = new TheseBtn(this);
 		panel.add(thesee);
-		JRadioButton mur = new JRadioButton("Mur");
+		MurBtn mur = new MurBtn(this);
 		panel.add(mur);
-		JRadioButton chemin = new JRadioButton("Chemin");
+		ChemBtn chemin = new ChemBtn(this);
 		panel.add(chemin);
 
 		ButtonGroup choix = new ButtonGroup();
@@ -76,5 +80,43 @@ public class Grille extends JPanel
 		fichier.add(erase);
 
 		f.setJMenuBar(barre);
+	}
+
+	@Override
+	public void saveElem(Element e) {
+
+		this.e = e;
+	}
+
+	@Override
+	public Element getElem(){
+
+		return e;
+	}
+
+	@Override
+	public void theseeLa(boolean bool) {
+
+		theseeLa = bool;
+		//permet de determiner si thesee est deja present sur la grille
+	}
+
+	@Override
+	public boolean isTheseeLa() {
+
+		return theseeLa;
+	}
+
+	@Override
+	public void sortieLa(boolean bool) {
+
+		sortieLa = bool;
+	}
+
+	@Override
+	public boolean isSortieLa() {
+
+		return sortieLa;
+		//return si false (non present) ou  true (present)
 	}
 }

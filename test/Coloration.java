@@ -10,6 +10,7 @@ public class Coloration implements MouseListener
 
 	public Coloration()
 	{
+		// inutile ici c'est une interface elle a pas de constructeur
 		super();
 	}
 
