@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 
 public class Coloration implements MouseListener
 {
-	private Color couleur;
+	private char etat;
 	private Case cell;
 
 	public Coloration()
@@ -22,18 +22,7 @@ public class Coloration implements MouseListener
 	public void mousePressed(MouseEvent e)
 	{
 		this.cell = (Case) e.getComponent();
-		this.couleur = this.cell.getBackground();
-		if(this.couleur.equals(Color.WHITE))
-		{
-			cell.setBackground(Color.BLACK);
-			this.cell.repaint();
-		}
-
-		else if(this.couleur.equals(Color.BLACK))
-		{
-			cell.setBackground(Color.WHITE);
-			this.cell.repaint();
-		}
+		cell.changerEtat();
 	}
 
 	@Override
