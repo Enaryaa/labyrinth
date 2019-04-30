@@ -6,13 +6,16 @@ public class Grille_existante extends Grille
 	private int taille;
 	private byte[] thesee;
 	private byte[] sortie;
+	private String etats;
 
-	public Grille_existante(int t, byte[] th, byte[] s)
+	public Grille_existante(int t, byte[] th, byte[] s, String e)
 	{
 		super(t);
 		this.taille = t;
 		this.thesee = th;
 		this.sortie = s;
+		this.etats = e;
+		System.out.println(etats[0]);
 		for (int i = 0 ; i < taille ; i++)
 		{
 			for (int j = 0 ; j < taille ; j++)

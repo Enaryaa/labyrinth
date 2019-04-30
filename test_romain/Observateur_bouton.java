@@ -47,6 +47,8 @@ public class Observateur_bouton implements MouseListener
 			byte taille = 0;
 			byte[] thesee = new byte[2];
 			byte[] sortie = new byte[2];
+			char[] tableau_etats = new char[16];
+			int etats_int = 0;
 			fenetre.clearContent();
 			// a ce moment, ajouter les etapes de choix pour arriver à la grille
 			// Ci-après, le code pour lire le fichier contenant le format de la grille
@@ -60,16 +62,19 @@ public class Observateur_bouton implements MouseListener
 				thesee[1] = data.readByte();
 				sortie[0] = data.readByte();
 				sortie[1] = data.readByte();
-				String gf = data.read();
-				System.out.println(gf);
+				etats_int = (int) data.readShort();
+				String etats = Integer.toBinaryString(etats_int);
+				while (etats.length() != 16)
+				{
+					etats = "0" + etats;
+				}
+				tableau_etats = (char[]) etats;
 			}
 			catch(IOException e)
 			{
 				System.err.println("Erreur de lecture");
 			}
-			Grille grille = new Grille_existante(taille,thesee,sortie);
-
-
+			Grille grille = new Grille_existante(taille,thesee,sortie,etats);
 			fenetre.add(grille);
 			fenetre.repaint();
 			fenetre.setVisible(true);
