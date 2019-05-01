@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class Grille extends JPanel implements Action
 {
@@ -12,7 +13,7 @@ public class Grille extends JPanel implements Action
 	public Grille(int c, int l)
 	{
 		this.e = new Chemin();
-		Fenetre f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+100);
+		Fenetre f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+200);
 		FlowLayout div = new FlowLayout(FlowLayout.CENTER,0,0);
 		f.setLayout(div);
 
@@ -24,8 +25,28 @@ public class Grille extends JPanel implements Action
 
 		createGrid(f);
 		actionBarre(f);
+		jouer(f);
 
 		f.setVisible(true);
+	}
+
+	private void jouer(Fenetre f) {
+		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT-100));
+
+		Bouton deter = new Bouton(12);
+		deter.setText("Deterministe");
+		panel.add(deter);
+		Bouton alea = new Bouton(13);
+		alea.setText("Aleatoire");
+		panel.add(alea);
+
+		Observateur o = new Observateur(f);
+		alea.addMouseListener(o);
+		Observateur c = new Observateur(f);
+		deter.addMouseListener(c);
+
+		f.getContentPane().add(panel);
 	}
 
 	private void createGrid(Fenetre f) {
@@ -78,6 +99,9 @@ public class Grille extends JPanel implements Action
 		fichier.add(save);
 		JMenuItem erase = new JMenuItem("Effacer");
 		fichier.add(erase);
+
+		save.addActionListener(new GestionMenu(f));
+		erase.addActionListener(new GestionMenu(f));
 
 		f.setJMenuBar(barre);
 	}

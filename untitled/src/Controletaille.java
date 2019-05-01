@@ -18,6 +18,10 @@ public class Controletaille implements MouseListener{
 		bout = 0;
 	}
 
+	public Controletaille(){
+		bout = 0;
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
@@ -40,9 +44,12 @@ public class Controletaille implements MouseListener{
 		}
 	}
 	catch (NumberFormatException t){
-		System.err.println("Taille non valide, veuillez reessayer");
+		JOptionPane.showMessageDialog(cible, "Taille non valide", "Erreur", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 
+	public int getTaille(){
+		return taille;
 	}
 
 	@Override

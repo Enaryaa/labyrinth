@@ -26,36 +26,6 @@ public class Fenetre extends JFrame {
         this.setResizable(false);
     }
 
-
-    public void menu3() {
-      GridLayout gestionnaire = new GridLayout(2, 1);
-      this.setLayout(gestionnaire);
-      JPanel panel = new JPanel();
-
-      JLabel etiquette = new JLabel("Type Algorithme");
-
-      etiquette.setHorizontalAlignment(JLabel.CENTER);
-      etiquette.setVerticalAlignment(JLabel.BOTTOM);
-      this.add(etiquette);
-
-      Bouton deter = new Bouton(5);
-      Bouton alea = new Bouton(6);
-      deter.setText("Algorithme Deterministe");
-      alea.setText("Algorithme Aleatoire");
-      panel.add(deter);
-      panel.add(alea);
-      Observateur o = new Observateur(this);
-      alea.addMouseListener(o);
-      Observateur c = new Observateur(this);
-      deter.addMouseListener(c);
-
-
-      this.add(panel, BorderLayout.CENTER);
-
-      panel.setBackground(Color.CYAN);
-      this.getContentPane().add(panel);
-  }
-
   public void menu1() {
     GridLayout gestionnaire = new GridLayout(2, 1);
     this.setLayout(gestionnaire);
@@ -98,8 +68,8 @@ public void menu2(){
 
     Bouton vide = new Bouton(3);
     Bouton rand = new Bouton(4);
-    vide.setText("vide");
-    rand.setText("random");
+    vide.setText("Vide");
+    rand.setText("Aleatoire");
     panel.add(vide);
     panel.add(rand);
     Observateur o = new Observateur(this);
@@ -118,15 +88,15 @@ public void menu4(){
    this.setLayout(gestionnaire);
    JPanel panel = new JPanel();
 
-   JLabel etiquette = new JLabel("Choix de la nouvelle grille");
+   JLabel etiquette = new JLabel("Mode de jeu");
 
    etiquette.setHorizontalAlignment(JLabel.CENTER);
    etiquette.setVerticalAlignment(JLabel.BOTTOM);
    this.add(etiquette);
    Bouton manuel = new Bouton(7);
    Bouton auto = new Bouton(8);
-   manuel.setText(" manuel");
-   auto.setText("auto");
+   manuel.setText("Manuel");
+   auto.setText("Automatique");
    Observateur o = new Observateur(this);
    auto.addMouseListener(o);
    Observateur c = new Observateur(this);
@@ -192,17 +162,13 @@ public void saisi(){
         this.getContentPane().add(panel);
     }
 
+    public void visible() {
+        this.setVisible(true);
+    }
 
-
-
-
-public void visible() {
-    this.setVisible(true);
-}
-
-public void clearContent() {
-    this.getContentPane().removeAll();
-    this.setVisible(false);
-}
+    public void clearContent() {
+        this.getContentPane().removeAll();
+        this.setVisible(false);
+    }
 
 }

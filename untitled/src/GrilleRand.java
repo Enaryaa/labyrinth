@@ -1,18 +1,20 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class GrilleRand extends Fenetre {
+public class GrilleRand extends JPanel {
     private int colonnes;
     private int lignes;
     private Element e;
     private List<Element> box;
-    private Element[][] grille;
-    private Thesee thesee;
-    private Mur mur;
-    private Chemin chemin;
-    private Sortie sortie;
+    private int[][] grille;
+    private static final int CHEMIN = 0;
+    private static final int MUR = 1;
+    private static final int THESEE = 2;
+    private static final int SORTIE = 3;
     private int posx;
     private int posy;
     private int theseex;
@@ -22,8 +24,6 @@ public class GrilleRand extends Fenetre {
 
     public GrilleRand(int c, int l) {
         super();
-        JPanel panel = JPanel();
-
         box = new ArrayList<>();
         box.add(new Chemin());
         // int = 0
@@ -34,15 +34,36 @@ public class GrilleRand extends Fenetre {
         box.add(new Sortie());
         // int = 3
 
-        //Creation de la barre de menu
-        menuBarre(this);
-
         this.colonnes = c;
         this.lignes = l;
 
-        drawGrid();
+        Fenetre f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+100);
+        FlowLayout div = new FlowLayout(FlowLayout.CENTER,0,0);
+        f.setLayout(div);
+        menuBarre(f);
+        drawGrid(f);
+        jouer(f);
 
-        this.setVisible(true);
+        f.setVisible(true);
+    }
+
+    private void jouer(Fenetre f) {
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT-100));
+
+        Bouton deter = new Bouton(12);
+        deter.setText("Deterministe");
+        panel.add(deter);
+        Bouton alea = new Bouton(13);
+        alea.setText("Aleatoire");
+        panel.add(alea);
+
+        Observateur o = new Observateur(f);
+        alea.addMouseListener(o);
+        Observateur c = new Observateur(f);
+        deter.addMouseListener(c);
+
+        f.getContentPane().add(panel);
     }
 
     private void menuBarre(Fenetre f) {
@@ -51,41 +72,66 @@ public class GrilleRand extends Fenetre {
         //Creation onglet fichier
         JMenu fichier = new JMenu("Fichier");
         barre.add(fichier);
-        //contient une sauvegarde et erase
+
+        //contient une sauvegarde et erase et une generation de grille
+
         JMenuItem save = new JMenuItem("Sauvegarder");
         fichier.add(save);
-        JMenuItem erase = new JMenuItem("Effacer");
-        fichier.add(erase);
+        JMenuItem repaint = new JMenuItem("Regenerer");
+        fichier.add(repaint);
+
+        save.addActionListener(new GestionMenu(f));
+        repaint.addActionListener(new GestionMenu(f));
 
         f.setJMenuBar(barre);
     }
 
-    private void drawGrid() {
+    private void drawGrid(Fenetre f) {
         grille = arrayFill();
 
         placerThesee();
         deplacement();
         placerSortie();
-    }
 
-    private Element[][] arrayFill() {
-        Element [][] grille = new Element[colonnes][lignes];
         JPanel p = new JPanel();
+        p.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT));
+        GridLayout gridLayout = new GridLayout(colonnes,lignes);
+        p.setLayout(gridLayout);
+
+        int index = 0;
         for (int i = 0; i < colonnes; i++){
             for (int j = 0; j < lignes; j++){
-                Cell cell = new Cell(i);
-                p.add(cell);
+                int current = grille[i][j];
+                if (current == MUR){
+                    p.add(new Cell(index, box.get(MUR)));
+                }
+                else if(current == CHEMIN){
+                    p.add(new Cell(index, box.get(CHEMIN)));
+                }
+                else if(current == THESEE){
+                    p.add(new Cell(index, box.get(THESEE)));
+                }
+                else if(current == SORTIE){
+                    p.add(new Cell(index, box.get(SORTIE)));
+                }
+                index++;
+            }
+        }
+        f.getContentPane().add(p);
+    }
+
+    private int[][] arrayFill() {
+        int[][] grille = new int[colonnes][lignes];
+        for (int i = 0; i < colonnes; i++){
+            for (int j = 0; j < lignes; j++){
                 boolean randXouY = new Random().nextBoolean();
                 if (randXouY) {
-                    grille[i][j] = mur = new Mur();
-                    cell.getPropriete();
+                    grille[i][j] = MUR;
                 } else {
-                    grille[i][j] = chemin = new Chemin();
-                    cell.getPropriete();
+                    grille[i][j] = CHEMIN;
                 }
             }
         }
-        this.getContentPane().add(p);
         return grille;
     }
 
@@ -93,19 +139,18 @@ public class GrilleRand extends Fenetre {
         posx = (int) (Math.random()*(colonnes-1));
         posy = (int) (Math.random()*(lignes-1));
 
-        grille[posx][posy] = thesee = new Thesee();
+        grille[posx][posy] = THESEE;
 
         theseex = posx;
         theseey = posy;
-        System.out.println("pos T : " + posx + " ; " +posy);
     }
 
     private void placerSortie(){
         posx = (int) (Math.random()*(colonnes-1));
         posy = (int) (Math.random()*(lignes-1));
 
-        if (grille[posx][posy] == chemin) {
-            grille[posx][posy] = sortie = new Sortie();
+        if (grille[posx][posy] == CHEMIN) {
+            grille[posx][posy] = SORTIE;
         }
         else{
             placerSortie();
@@ -113,7 +158,6 @@ public class GrilleRand extends Fenetre {
 
         sortiex = posx;
         sortiey = posy;
-        System.out.println("pos S : " + posx + " ; " +posy);
     }
 
     private void deplacement(){
@@ -159,9 +203,9 @@ public class GrilleRand extends Fenetre {
     private boolean moveLeft() {
         int  rand = (int) (Math.random()*((colonnes/2)))+1;
         for (int i = 0; i < colonnes-rand; i ++) {
-            if (posx > 0 && grille[posx-1][posy] != thesee) {
+            if (posx > 0 && grille[posx-1][posy] != THESEE) {
                 posx --;
-                grille[posx][posy] = chemin;
+                grille[posx][posy] = CHEMIN;
             } else {
                 return false;
             }
@@ -172,9 +216,9 @@ public class GrilleRand extends Fenetre {
     private boolean moveRight() {
         int rand = (int) (Math.random()*((colonnes/2)))+1;
         for (int i = 0; i < colonnes-rand; i ++) {
-            if (posx < colonnes-1 && grille[posx+1][posy] != thesee) {
+            if (posx < colonnes-1 && grille[posx+1][posy] != THESEE) {
                 posx++;
-                grille[posx][posy] = chemin;
+                grille[posx][posy] = CHEMIN;
             } else {
                 return false;
             }
@@ -185,9 +229,9 @@ public class GrilleRand extends Fenetre {
     private boolean moveUp() {
         int  rand = (int) (Math.random()*((colonnes/2)))+1;
         for (int i = 0; i < colonnes-rand; i ++) {
-            if (posy > 0 && grille[posx][posy-1] != thesee) {
+            if (posy > 0 && grille[posx][posy-1] != THESEE) {
                 posy--;
-                grille[posx][posy] = chemin;
+                grille[posx][posy] = CHEMIN;
             }
             else {
                 return false;
@@ -199,9 +243,9 @@ public class GrilleRand extends Fenetre {
     private boolean moveDown() {
         int rand = (int) (Math.random()*((colonnes/2)))+1;
         for (int i = 0; i < colonnes-rand; i ++) {
-            if (posy < colonnes-1 && grille[posx][posy+1] != thesee) {
+            if (posy < colonnes-1 && grille[posx][posy+1] != THESEE) {
                 posy++;
-                grille[posx][posy] = chemin;
+                grille[posx][posy] = CHEMIN;
             }
             else {
                 return false;

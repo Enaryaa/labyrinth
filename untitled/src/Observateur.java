@@ -1,5 +1,3 @@
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -16,7 +14,6 @@ public class Observateur implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
 	}
 
 	@Override
@@ -42,32 +39,28 @@ public class Observateur implements MouseListener{
 			cible.saisiRand();
 			cible.visible();
 		}
-		if (bout == 5 || bout == 6){
-			cible.clearContent();
-			cible.menu4();
-			cible.visible();
-		}
 		if (bout == 7 || bout == 8){
+			//mode manuel || auto
 			cible.clearContent();
 			cible.visible();
 		}
-
+		if (bout == 13 || bout == 12){
+			cible.setVisible(false);
+			Fenetre f = new Fenetre();
+			f.menu4();
+			f.visible();
+		}
 	}
-
-
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-
 	}
 }
