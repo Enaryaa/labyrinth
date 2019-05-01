@@ -8,23 +8,21 @@ public class GrilleRand extends Fenetre {
     private int lignes;
     private Element e;
     private List<Element> box;
-    private static final int CHEMIN = 0;
-    private static final int MUR = 1;
-    private static final int THESEE = 2;
-    private static final int SORTIE = 3;
-    private int[][] grille;
+    private Element[][] grille;
+    private Thesee thesee;
+    private Mur mur;
+    private Chemin chemin;
+    private Sortie sortie;
     private int posx;
     private int posy;
     private int theseex;
     private int theseey;
-    private int maxUp = 10;
-    private int maxDown = 10;
-    private int maxLeft = 10;
-    private int maxRight = 10;
-
+    private int sortiex;
+    private int sortiey;
 
     public GrilleRand(int c, int l) {
         super();
+        JPanel panel = JPanel();
 
         box = new ArrayList<>();
         box.add(new Chemin());
@@ -42,7 +40,7 @@ public class GrilleRand extends Fenetre {
         this.colonnes = c;
         this.lignes = l;
 
-
+        drawGrid();
 
         this.setVisible(true);
     }
@@ -64,23 +62,30 @@ public class GrilleRand extends Fenetre {
 
     private void drawGrid() {
         grille = arrayFill();
+
         placerThesee();
         deplacement();
-
+        placerSortie();
     }
 
-    private int[][] arrayFill() {
-        int[][] grille = new int[colonnes][lignes];
+    private Element[][] arrayFill() {
+        Element [][] grille = new Element[colonnes][lignes];
+        JPanel p = new JPanel();
         for (int i = 0; i < colonnes; i++){
             for (int j = 0; j < lignes; j++){
+                Cell cell = new Cell(i);
+                p.add(cell);
                 boolean randXouY = new Random().nextBoolean();
                 if (randXouY) {
-                    grille[i][j] = MUR;
+                    grille[i][j] = mur = new Mur();
+                    cell.getPropriete();
                 } else {
-                    grille[i][j] = CHEMIN;
+                    grille[i][j] = chemin = new Chemin();
+                    cell.getPropriete();
                 }
             }
         }
+        this.getContentPane().add(p);
         return grille;
     }
 
@@ -88,85 +93,61 @@ public class GrilleRand extends Fenetre {
         posx = (int) (Math.random()*(colonnes-1));
         posy = (int) (Math.random()*(lignes-1));
 
-        grille[posx][posy] = THESEE;
+        grille[posx][posy] = thesee = new Thesee();
 
         theseex = posx;
         theseey = posy;
+        System.out.println("pos T : " + posx + " ; " +posy);
+    }
+
+    private void placerSortie(){
+        posx = (int) (Math.random()*(colonnes-1));
+        posy = (int) (Math.random()*(lignes-1));
+
+        if (grille[posx][posy] == chemin) {
+            grille[posx][posy] = sortie = new Sortie();
+        }
+        else{
+            placerSortie();
+        }
+
+        sortiex = posx;
+        sortiey = posy;
+        System.out.println("pos S : " + posx + " ; " +posy);
     }
 
     private void deplacement(){
-        int nbchemin = (colonnes*lignes*2);
-        boolean randXouY;
+        int nbchemin = (colonnes+lignes);
         boolean randDirect;
 
         for (int i = 0; i < nbchemin; i++){
-            if (i+1 == nbchemin){
-                grille[posx][posy] = SORTIE;
-                break;
-            }
-            randXouY = new Random().nextBoolean(); // choisi x ou y
-            if (randXouY) { // x si c'est true
-                randDirect = new Random().nextBoolean(); // choisi gauche ou droite
-                if (randDirect) { // gauche si c'est true
-                    if (!moveLeft()) {
-                        if (!moveRight()) {
-                            randDirect = new Random().nextBoolean();
-                            if (randDirect) { // haut ici
-                                if (!moveUp()) {
-                                    moveDown();
-                                }
-                            } else { //bas ici
-                                if (!moveDown()) {
-                                    moveUp();
-                                }
-                            }
-                        }
-                    }
-                } else { // droite ici
+            randDirect = new Random().nextBoolean(); // choisi gauche ou droite
+            if (randDirect) { // gauche si c'est true
+                if (!moveLeft()) {
                     if (!moveRight()) {
-                        if (!moveLeft()) {
-                            randDirect = new Random().nextBoolean();
-                            if (randDirect) { // haut ici
-                                if (!moveUp()) {
-                                    moveDown();
-                                }
-                            } else { //bas ici
-                                if (!moveDown()) {
-                                    moveUp();
-                                }
+                        randDirect = new Random().nextBoolean();
+                        if (randDirect) { // haut ici
+                            if (!moveUp()) {
+                                moveDown();
+                            }
+                        } else { //bas ici
+                            if (!moveDown()) {
+                                moveUp();
                             }
                         }
                     }
                 }
-            } else { // start Y
-                randDirect = new Random().nextBoolean();
-                if (randDirect) { // haut ici
-                    if (!moveUp()) {
-                        if (!moveDown()) {
-                            randDirect = new Random().nextBoolean();
-                            if (randDirect) { //gauche
-                                if (!moveLeft()) {
-                                    moveRight();
-                                }
-                            } else {
-                                if (!moveRight()) {
-                                    moveLeft();
-                                }
+            } else { // droite ici
+                if (!moveRight()) {
+                    if (!moveLeft()) {
+                        randDirect = new Random().nextBoolean();
+                        if (randDirect) { // haut ici
+                            if (!moveUp()) {
+                                moveDown();
                             }
-                        }
-                    }
-                } else { //bas ici
-                    if (!moveDown()) {
-                        if (!moveUp()) {
-                            randDirect = new Random().nextBoolean();
-                            if (randDirect) { //gauche
-                                if (!moveLeft()) {
-                                    moveRight();
-                                }
-                            } else {
-                                if (!moveRight()) {
-                                    moveLeft();
-                                }
+                        } else { //bas ici
+                            if (!moveDown()) {
+                                moveUp();
                             }
                         }
                     }
@@ -176,11 +157,11 @@ public class GrilleRand extends Fenetre {
     }
 
     private boolean moveLeft() {
-        int rand = (int) (Math.random()) * 5;
-        for (int i = 0; i < rand; i ++) {
-            if (posx > 0 && (posx-1 != theseex)) {
+        int  rand = (int) (Math.random()*((colonnes/2)))+1;
+        for (int i = 0; i < colonnes-rand; i ++) {
+            if (posx > 0 && grille[posx-1][posy] != thesee) {
                 posx --;
-                grille[posx][posy] = CHEMIN;
+                grille[posx][posy] = chemin;
             } else {
                 return false;
             }
@@ -189,11 +170,11 @@ public class GrilleRand extends Fenetre {
     }
 
     private boolean moveRight() {
-        int rand = (int) (Math.random()) * 5;
-        for (int i = 0; i < rand; i ++) {
-            if (posx < (colonnes - 1) && (posx + 1 != theseex)) {
+        int rand = (int) (Math.random()*((colonnes/2)))+1;
+        for (int i = 0; i < colonnes-rand; i ++) {
+            if (posx < colonnes-1 && grille[posx+1][posy] != thesee) {
                 posx++;
-                grille[posx][posy] = CHEMIN;
+                grille[posx][posy] = chemin;
             } else {
                 return false;
             }
@@ -202,11 +183,11 @@ public class GrilleRand extends Fenetre {
     }
 
     private boolean moveUp() {
-        int rand = (int) (Math.random()) * 5;
-        for (int i = 0; i < rand; i ++) {
-            if (posy > 0 && (posy - 1 != theseey)) {
+        int  rand = (int) (Math.random()*((colonnes/2)))+1;
+        for (int i = 0; i < colonnes-rand; i ++) {
+            if (posy > 0 && grille[posx][posy-1] != thesee) {
                 posy--;
-                grille[posx][posy] = CHEMIN;
+                grille[posx][posy] = chemin;
             }
             else {
                 return false;
@@ -216,11 +197,11 @@ public class GrilleRand extends Fenetre {
     }
 
     private boolean moveDown() {
-        int rand = (int) (Math.random()) * 5;
-        for (int i = 0; i < rand; i ++) {
-            if (posy < (lignes - 1) && (posy + 1 != theseey)) {
+        int rand = (int) (Math.random()*((colonnes/2)))+1;
+        for (int i = 0; i < colonnes-rand; i ++) {
+            if (posy < colonnes-1 && grille[posx][posy+1] != thesee) {
                 posy++;
-                grille[posx][posy] = CHEMIN;
+                grille[posx][posy] = chemin;
             }
             else {
                 return false;
@@ -228,6 +209,4 @@ public class GrilleRand extends Fenetre {
         }
         return true;
     }
-
 }
-

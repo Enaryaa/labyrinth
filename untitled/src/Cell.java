@@ -16,6 +16,12 @@ public class Cell extends JPanel
 		//met element par defaut à chemin
 	}
 
+	public Cell (int index){
+		super();
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.index = index;
+	}
+
 	public void setPropriete(Element elem){
 		this.elem = elem;
 		this.setBackground(elem.getCouleur());
