@@ -115,9 +115,6 @@ public class GrilleRand extends JPanel {
                 else if(current == SORTIE){
                     p.add(new Cell(index, box.get(SORTIE)));
                 }
-                else{
-                    p.add(new Cell(index, box.get(WRONG)));
-                }
                 index++;
             }
         }
