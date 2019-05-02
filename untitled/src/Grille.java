@@ -41,9 +41,9 @@ public class Grille extends JPanel implements Action
 		alea.setText("Aleatoire");
 		panel.add(alea);
 
-		Observateur o = new Observateur(f);
+		ChoixAlgo o = new ChoixAlgo(this, f);
 		alea.addMouseListener(o);
-		Observateur c = new Observateur(f);
+		ChoixAlgo c = new ChoixAlgo(this, f);
 		deter.addMouseListener(c);
 
 		f.getContentPane().add(panel);

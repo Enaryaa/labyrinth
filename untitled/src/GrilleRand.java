@@ -59,9 +59,9 @@ public class GrilleRand extends JPanel {
         alea.setText("Aleatoire");
         panel.add(alea);
 
-        Observateur o = new Observateur(f);
+        ChoixAlgo o = new ChoixAlgo(this, f);
         alea.addMouseListener(o);
-        Observateur c = new Observateur(f);
+        ChoixAlgo c = new ChoixAlgo(this, f);
         deter.addMouseListener(c);
 
         f.getContentPane().add(panel);
@@ -78,7 +78,7 @@ public class GrilleRand extends JPanel {
 
         JMenuItem save = new JMenuItem("Sauvegarder");
         fichier.add(save);
-        JMenuItem repaint = new JMenuItem("Regenerer");
+        JMenuItem repaint = new JMenuItem("Raffraichir");
         fichier.add(repaint);
 
         save.addActionListener(new GestionMenu(f));
