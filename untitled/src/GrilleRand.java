@@ -11,6 +11,7 @@ public class GrilleRand extends JPanel {
     private Element e;
     private List<Element> box;
     private int[][] grille;
+    private boolean[][] visited;
     private static final int CHEMIN = 0;
     private static final int MUR = 1;
     private static final int THESEE = 2;
@@ -114,6 +115,9 @@ public class GrilleRand extends JPanel {
                 else if(current == SORTIE){
                     p.add(new Cell(index, box.get(SORTIE)));
                 }
+                else{
+                    p.add(new Cell(index, box.get(WRONG)));
+                }
                 index++;
             }
         }
@@ -121,7 +125,8 @@ public class GrilleRand extends JPanel {
     }
 
     private int[][] arrayFill() {
-        int[][] grille = new int[colonnes][lignes];
+        grille = new int[colonnes][lignes];
+        visited = new boolean[colonnes][lignes];
         for (int i = 0; i < colonnes; i++){
             for (int j = 0; j < lignes; j++){
                 boolean randXouY = new Random().nextBoolean();
@@ -129,6 +134,7 @@ public class GrilleRand extends JPanel {
                     grille[i][j] = MUR;
                 } else {
                     grille[i][j] = CHEMIN;
+                    visited[i][j] = false;
                 }
             }
         }
@@ -149,13 +155,12 @@ public class GrilleRand extends JPanel {
         posx = (int) (Math.random()*(colonnes-1));
         posy = (int) (Math.random()*(lignes-1));
 
-        if (grille[posx][posy] == CHEMIN) {
+        if (grille[posx][posy] == CHEMIN && visited[posx][posy]) {
             grille[posx][posy] = SORTIE;
         }
         else{
             placerSortie();
         }
-
         sortiex = posx;
         sortiey = posy;
     }
@@ -206,6 +211,7 @@ public class GrilleRand extends JPanel {
             if (posx > 0 && grille[posx-1][posy] != THESEE) {
                 posx --;
                 grille[posx][posy] = CHEMIN;
+                visited[posx][posy] = true;
             } else {
                 return false;
             }
@@ -219,6 +225,7 @@ public class GrilleRand extends JPanel {
             if (posx < colonnes-1 && grille[posx+1][posy] != THESEE) {
                 posx++;
                 grille[posx][posy] = CHEMIN;
+                visited[posx][posy] = true;
             } else {
                 return false;
             }
@@ -232,6 +239,7 @@ public class GrilleRand extends JPanel {
             if (posy > 0 && grille[posx][posy-1] != THESEE) {
                 posy--;
                 grille[posx][posy] = CHEMIN;
+                visited[posx][posy] = true;
             }
             else {
                 return false;
@@ -246,6 +254,7 @@ public class GrilleRand extends JPanel {
             if (posy < colonnes-1 && grille[posx][posy+1] != THESEE) {
                 posy++;
                 grille[posx][posy] = CHEMIN;
+                visited[posx][posy] = true;
             }
             else {
                 return false;
