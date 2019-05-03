@@ -19,6 +19,8 @@ public class ValidationChoix implements MouseListener {
         //que se soit deterministe ou aleatoire -> appelle le bon algo (premier if)
         //choisis la methode d'appelle,  si automatique -> affiche nb deplacement sinon appuie
         //sur espace pour faire avancer l'algo
+        Algo algo = new Algo(grille);
+        algo.start();
     }
 
     @Override
