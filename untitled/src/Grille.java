@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Grille extends JPanel implements Action, GrilleInterface
 {
@@ -15,7 +17,7 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	private boolean theseeLa = false;
 	private boolean sortieLa = false;
 
-
+	private List<Cell> cells;
 
 	public Grille(int c, int l)
 	{
@@ -75,6 +77,7 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	}
 
 	public void createGrid(Fenetre f) {
+		cells = new ArrayList<>();
 		JPanel p = new JPanel();
 		p.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT));
 		GridLayout grille = new GridLayout(colonnes,lignes);
@@ -84,6 +87,7 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		for (int i = 0 ; i < (colonnes*lignes) ; i++)
 		{
 			Cell cell = new Cell(i,coloration);
+			cells.add(cell);
 			p.add(cell);
 		}
 		f.getContentPane().add(p);
@@ -192,5 +196,10 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	@Override
 	public void setMethode(String methode) {
 		this.methode = methode;
+	}
+
+	@Override
+	public List<Cell> getCells() {
+		return cells;
 	}
 }

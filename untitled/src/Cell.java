@@ -5,6 +5,7 @@ public class Cell extends JPanel
 {
 	private int index;
 	private Element elem;
+	private Position position;
 
 	public Cell(int index, Coloration coloration)
 	{
@@ -13,6 +14,7 @@ public class Cell extends JPanel
 		this.index = index;
 		this.addMouseListener(coloration);
 		setPropriete(new Chemin());
+		this.position = new Position(0,0);
 		//met element par defaut à chemin
 	}
 
@@ -32,5 +34,13 @@ public class Cell extends JPanel
 	public Element getPropriete(){
 		return elem;
 		//associé à la cellule
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
 	}
 }

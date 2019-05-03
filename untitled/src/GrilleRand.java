@@ -25,6 +25,8 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     private int sortiex;
     private int sortiey;
 
+    private List<Cell> cells;
+
     public GrilleRand(int c, int l) {
         super();
         box = new ArrayList<>();
@@ -107,6 +109,7 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     private void drawGrid(Fenetre f) {
+        cells = new ArrayList<>();
         grille = arrayFill();
 
         placerThesee();
@@ -122,18 +125,23 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         for (int i = 0; i < colonnes; i++){
             for (int j = 0; j < lignes; j++){
                 int current = grille[i][j];
+                Cell cell;
                 if (current == MUR){
-                    p.add(new Cell(index, box.get(MUR)));
+                    cell = new Cell(index, box.get(MUR));
                 }
                 else if(current == CHEMIN){
-                    p.add(new Cell(index, box.get(CHEMIN)));
+                    cell = new Cell(index, box.get(CHEMIN));
                 }
                 else if(current == THESEE){
-                    p.add(new Cell(index, box.get(THESEE)));
+                    cell = new Cell(index, box.get(THESEE));
                 }
                 else if(current == SORTIE){
-                    p.add(new Cell(index, box.get(SORTIE)));
+                    cell = new Cell(index, box.get(SORTIE));
+                } else {
+                    cell = new Cell(index, box.get(CHEMIN));
                 }
+                p.add(cell);
+                cells.add(cell);
                 index++;
             }
         }
@@ -302,5 +310,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     @Override
     public void setMethode(String methode) {
         this.methode = methode;
+    }
+
+    @Override
+    public List<Cell> getCells() {
+        return cells;
     }
 }
