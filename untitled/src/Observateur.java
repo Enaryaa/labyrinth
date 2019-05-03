@@ -44,12 +44,7 @@ public class Observateur implements MouseListener{
 			cible.clearContent();
 			cible.visible();
 		}
-		if (bout == 13 || bout == 12){
-			cible.setVisible(false);
-			Fenetre f = new Fenetre();
-			f.menu4();
-			f.visible();
-		}
+
 	}
 
 	@Override
