@@ -6,6 +6,7 @@ import java.io.*;
 
 public class Observateur_bouton implements MouseListener
 {
+	public static final int BITS_PER_BYTE = 8;
 	private Bouton bouton;
 	private int id_bouton;
 	private Fenetre fenetre;
@@ -34,21 +35,24 @@ public class Observateur_bouton implements MouseListener
 			byte[] sortie = new byte[2];
 			char[] etats = new char[16];
 			int etats_int = 0;
+			int etats_unsigned = 0;
 			fenetre.clearContent();
 			// a ce moment, ajouter les etapes de choix pour arriver à la grille
 			// Ci-après, le code pour lire le fichier contenant le format de la grille
 			// Ce code est à placer au moment où l'utilisateur a choisi de prendre une grille préexistante avec le filechooser
 			try
 			{
-				FileInputStream flux = new FileInputStream("1.lab");
+				FileInputStream flux = new FileInputStream("petit.lab");
 				DataInputStream data = new DataInputStream(flux);
 				taille = data.readByte();
 				thesee[0] = data.readByte();
 				thesee[1] = data.readByte();
 				sortie[0] = data.readByte();
 				sortie[1] = data.readByte();
-				etats_int = (int) data.readShort();
-				String etats_string = Integer.toBinaryString(etats_int);
+				/*etats_int = (int) data.readShort();
+				String etats_string_tmp = Integer.toBinaryString(etats_int);
+				etats_unsigned = Integer.parseUnsignedInt(etats_string_tmp);
+				String etats_string = Integer.toBinaryString(etats_unsigned);
 				while (etats_string.length() != (taille*taille))
 				{
 					etats_string = "0" + etats_string;
@@ -66,6 +70,23 @@ public class Observateur_bouton implements MouseListener
 						etats[(i+(j*4))] = tmp;
 						System.out.println(etats[i+j]);
 					}
+				}*/
+				String etats_string = "";
+				while (data.available()!=0)
+				{
+					etats_int = getUnsignedInt(data.readByte());
+					System.out.println("Etats int : " + etats_int);
+					String etats_string_tmp = Integer.toString(etats_int);
+					System.out.println("Etats string tmp : " + etats_string_tmp);
+					etats_unsigned = Integer.parseUnsignedInt(etats_string_tmp);
+					System.out.println("Etats unsigned : " + etats_unsigned);
+					etats_string = Integer.toBinaryString(etats_unsigned);
+					System.out.println("Etats string : " + etats_string);
+					while (etats_string.length() != BITS_PER_BYTE)
+					{
+						etats_string = "0" + etats_string;
+					}
+					System.out.println(etats_string);
 				}
 			}
 			catch(IOException e)
@@ -87,4 +108,9 @@ public class Observateur_bouton implements MouseListener
 		}
 	}
 	public void mouseReleased(MouseEvent evenement){};	// un bouton relâché
+
+	public static long getUnsignedInt(int x)
+	{
+    	return x & 0x00000000ffffffffL;
+	}
 }
