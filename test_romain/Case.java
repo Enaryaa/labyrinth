@@ -4,14 +4,14 @@ import java.awt.*;
 public class Case extends JPanel
 {
 	private Grille grille;
-	private char index;
+	private int index;
 	private Color couleur;
 	private char etat;
 	private int particularité;
 	private boolean thesee;
 	private boolean sortie;
 
-	public Case(char ind, char e, int p, Grille g)
+	public Case(int ind, char e, int p, Grille g)
 	{
 		super();
 		this.grille = g;
@@ -56,7 +56,7 @@ public class Case extends JPanel
 		return this.etat;
 	}
 
-	public char indexCase()
+	public int indexCase()
 	{
 		return this.index;
 	}
