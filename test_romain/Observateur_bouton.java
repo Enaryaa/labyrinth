@@ -40,12 +40,10 @@ public class Observateur_bouton implements MouseListener
 			// Ce code est à placer au moment où l'utilisateur a choisi de prendre une grille préexistante avec le filechooser
 			try
 			{
-				FileInputStream flux = new FileInputStream("petit.lab");
+				FileInputStream flux = new FileInputStream("1.lab");
 				DataInputStream data = new DataInputStream(flux);
 				taille = data.readByte();
-				System.out.println(taille);
 				thesee[0] = data.readByte();
-				System.out.println(thesee[0]);
 				thesee[1] = data.readByte();
 				sortie[0] = data.readByte();
 				sortie[1] = data.readByte();
@@ -56,7 +54,19 @@ public class Observateur_bouton implements MouseListener
 					etats_string = "0" + etats_string;
 				}
 				etats = etats_string.toCharArray();
-				System.out.println(etats_string);
+				char tmp = 0;
+				int j = 0;
+				for (int i = 0 ; i < taille ; i++)
+				{
+					j = i;
+					for ( ; j < taille ; j++)
+					{
+						tmp = etats[(i*4)+j];
+						etats[(i*4)+j] = etats[(i+(j*4))];
+						etats[(i+(j*4))] = tmp;
+						System.out.println(etats[i+j]);
+					}
+				}
 			}
 			catch(IOException e)
 			{
