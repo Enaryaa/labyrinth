@@ -40,7 +40,7 @@ public class Observateur_bouton implements MouseListener
 			// Ce code est à placer au moment où l'utilisateur a choisi de prendre une grille préexistante avec le filechooser
 			try
 			{
-				FileInputStream flux = new FileInputStream("petit.lab");
+				FileInputStream flux = new FileInputStream("1.lab");
 				DataInputStream data = new DataInputStream(flux);
 				taille = data.readByte();
 				thesee[0] = data.readByte();
@@ -49,11 +49,24 @@ public class Observateur_bouton implements MouseListener
 				sortie[1] = data.readByte();
 				etats_int = (int) data.readShort();
 				String etats_string = Integer.toBinaryString(etats_int);
-				while (etats_string.length() != 16)
+				while (etats_string.length() != (taille*taille))
 				{
 					etats_string = "0" + etats_string;
 				}
 				etats = etats_string.toCharArray();
+				char tmp = 0;
+				int j = 0;
+				for (int i = 0 ; i < taille ; i++)
+				{
+					j = i;
+					for ( ; j < taille ; j++)
+					{
+						tmp = etats[(i*4)+j];
+						etats[(i*4)+j] = etats[(i+(j*4))];
+						etats[(i+(j*4))] = tmp;
+						System.out.println(etats[i+j]);
+					}
+				}
 			}
 			catch(IOException e)
 			{
@@ -64,30 +77,13 @@ public class Observateur_bouton implements MouseListener
 			fenetre.add(grille);
 			/*Barre_action barre = new Barre_action(fenetre);
 			fenetre.add(barre);*/
-			Bouton coucou = new Bouton(19);
-			Observateur_bouton sauvegarde = new Observateur_bouton(fenetre);
-			coucou.addMouseListener(sauvegarde);
-			coucou.setPreferredSize(new Dimension(fenetre.getWidth()-100,100));
-			fenetre.add(coucou);
+			Bouton bouton_sauvegarde = new Bouton(19);
+			Observateur_bouton_sauvegarde sauvegarde = new Observateur_bouton_sauvegarde(fenetre,grille);
+			bouton_sauvegarde.addMouseListener(sauvegarde);
+			bouton_sauvegarde.setPreferredSize(new Dimension(fenetre.getWidth()-100,100));
+			fenetre.add(bouton_sauvegarde);
 			fenetre.repaint();
 			fenetre.setVisible(true);
-		}
-		if (id_bouton == 19)
-		{
-			JFrame fenetre_sauvegarde = new JFrame();
-			fenetre_sauvegarde.setSize(fenetre.getWidth()-50, fenetre.getHeight()-200);
-			fenetre_sauvegarde.setLocationRelativeTo(fenetre);
-			FlowLayout gestionnaire = new FlowLayout(FlowLayout.CENTER,0,0);
-			fenetre_sauvegarde.setLayout(gestionnaire);
-			JLabel choix = new JLabel("Nom du fichier de sauvegarde :");
-			choix.setPreferredSize(new Dimension(fenetre_sauvegarde.getWidth()-20,(fenetre_sauvegarde.getHeight()-34)/2));
-			JTextField champ = new JTextField();
-			champ.setPreferredSize(new Dimension(fenetre_sauvegarde.getWidth()-20,(fenetre_sauvegarde.getHeight()-34)/2));
-			Observateur_sauvegarde sauvegarde = new Observateur_sauvegarde(fenetre_sauvegarde);
-			champ.addActionListener(sauvegarde);
-			fenetre_sauvegarde.add(choix);
-			fenetre_sauvegarde.add(champ);
-			fenetre_sauvegarde.setVisible(true);
 		}
 	}
 	public void mouseReleased(MouseEvent evenement){};	// un bouton relâché

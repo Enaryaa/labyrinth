@@ -3,46 +3,61 @@ import java.awt.*;
 
 public class Case extends JPanel
 {
-	private int index;
+	private Grille grille;
+	private char index;
 	private Color couleur;
 	private char etat;
-	public Case(int index, char e)
+	private int particularité;
+	private boolean thesee;
+	private boolean sortie;
+
+	public Case(char ind, char e, int p, Grille g)
 	{
 		super();
-		this.index = index;
+		this.grille = g;
+		this.index = ind;
 		this.etat = e;
+		this.particularité = p;
+		this.thesee = false;
+		this.sortie = false;
 		if (etat=='1')
 		{
 			this.setBackground(Color.BLACK);
 		}
 		else
 		{
-			this.setBackground(Color.WHITE);
+			if (particularité == 1)
+			{
+				this.thesee = true;
+				this.setBackground(Color.RED);
+			}
+			else if (particularité == 2)
+			{
+				this.sortie = true;
+				this.setBackground(Color.BLUE);
+			}
+			else
+			{
+				this.setBackground(Color.WHITE);
+			}
 		}
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		Coloration coloration = new Coloration();
+		Coloration coloration = new Coloration(grille);
 		this.addMouseListener(coloration);
 	}
 
-	public void changerEtat()
+	public void changerEtat(char e)
 	{
-		if(this.etat=='0')
-		{
-			this.etat ='1';
-			this.setBackground(Color.BLACK);
-			this.repaint();
-		}
-
-		else if(etat=='1')
-		{
-			this.etat ='0';
-			this.setBackground(Color.WHITE);
-			this.repaint();
-		}
+		this.etat = e;
 	}
 
 	public char etatActuel()
 	{
 		return this.etat;
+	}
+
+	public char indexCase()
+	{
+		return this.index;
 	}
 }

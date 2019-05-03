@@ -15,34 +15,63 @@ public class Grille_existante extends Grille
 		this.thesee = th;
 		this.sortie = s;
 		this.etats = e;
-		int compteur = 0;
+		char compteur = 0;
 
 		for (int i = 0 ; i < taille ; i++)
 		{
 			for (int j = 0 ; j < taille ; j++ , compteur++)
 			{
-				Case cell = new Case(compteur,etats[i+(j*4)]);
-				this.add(cell);
+				if ((j == thesee[1]) && i == thesee[0])
+				{
+					Case cell = new Case(compteur,etats[j+(i*4)],1,this);
+					this.add(cell);
+				}
+				else if ((j == sortie[1]) && i == sortie[0])
+				{
+					Case cell = new Case(compteur,etats[j+(i*4)],2,this);
+					this.add(cell);
+				}
+				else
+				{
+					Case cell = new Case(compteur,etats[j+(i*4)],0,this);
+					this.add(cell);
+				}
 			}
 		}
-		/*for (int i = 0 ; i < taille ; i++)
-		{
-			for (int j = 0 ; j < taille ; j++)
-			{
-				//System.out.println(i);
-				Case cell = new Case(i);
-				if (i == thesee[0] && j == thesee[1])
-				{
-					// Mettre Thesee dans le panneau
-				}
-				else if (i == sortie[0] && j == sortie[1])
-				{
-					// Mettre la Sortie dans le panneau
-				}
-				else{}
+	}
 
-				this.add(cell);
-			}
-		}*/
+	public int getTaille()
+	{
+		return taille;
+	}
+
+	public byte getTheseeX()
+	{
+		return thesee[0];
+	}
+
+	public byte getTheseeY()
+	{
+		return thesee[1];
+	}
+
+	public byte getSortieX()
+	{
+		return sortie[0];
+	}
+
+	public byte getSortieY()
+	{
+		return sortie[1];
+	}
+
+	public char getEtat(int i)
+	{
+		return etats[i];
+	}
+
+	public void changerEtat(char e, char c)
+	{
+		this.etats[e] = c;
 	}
 }
