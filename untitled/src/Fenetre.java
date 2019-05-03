@@ -60,7 +60,7 @@ public void menu2(){
     this.setLayout(gestionnaire);
     JPanel panel = new JPanel();
 
-    JLabel etiquette = new JLabel("Choix de la nouvelle grille");
+    JLabel etiquette = new JLabel("ValidationChoix de la nouvelle grille");
 
     etiquette.setHorizontalAlignment(JLabel.CENTER);
     etiquette.setVerticalAlignment(JLabel.BOTTOM);
@@ -83,32 +83,6 @@ public void menu2(){
     this.getContentPane().add(panel);
 }
 
-public void menu4(){
-   GridLayout gestionnaire = new GridLayout(2, 1);
-   this.setLayout(gestionnaire);
-   JPanel panel = new JPanel();
-
-   JLabel etiquette = new JLabel("Mode de jeu");
-
-   etiquette.setHorizontalAlignment(JLabel.CENTER);
-   etiquette.setVerticalAlignment(JLabel.BOTTOM);
-   this.add(etiquette);
-   Bouton manuel = new Bouton(7);
-   Bouton auto = new Bouton(8);
-   manuel.setText("Manuel");
-   auto.setText("Automatique");
-   Observateur o = new Observateur(this);
-   auto.addMouseListener(o);
-   Observateur c = new Observateur(this);
-   manuel.addMouseListener(c);
-   panel.add(manuel);
-   panel.add(auto);
-
-   this.add(panel, BorderLayout.CENTER);
-
-   panel.setBackground(Color.RED);
-   this.getContentPane().add(panel);
-}
 
 public void saisi(){
   GridLayout gestionnaire = new GridLayout(2, 1);

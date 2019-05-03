@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class GrilleRand extends JPanel {
+public class GrilleRand extends JPanel implements GrilleInterface {
     private int colonnes;
     private int lignes;
     private Element e;
@@ -16,6 +16,8 @@ public class GrilleRand extends JPanel {
     private static final int MUR = 1;
     private static final int THESEE = 2;
     private static final int SORTIE = 3;
+    private String methode;
+    private String algo;
     private int posx;
     private int posy;
     private int theseex;
@@ -38,7 +40,7 @@ public class GrilleRand extends JPanel {
         this.colonnes = c;
         this.lignes = l;
 
-        Fenetre f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+100);
+        Fenetre f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+200);
         FlowLayout div = new FlowLayout(FlowLayout.CENTER,0,0);
         f.setLayout(div);
         menuBarre(f);
@@ -52,20 +54,37 @@ public class GrilleRand extends JPanel {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT-100));
 
-        Bouton deter = new Bouton(12);
-        deter.setText("Deterministe");
+        JRadioButton deter = new JRadioButton(Choix.DETER);
         panel.add(deter);
-        Bouton alea = new Bouton(13);
-        alea.setText("Aleatoire");
-        panel.add(alea);
+        JRadioButton aleat = new JRadioButton(Choix.ALEA);
+        panel.add(aleat);
 
-        ChoixAlgo o = new ChoixAlgo(this, f);
-        alea.addMouseListener(o);
-        ChoixAlgo c = new ChoixAlgo(this, f);
-        deter.addMouseListener(c);
+        JPanel panel2 = new JPanel();
+        ButtonGroup choixalgo = new ButtonGroup();
 
+        choixalgo.add(deter);
+        choixalgo.add(aleat);
+
+        JRadioButton manuel = new JRadioButton(Choix.MANUEL);
+        panel2.add(manuel);
+        JRadioButton auto = new JRadioButton(Choix.AUTO);
+        panel2.add(auto);
+
+        ButtonGroup choixjeu = new ButtonGroup();
+
+        choixjeu.add(auto);
+        choixjeu.add(manuel);
+
+        JPanel panel3 = new JPanel();
+        Bouton jouer = new Bouton(15);
+        jouer.setText("Démarrer");
+        panel3.add(jouer);
+
+        panel.add(panel2);
+        panel.add(panel3);
         f.getContentPane().add(panel);
     }
+
 
     private void menuBarre(Fenetre f) {
         JMenuBar barre = new JMenuBar();
@@ -258,5 +277,30 @@ public class GrilleRand extends JPanel {
             }
         }
         return true;
+    }
+
+    @Override
+    public int getTaille(){
+        return this.colonnes;
+    }
+
+    @Override
+    public String getAlgo() {
+        return algo;
+    }
+
+    @Override
+    public String getMethode() {
+        return methode;
+    }
+
+    @Override
+    public void setAlgo(String algo) {
+        this.algo = algo;
+    }
+
+    @Override
+    public void setMethode(String methode) {
+        this.methode = methode;
     }
 }
