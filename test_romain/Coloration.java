@@ -7,10 +7,12 @@ public class Coloration implements MouseListener
 {
 	private char etat;
 	private Case cell;
+	private Grille grille;
 
-	public Coloration()
+	public Coloration(Grille g)
 	{
 		super();
+		this.grille = g;
 	}
 
 	@Override
@@ -22,7 +24,22 @@ public class Coloration implements MouseListener
 	public void mousePressed(MouseEvent e)
 	{
 		this.cell = (Case) e.getComponent();
-		cell.changerEtat();
+		if (cell.etatActuel()=='0')
+		{
+			cell.changerEtat('1');
+			cell.setBackground(Color.BLACK);
+			cell.repaint();
+			grille.changerEtat(cell.indexCase(),'1');
+		}
+
+		else if (cell.etatActuel()=='1')
+		{
+			cell.changerEtat('0');
+			cell.setBackground(Color.WHITE);
+			cell.repaint();
+			grille.changerEtat(cell.indexCase(),'0');
+		}
+		
 	}
 
 	@Override
