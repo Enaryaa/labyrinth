@@ -26,6 +26,10 @@ public class Cell extends JPanel
 		//permet de récupérer les propriétés des elements
 	}
 
+	public int getIndex() {
+		return index;
+	}
+
 	public void setPropriete(Element elem){
 		this.elem = elem;
 		this.setBackground(elem.getCouleur());

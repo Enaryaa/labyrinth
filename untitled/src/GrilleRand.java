@@ -53,12 +53,15 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     private void jouer(Fenetre f) {
+        Choix choix = new Choix(this);
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT-100));
 
         JRadioButton deter = new JRadioButton(Choix.DETER);
+        deter.addActionListener(choix);
         panel.add(deter);
         JRadioButton aleat = new JRadioButton(Choix.ALEA);
+        aleat.addActionListener(choix);
         panel.add(aleat);
 
         JPanel panel2 = new JPanel();
@@ -68,8 +71,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         choixalgo.add(aleat);
 
         JRadioButton manuel = new JRadioButton(Choix.MANUEL);
+        manuel.addActionListener(choix);
         panel2.add(manuel);
         JRadioButton auto = new JRadioButton(Choix.AUTO);
+        auto.addActionListener(choix);
         panel2.add(auto);
 
         ButtonGroup choixjeu = new ButtonGroup();
@@ -80,6 +85,7 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         JPanel panel3 = new JPanel();
         Bouton jouer = new Bouton(15);
         jouer.setText("Démarrer");
+        jouer.addMouseListener(new ValidationChoix(this));
         panel3.add(jouer);
 
         panel.add(panel2);
@@ -151,8 +157,8 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     private int[][] arrayFill() {
         grille = new int[colonnes][lignes];
         visited = new boolean[colonnes][lignes];
-        for (int i = 0; i < colonnes; i++){
-            for (int j = 0; j < lignes; j++){
+        for (int i = 0; i < colonnes -1 ; i++){
+            for (int j = 0; j < lignes -1; j++){
                 boolean randXouY = new Random().nextBoolean();
                 if (randXouY) {
                     grille[i][j] = MUR;

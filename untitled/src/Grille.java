@@ -40,12 +40,15 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	}
 
 	private void jouer(Fenetre f) {
+		Choix choix = new Choix(this);
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT-50));
+		panel.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT-100));
 
 		JRadioButton deter = new JRadioButton(Choix.DETER);
+		deter.addActionListener(choix);
 		panel.add(deter);
 		JRadioButton aleat = new JRadioButton(Choix.ALEA);
+		aleat.addActionListener(choix);
 		panel.add(aleat);
 
 		JPanel panel2 = new JPanel();
@@ -55,8 +58,10 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		choixalgo.add(aleat);
 
 		JRadioButton manuel = new JRadioButton(Choix.MANUEL);
+		manuel.addActionListener(choix);
 		panel2.add(manuel);
 		JRadioButton auto = new JRadioButton(Choix.AUTO);
+		auto.addActionListener(choix);
 		panel2.add(auto);
 
 		ButtonGroup choixjeu = new ButtonGroup();
@@ -67,9 +72,8 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		JPanel panel3 = new JPanel();
 		Bouton jouer = new Bouton(15);
 		jouer.setText("Démarrer");
+		jouer.addMouseListener(new ValidationChoix(this));
 		panel3.add(jouer);
-		ValidationChoix validationChoix = new ValidationChoix(this);
-		jouer.addMouseListener(validationChoix);
 
 		panel.add(panel2);
 		panel.add(panel3);
