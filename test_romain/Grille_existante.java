@@ -23,17 +23,17 @@ public class Grille_existante extends Grille
 			{
 				if ((j == thesee[1]) && i == thesee[0])
 				{
-					Case cell = new Case(compteur,etats[j+(i*4)],1,this);
+					Case cell = new Case(compteur,etats[j+(i*taille)],1,this);
 					this.add(cell);
 				}
 				else if ((j == sortie[1]) && i == sortie[0])
 				{
-					Case cell = new Case(compteur,etats[j+(i*4)],2,this);
+					Case cell = new Case(compteur,etats[j+(i*taille)],2,this);
 					this.add(cell);
 				}
 				else
 				{
-					Case cell = new Case(compteur,etats[j+(i*4)],0,this);
+					Case cell = new Case(compteur,etats[j+(i*taille)],0,this);
 					this.add(cell);
 				}
 			}

@@ -33,7 +33,6 @@ public class Observateur_bouton implements MouseListener
 			byte taille = 0;
 			byte[] thesee = new byte[2];
 			byte[] sortie = new byte[2];
-			char[] etats = new char[16];
 			int etats_int = 0;
 			byte etats_byte = 0;
 			int etats_unsigned = 0;
@@ -46,55 +45,17 @@ public class Observateur_bouton implements MouseListener
 				FileInputStream flux = new FileInputStream("1.lab");
 				DataInputStream data = new DataInputStream(flux);
 				taille = data.readByte();
+				char[] etats = new char[taille*taille];
 				thesee[0] = data.readByte();
 				thesee[1] = data.readByte();
 				sortie[0] = data.readByte();
 				sortie[1] = data.readByte();
-				/*etats_int = (int) data.readShort();
-				String etats_string_tmp = Integer.toBinaryString(etats_int);
-				etats_unsigned = Integer.parseUnsignedInt(etats_string_tmp);
-				String etats_string = Integer.toBinaryString(etats_unsigned);
-				while (etats_string.length() != (taille*taille))
-				{
-					etats_string = "0" + etats_string;
-				}
-				etats = etats_string.toCharArray();
-				char tmp = 0;
-				int j = 0;
-				for (int i = 0 ; i < taille ; i++)
-				{
-					j = i;
-					for ( ; j < taille ; j++)
-					{
-						tmp = etats[(i*4)+j];
-						etats[(i*4)+j] = etats[(i+(j*4))];
-						etats[(i+(j*4))] = tmp;
-						System.out.println(etats[i+j]);
-					}
-				}*/
+
 				String etats_string = "";
 				while (data.available()!=0)
 				{
-					/*etats_int = data.readByte();
-					System.out.println("Etats int : " + etats_int);
-					etats_unsigned = etats_int & 0xFF;
-					System.out.println("Etats unsigned : " + etats_unsigned);
-					String etats_string_tmp = Integer.toString(etats_int);
-					System.out.println("Etats string tmp : " + etats_string_tmp);
-					etats_unsigned = Integer.parseUnsignedInt(etats_string_tmp);
-					System.out.println("Etats unsigned : " + etats_unsigned);
-					etats_string = Integer.toBinaryString(etats_unsigned);
-					System.out.println("Etats string : " + etats_string);
-					while (etats_string.length() != BITS_PER_BYTE)
-					{
-						etats_string = "0" + etats_string;
-					}
-					System.out.println(etats_string);*/
-
 					etats_byte = data.readByte();
-
 					etats_int = etats_byte & 0xFF;
-
 					String etats_string_tmp = Integer.toBinaryString(etats_int);
 					while (etats_string_tmp.length() != BITS_PER_BYTE)
 					{
@@ -108,21 +69,17 @@ public class Observateur_bouton implements MouseListener
 				for (int i = 0 ; i < taille ; i++)
 				{
 					j = i;
-					for ( ; j < taille ; j++)
+					while(j < taille)
 					{
-						tmp = etats[(i*4)+j];
-						etats[(i*4)+j] = etats[(i+(j*4))];
-						etats[(i+(j*4))] = tmp;
+						tmp = etats[(i*taille)+j];
+						etats[(i*taille)+j] = etats[(i+(j*taille))];
+						etats[(i+(j*taille))] = tmp;
+						j++;
 					}
 				}
-			}
-			catch(IOException e)
-			{
-				System.err.println("Erreur de lecture");
-			}
-			Grille grille = new Grille_existante(taille,thesee,sortie,etats);
-			grille.setPreferredSize(new Dimension(fenetre.getWidth()-100,fenetre.getHeight()-100-30));
-			fenetre.add(grille);
+				Grille grille = new Grille_existante(taille,thesee,sortie,etats);
+				grille.setPreferredSize(new Dimension(fenetre.getWidth()-100,fenetre.getHeight()-100-30));
+				fenetre.add(grille);
 			/*Barre_action barre = new Barre_action(fenetre);
 			fenetre.add(barre);*/
 			Bouton bouton_sauvegarde = new Bouton(19);
@@ -133,11 +90,12 @@ public class Observateur_bouton implements MouseListener
 			fenetre.repaint();
 			fenetre.setVisible(true);
 		}
-	}
-	public void mouseReleased(MouseEvent evenement){};	// un bouton relâché
+		catch(IOException e)
+		{
+			System.err.println("Erreur de lecture");
+		}
 
-	public static long getUnsignedInt(int x)
-	{
-		return x & 0x00000000ffffffffL;
 	}
+}
+	public void mouseReleased(MouseEvent evenement){};	// un bouton relâché
 }
