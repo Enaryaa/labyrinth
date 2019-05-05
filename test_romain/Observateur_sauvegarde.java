@@ -40,12 +40,10 @@ public class Observateur_sauvegarde implements ActionListener
 					{
 						suite_etats = suite_etats + grille.getEtat(i+(4*j));
 					}
-					System.out.println(suite_etats);
 				}
 				try
 				{
 					short etats_short = (short) Integer.parseInt(suite_etats,2);
-					System.out.println(etats_short);
 					data.writeShort(etats_short);
 				}
 				catch(NumberFormatException exception)

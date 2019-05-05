@@ -35,6 +35,7 @@ public class Observateur_bouton implements MouseListener
 			byte[] sortie = new byte[2];
 			char[] etats = new char[16];
 			int etats_int = 0;
+			byte etats_byte = 0;
 			int etats_unsigned = 0;
 			fenetre.clearContent();
 			// a ce moment, ajouter les etapes de choix pour arriver à la grille
@@ -42,7 +43,7 @@ public class Observateur_bouton implements MouseListener
 			// Ce code est à placer au moment où l'utilisateur a choisi de prendre une grille préexistante avec le filechooser
 			try
 			{
-				FileInputStream flux = new FileInputStream("petit.lab");
+				FileInputStream flux = new FileInputStream("1.lab");
 				DataInputStream data = new DataInputStream(flux);
 				taille = data.readByte();
 				thesee[0] = data.readByte();
@@ -74,8 +75,10 @@ public class Observateur_bouton implements MouseListener
 				String etats_string = "";
 				while (data.available()!=0)
 				{
-					etats_int = getUnsignedInt(data.readByte());
+					/*etats_int = data.readByte();
 					System.out.println("Etats int : " + etats_int);
+					etats_unsigned = etats_int & 0xFF;
+					System.out.println("Etats unsigned : " + etats_unsigned);
 					String etats_string_tmp = Integer.toString(etats_int);
 					System.out.println("Etats string tmp : " + etats_string_tmp);
 					etats_unsigned = Integer.parseUnsignedInt(etats_string_tmp);
@@ -86,7 +89,31 @@ public class Observateur_bouton implements MouseListener
 					{
 						etats_string = "0" + etats_string;
 					}
-					System.out.println(etats_string);
+					System.out.println(etats_string);*/
+
+					etats_byte = data.readByte();
+
+					etats_int = etats_byte & 0xFF;
+
+					String etats_string_tmp = Integer.toBinaryString(etats_int);
+					while (etats_string_tmp.length() != BITS_PER_BYTE)
+					{
+						etats_string_tmp = "0" + etats_string_tmp;
+					}
+					etats_string = etats_string + etats_string_tmp;
+				}
+				etats = etats_string.toCharArray();
+				char tmp = 0;
+				int j = 0;
+				for (int i = 0 ; i < taille ; i++)
+				{
+					j = i;
+					for ( ; j < taille ; j++)
+					{
+						tmp = etats[(i*4)+j];
+						etats[(i*4)+j] = etats[(i+(j*4))];
+						etats[(i+(j*4))] = tmp;
+					}
 				}
 			}
 			catch(IOException e)
@@ -111,6 +138,6 @@ public class Observateur_bouton implements MouseListener
 
 	public static long getUnsignedInt(int x)
 	{
-    	return x & 0x00000000ffffffffL;
+		return x & 0x00000000ffffffffL;
 	}
 }
