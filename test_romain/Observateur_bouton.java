@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.io.*;
 
 public class Observateur_bouton implements MouseListener
@@ -38,11 +37,18 @@ public class Observateur_bouton implements MouseListener
 			int etats_unsigned = 0;
 			fenetre.clearContent();
 			// a ce moment, ajouter les etapes de choix pour arriver à la grille
+			String fichier = "";
+			JFileChooser choix = new JFileChooser(".");
+			choix.showOpenDialog(null);
+			while(fichier.equals(""))
+			{
+				fichier = choix.getSelectedFile().getAbsolutePath();
+			}
 			// Ci-après, le code pour lire le fichier contenant le format de la grille
 			// Ce code est à placer au moment où l'utilisateur a choisi de prendre une grille préexistante avec le filechooser
 			try
 			{
-				FileInputStream flux = new FileInputStream("1.lab");
+				FileInputStream flux = new FileInputStream(fichier);
 				DataInputStream data = new DataInputStream(flux);
 				taille = data.readByte();
 				char[] etats = new char[taille*taille];
