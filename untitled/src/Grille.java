@@ -9,6 +9,7 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	public static final int ALEA = 2;
 	public static final int MANUEL = 3;
 	public static final int AUTO = 4;
+	private Fenetre f;
 	private String algo;
 	private String methode;
 	private int colonnes;
@@ -22,7 +23,7 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	public Grille(int c, int l)
 	{
 		this.e = new Chemin();
-		Fenetre f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+300);
+		f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+300);
 		FlowLayout div = new FlowLayout(FlowLayout.CENTER,0,0);
 		f.setLayout(div);
 
@@ -201,6 +202,16 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	public void setMethode(String methode) {
 		this.methode = methode;
 	}
+
+	@Override
+	public void cacherFenetre() {
+		f.setVisible(false);
+	}
+
+	/*@Override
+	public void addListener(ObservateurTouche observateurTouche) {
+		this.addKeyListener(observateurTouche);
+	}*/
 
 	@Override
 	public List<Cell> getCells() {
