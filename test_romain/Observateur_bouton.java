@@ -38,7 +38,9 @@ public class Observateur_bouton implements MouseListener
 			fenetre.clearContent();
 			// a ce moment, ajouter les etapes de choix pour arriver à la grille
 			String fichier = "";
-			JFileChooser choix = new JFileChooser(".");
+			Choix_fichier choix = new Choix_fichier(".");
+			File repertoire_courant = new File(".");
+			choix.setCurrentDirectory(repertoire_courant);
 			choix.showOpenDialog(null);
 			while(fichier.equals(""))
 			{
