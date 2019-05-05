@@ -6,15 +6,14 @@ import java.util.List;
 public class Algo {
 
     private static final int NB_ALEA = 100;
-    private int alea = 0;
+    private int alea;
 
     private GrilleInterface grille;
     private int deplacementPourMoyenne;
+    private int nbDeplacement;
     private List<Cell> cells;
 
-    private Position.Direction lastDirectionSelected;
-
-    private Timer timer;
+    public Timer timer;
 
     private Position positionThesee;
     private Position positionSortie;
@@ -22,6 +21,7 @@ public class Algo {
     public Algo(GrilleInterface grille) {
         this.grille = grille;
         deplacementPourMoyenne = 0;
+        nbDeplacement = 0;
         alea = 0;
         this.cells = grille.getCells(); // contient les Cell (avec element) du labyrinthe
         generatePosition();
@@ -41,54 +41,105 @@ public class Algo {
     public void aleatoire() {
         //debut de l'algo aleatoire
         if (grille.getMethode().equals(Choix.AUTO)) {
-            exitMaze().start();
+            //si le choix est automatique
+            grille.cacherFenetre();
+            exitMazeAuto().start();
             //timer est récupéré et lancé directement grace a start();
             //et stopper dans le timer directement -> stop();
+            //on cache la fenetre dans la simuation automatique
+        }
+        else if (grille.getMethode().equals(Choix.MANUEL)){
+            //si le choix est manuel
+            exitMazeManuel().start();
         }
     }
 
     private void moyennealea() {
         //renvoi la moyenne des deplacements de thesees dans l'algo alea
-        System.out.println(deplacementPourMoyenne);
+       double moyenne = (double) (nbDeplacement/100);
+        JOptionPane.showMessageDialog(null, "La moyenne de deplacement est de " +moyenne,
+                "Moyenne", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private Timer exitMaze() {
+    private Timer exitMazeAuto() {
         //conditions pour sortir du labyrinth
         Cell thesee = searchThesee();
-        positionThesee = thesee.getPosition();
-        //ici récupère la position de thesee après l'avoir cherché
+        if (thesee != null) {
+            positionThesee = thesee.getPosition();
+        }
+        //ici récupère la position de thesee après l'avoir cherché donc il est au debut
         Cell sortie = searchSortie();
-        positionSortie = sortie.getPosition();
+        if (sortie != null) {
+            positionSortie = sortie.getPosition();
+        }
         //récupère la position de la sortie après l'avoir cherchée
 
-       timer = new Timer(60, new ActionListener() { //nouvelle instance de timer
+       timer = new Timer(5, new ActionListener() { //nouvelle instance de timer
            @Override
            public void actionPerformed(ActionEvent e) {
-               System.out.println("debut timer");
                Cell thesee = searchThesee();
                //recherche la position de thesee das la grille a chaque deplacement
                // (pour mettre à jour sa position)
                if (thesee.getPosition().equals(sortie.getPosition())) {
                    //si thesee est sur la sortie alors stop le timer
-                   System.out.println("sortie trouvée");
                    alea ++;
-                  /* if (alea != 100){
+                   System.out.println("sortie trouvée " + alea);
+                   if (alea != NB_ALEA){
+                        replacerThesee(thesee, sortie);
                        //reinitialiser les positions de sortie et de thesee
+                      nbDeplacement += deplacementPourMoyenne;
+                      System.out.println(nbDeplacement);
                        //sinon stock le nb de deplacement dans un tableau ou liste pour en faire la moyenne
+                      deplacementPourMoyenne = 0;
                        //et remettre à 0 le deplacementpourmoyenne
-                   }*/
-                   moyennealea();
-                   timer.stop();
+                   }
+                  else {
+                      moyennealea();
+                      timer.stop();
+                  }
                } else {
                    //sinon refait un deplacement
-                   System.out.println("deplacement");
                    deplacement(thesee);
                }
-               System.out.println("fin timer");
            }
        });
 
        return timer;
+    }
+
+    public Timer exitMazeManuel() {
+        //conditions pour sortir du labyrinth
+        Cell thesee = searchThesee();
+        if (thesee != null) {
+            positionThesee = thesee.getPosition();
+        }
+        //ici récupère la position de thesee après l'avoir cherché donc il est au debut
+        Cell sortie = searchSortie();
+        if (sortie != null) {
+            positionSortie = sortie.getPosition();
+        }
+        //récupère la position de la sortie après l'avoir cherchée
+
+        timer = new Timer(60, new ActionListener() { //nouvelle instance de timer
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Cell thesee = searchThesee();
+                Cell sortie = searchSortie();
+                //recherche la position de thesee das la grille a chaque deplacement
+                // (pour mettre à jour sa position)
+                if (sortie == null || thesee.getPosition().equals(sortie.getPosition()) ) {
+                    //si thesee est sur la sortie alors la simulation est finie
+                    JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,
+                            "Fin", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    //sinon refait un deplacement
+                    deplacement(thesee);
+                }
+                timer.stop();
+            }
+        });
+
+        return timer;
     }
 
     private void deplacement(Cell thesee) {
@@ -149,6 +200,17 @@ public class Algo {
             //choix algo deterministe
         } else {
             aleatoire();
+        }
+    }
+
+    private void replacerThesee(Cell thesee, Cell sortie){
+        for (Cell cell : cells){
+            if (cell.getPosition().equals(positionThesee)){
+                //recupère la position initiale de thesee
+                cell.setPropriete(thesee.getPropriete());
+                //remet propriete de thesee sur la cellule
+                sortie.setPropriete(new Sortie());
+            }
         }
     }
 

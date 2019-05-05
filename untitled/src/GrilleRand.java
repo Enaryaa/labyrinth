@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,6 +7,7 @@ import java.util.Random;
 public class GrilleRand extends JPanel implements GrilleInterface {
     private int colonnes;
     private int lignes;
+    private Fenetre f;
     private Element e;
     private List<Element> box;
     private int[][] grille;
@@ -42,7 +42,7 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         this.colonnes = c;
         this.lignes = l;
 
-        Fenetre f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+200);
+        f = new Fenetre(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT+200);
         FlowLayout div = new FlowLayout(FlowLayout.CENTER,0,0);
         f.setLayout(div);
         menuBarre(f);
@@ -151,7 +151,12 @@ public class GrilleRand extends JPanel implements GrilleInterface {
                 index++;
             }
         }
+       /* p.setFocusable(true);
+        p.requestFocus();
+        p.addKeyListener(new ObservateurTouche());
+        */
         f.getContentPane().add(p);
+
     }
 
     private int[][] arrayFill() {
@@ -317,6 +322,16 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     public void setMethode(String methode) {
         this.methode = methode;
     }
+
+    @Override
+    public void cacherFenetre() {
+        f.setVisible(false);
+    }
+
+    /*@Override
+    public void addListener(ObservateurTouche observateurTouche) {
+        this.addKeyListener(observateurTouche);
+    }*/
 
     @Override
     public List<Cell> getCells() {
