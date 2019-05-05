@@ -6,7 +6,7 @@ public class Position {
         EST(1, 0),
         OUEST(-1, 0);
 
-        //enumeration des deplacements de thesees possibles
+        //enumeration des deplacements de thesee possibles
 
         private Position position;
 
