@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
+
 public class Algo {
 
     private static final int NB_ALEA = 100;
@@ -74,7 +76,7 @@ public class Algo {
         }
         //récupère la position de la sortie après l'avoir cherchée
 
-       timer = new Timer(5, new ActionListener() { //nouvelle instance de timer
+       timer = new Timer(1, new ActionListener() { //nouvelle instance de timer
            @Override
            public void actionPerformed(ActionEvent e) {
                Cell thesee = searchThesee();
@@ -108,6 +110,7 @@ public class Algo {
     }
 
     public Timer exitMazeManuel() {
+        grille.addListener(new ObservateurTouche());
         //conditions pour sortir du labyrinth
         Cell thesee = searchThesee();
         if (thesee != null) {

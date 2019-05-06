@@ -105,11 +105,11 @@ public class GrilleRand extends JPanel implements GrilleInterface {
 
         JMenuItem save = new JMenuItem("Sauvegarder");
         fichier.add(save);
-        JMenuItem repaint = new JMenuItem("Raffraichir");
+        JMenuItem repaint = new JMenuItem("Rafraichir");
         fichier.add(repaint);
 
-        save.addActionListener(new GestionMenu(f));
-        repaint.addActionListener(new GestionMenu(f));
+        save.addActionListener(new GestionMenu(this));
+        repaint.addActionListener(new GestionMenu(this));
 
         f.setJMenuBar(barre);
     }
@@ -151,10 +151,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
                 index++;
             }
         }
-       /* p.setFocusable(true);
+        p.setFocusable(true);
         p.requestFocus();
-        p.addKeyListener(new ObservateurTouche());
-        */
+
+
         f.getContentPane().add(p);
 
     }
@@ -328,10 +328,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         f.setVisible(false);
     }
 
-    /*@Override
+    @Override
     public void addListener(ObservateurTouche observateurTouche) {
         this.addKeyListener(observateurTouche);
-    }*/
+    }
 
     @Override
     public List<Cell> getCells() {

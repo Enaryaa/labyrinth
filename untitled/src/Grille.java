@@ -134,8 +134,8 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		JMenuItem erase = new JMenuItem("Effacer");
 		fichier.add(erase);
 
-		save.addActionListener(new GestionMenu(f));
-		erase.addActionListener(new GestionMenu(f));
+		save.addActionListener(new GestionMenu(this ));
+		erase.addActionListener(new GestionMenu(this));
 
 		f.setJMenuBar(barre);
 	}
@@ -208,10 +208,10 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		f.setVisible(false);
 	}
 
-	/*@Override
+	@Override
 	public void addListener(ObservateurTouche observateurTouche) {
 		this.addKeyListener(observateurTouche);
-	}*/
+	}
 
 	@Override
 	public List<Cell> getCells() {

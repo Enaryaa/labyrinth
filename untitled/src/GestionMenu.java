@@ -4,12 +4,16 @@ import java.awt.event.ActionListener;
 
 public class GestionMenu implements ActionListener {
 
-    private Fenetre cible;
-    private Grille grille;
-    private GrilleRand grillerand;
+    private GrilleRand grillr;
+    private GrilleInterface grille;
+    private Grille gril;
 
-    public GestionMenu(Fenetre cible){
-        this.cible = cible;
+    public GestionMenu(GrilleRand grillr){
+        this.grillr = grillr;
+    }
+
+    public GestionMenu(Grille gril){
+        this.gril = gril;
     }
 
     @Override
@@ -19,10 +23,12 @@ public class GestionMenu implements ActionListener {
         if (nom == "Sauvegarder"){
 
         }
-        if (nom == "Effacer") /*grille.createGrid(cible)*/;
+        if (nom == "Effacer"){
+            grille = new Grille(gril.getTaille(),gril.getTaille());
+        }
 
-        if (nom == "Regenerer"){
-
+        if (nom == "Rafraichir"){
+           grille = new GrilleRand(grillr.getTaille(),grillr.getTaille());
         }
     }
 }
