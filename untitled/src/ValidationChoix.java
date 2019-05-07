@@ -5,9 +5,14 @@ public class ValidationChoix implements MouseListener {
     /*des grilles
      */
     private GrilleInterface grille;
+    private Bouton bouton;
+    private int bout;
+    private Algo algo;
 
     public ValidationChoix(GrilleInterface grille){
         this.grille = grille;
+        bout = 0;
+        algo = new Algo(grille);
     }
 
     @Override
@@ -19,8 +24,22 @@ public class ValidationChoix implements MouseListener {
         //que se soit deterministe ou aleatoire -> appelle le bon algo (premier if)
         //choisis la methode d'appelle,  si automatique -> affiche nb deplacement sinon appuie
         //sur espace pour faire avancer l'algo
-        Algo algo = new Algo(grille);
-        algo.start();
+        this.bouton = (Bouton ) e.getComponent();
+        this.bout = bouton.getId();
+        if (bout == 15){
+            if(bouton.isEnabled()) {
+                algo.start();
+                bouton.setEnabled(false);
+            }
+        }
+        if(grille.getMethode().equals(Choix.MANUEL)){
+            if (bout == 16) {
+                algo.exitMazeManuel().start();
+            }
+        }
+        else {
+            bouton.setEnabled(false);
+        }
     }
 
     @Override

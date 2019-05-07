@@ -76,8 +76,15 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		jouer.addMouseListener(new ValidationChoix(this));
 		panel3.add(jouer);
 
+		JPanel panel4 = new JPanel();
+		Bouton deplacer = new Bouton(16);
+		deplacer.setText("Déplacer");
+		deplacer.addMouseListener(new ValidationChoix(this));
+		panel4.add(deplacer);
+
 		panel.add(panel2);
 		panel.add(panel3);
+		panel.add(panel4);
 		f.getContentPane().add(panel);
 	}
 
@@ -205,12 +212,14 @@ public class Grille extends JPanel implements Action, GrilleInterface
 
 	@Override
 	public void cacherFenetre() {
-		f.setVisible(false);
+		f.dispose();
 	}
 
 	@Override
 	public void addListener(ObservateurTouche observateurTouche) {
+		/*
 		this.addKeyListener(observateurTouche);
+		*/
 	}
 
 	@Override

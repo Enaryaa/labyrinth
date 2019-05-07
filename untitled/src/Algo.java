@@ -3,8 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
-
 public class Algo {
 
     private static final int NB_ALEA = 100;
@@ -58,7 +56,7 @@ public class Algo {
 
     private void moyennealea() {
         //renvoi la moyenne des deplacements de thesees dans l'algo alea
-       double moyenne = (double) (nbDeplacement/100);
+       int moyenne = (nbDeplacement/100);
         JOptionPane.showMessageDialog(null, "La moyenne de deplacement est de " +moyenne,
                 "Moyenne", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -110,7 +108,7 @@ public class Algo {
     }
 
     public Timer exitMazeManuel() {
-        grille.addListener(new ObservateurTouche());
+       // grille.addListener(new ObservateurTouche());
         //conditions pour sortir du labyrinth
         Cell thesee = searchThesee();
         if (thesee != null) {
@@ -189,6 +187,8 @@ public class Algo {
             return getRandomDirection(thesee);
         }
     }
+
+
 
     public void deterministe() {
         // a completer pour l'algo deterministe
