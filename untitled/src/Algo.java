@@ -58,15 +58,11 @@ public class Algo {
     public void deterministe() {
         // a completer pour l'algo deterministe
         if (grille.getMethode().equals(Choix.AUTO)) {
-            //si le choix est automatique
-            //timer est récupéré et lancé directement grace a start();
-            //et stopper dans le timer directement -> stop();
-            //on cache la fenetre dans la simuation automatique
+            grille.cacherFenetre();
+
         }
         else if (grille.getMethode().equals(Choix.MANUEL)){
-            MazeDeterManuel();
-
-            //si le choix est manuel
+            MazeDeterManuel().start();
 
         }
     }
@@ -126,11 +122,6 @@ public class Algo {
             deplacementManuelDeter(thesee);
         }
     }
-
-    private Position.Direction getDeterministDirection(Cell thesee) {
-
-    }
-
 
     private void moyennealea() {
         //renvoi la moyenne des deplacements de thesees dans l'algo alea
@@ -274,6 +265,16 @@ public class Algo {
             return false;
         }
     }
+
+   /* private Position.Direction getDeterministDirection(Cell thesee) {
+        //mettre ici algo deterministe
+        /*Put current node on stack
+        In a while loop pop the stack if not empty
+        visit (popped node)
+        push all Unvisited and NotVisiting neighbors of popped node on the stack
+        End while
+
+    }*/
 
     private Position.Direction getRandomDirection(Cell thesee) {
         //en fonction du resultat du rand (1,2,3 ou 4) et test la position de thesee

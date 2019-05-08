@@ -45,10 +45,9 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 		int etats_int = 0;
 		byte etats_byte = 0;
 		int etats_unsigned = 0;
-		//fenetre.clearContent();
 			// a ce moment, ajouter les etapes de choix pour arriver à la grille
 		String fichier = "";
-		Choix_fichier choix = new Choix_fichier(".");
+		ChoixFichier choix = new ChoixFichier(".");
 		File repertoire_courant = new File(".");
 		choix.setCurrentDirectory(repertoire_courant);
 		choix.showOpenDialog(null);
@@ -256,14 +255,6 @@ public class GrilleChargee extends JPanel implements GrilleInterface
         fenetre.dispose();
     }
 
-<<<<<<< HEAD
-
-    public void addListener(ObservateurTouche observateurTouche) {
-        this.addKeyListener(observateurTouche);
-    }
-
-=======
->>>>>>> d5f4cefc0003f651e60bf687aaec2902e777070f
     @Override
     public List<Cell> getCells() {
         return cells;
