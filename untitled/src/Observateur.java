@@ -27,6 +27,8 @@ public class Observateur implements MouseListener{
 		}
 		if (bout == 2){
 			cible.clearContent();
+			Grille_chargee grille_chargee = new Grille_chargee();
+			cible.add(grille_chargee);
 			cible.visible();
 		}
 		if (bout == 3){
