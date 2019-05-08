@@ -39,7 +39,6 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 		FlowLayout div = new FlowLayout(FlowLayout.CENTER,0,0);
 		fenetre.setLayout(div);
 
-
 		this.thesee = new byte[2];
 		this.sortie = new byte[2];
 		int etats_int = 0;
