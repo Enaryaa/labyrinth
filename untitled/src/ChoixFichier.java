@@ -1,15 +1,15 @@
 import javax.swing.filechooser.*;
 import javax.swing.*;
 
-public class Choix_fichier extends JFileChooser
+public class ChoixFichier extends JFileChooser
 {
 	private String fichier;
 
-	public Choix_fichier(String repertoire)
+	public ChoixFichier(String repertoire)
 	{
 		super();
 		this.fichier = "";
-		FileFilter filtre = (FileFilter) new Filtre_fichier();
+		FileFilter filtre = (FileFilter) new FiltreFichier();
 		this.addChoosableFileFilter(filtre);
 		this.setFileFilter(filtre);
 	}
