@@ -127,7 +127,6 @@ public class Algo {
     }
 
     public Timer exitMazeManuel() {
-       // grille.addListener(new ObservateurTouche());
         //conditions pour sortir du labyrinth
         Cell thesee = searchThesee();
         if (thesee != null) {

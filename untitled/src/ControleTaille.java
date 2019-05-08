@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Controletaille implements MouseListener{
+public class ControleTaille implements MouseListener{
 
 	private Bouton bouton;
 	private int bout;
@@ -12,13 +12,13 @@ public class Controletaille implements MouseListener{
 	private int taille;
 
 
-	public Controletaille (Fenetre cible, JTextField text){
+	public ControleTaille(Fenetre cible, JTextField text){
 		this.cible = cible;
 		this.text = text;
 		bout = 0;
 	}
 
-	public Controletaille(){
+	public ControleTaille(){
 		bout = 0;
 	}
 
@@ -33,12 +33,12 @@ public class Controletaille implements MouseListener{
 		this.bouton = (Bouton ) e.getComponent();
 		this.bout = bouton.getId();
 		if (bout == 9){
-			cible.setVisible(false);
+			cible.dispose();
 			taille = Integer.parseInt(text.getText());
 			Grille grille = new Grille(taille,taille);
 		}
 		else if (bout == 10){
-			cible.setVisible(false);
+			cible.dispose();
 			taille = Integer.parseInt(text.getText());
 			GrilleRand grilleR = new GrilleRand(taille,taille);
 		}

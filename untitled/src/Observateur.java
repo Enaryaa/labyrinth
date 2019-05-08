@@ -26,10 +26,8 @@ public class Observateur implements MouseListener{
 			cible.visible();
 		}
 		if (bout == 2){
-			cible.clearContent();
+			cible.dispose();
 			GrilleChargee grille_chargee = new GrilleChargee();
-			cible.add(grille_chargee);
-			cible.visible();
 		}
 		if (bout == 3){
 			cible.clearContent();
@@ -39,11 +37,6 @@ public class Observateur implements MouseListener{
 		if (bout == 4){
 			cible.clearContent();
 			cible.saisiRand();
-			cible.visible();
-		}
-		if (bout == 7 || bout == 8){
-			//mode manuel || auto
-			cible.clearContent();
 			cible.visible();
 		}
 

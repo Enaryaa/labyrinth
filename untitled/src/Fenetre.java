@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class Fenetre extends JFrame {
 
@@ -102,7 +100,7 @@ public void saisi(){
    JTextField zone = new JTextField();
    zone.setPreferredSize( new Dimension( 50, 25 ) );
    panel.add(zone);
-   Controletaille o = new Controletaille(this,zone);
+   ControleTaille o = new ControleTaille(this,zone);
    generer.addMouseListener(o);
 
    this.add(panel, BorderLayout.CENTER);
@@ -128,7 +126,7 @@ public void saisi(){
         JTextField zone = new JTextField();
         zone.setPreferredSize( new Dimension( 50, 25 ) );
         panel.add(zone);
-        Controletaille o = new Controletaille(this,zone);
+        ControleTaille o = new ControleTaille(this,zone);
         generer.addMouseListener(o);
 
         this.add(panel, BorderLayout.CENTER);
