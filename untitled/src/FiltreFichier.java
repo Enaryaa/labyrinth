@@ -1,11 +1,9 @@
-import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
-import java.awt.*;
 import java.io.*;
 
-public class Filtre_fichier extends FileFilter
+public class FiltreFichier extends FileFilter
 {
-	public Filtre_fichier()
+	public FiltreFichier()
 	{
 		super();
 	}

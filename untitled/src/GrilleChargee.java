@@ -1,12 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class Grille_chargee extends JPanel implements GrilleInterface
+public class GrilleChargee extends JPanel implements GrilleInterface
 {
 	public static final int BITS_PER_BYTE = 8;
 	private static final int CHEMIN = 0;
@@ -24,7 +22,7 @@ public class Grille_chargee extends JPanel implements GrilleInterface
 	private byte[] sortie;
 	private char[] etats;
 
-	public Grille_chargee()
+	public GrilleChargee()
 	{
 		super();
 		box = new ArrayList<>();
@@ -49,7 +47,7 @@ public class Grille_chargee extends JPanel implements GrilleInterface
 		fenetre.clearContent();
 			// a ce moment, ajouter les etapes de choix pour arriver à la grille
 		String fichier = "";
-		Choix_fichier choix = new Choix_fichier(".");
+		ChoixFichier choix = new ChoixFichier(".");
 		File repertoire_courant = new File(".");
 		choix.setCurrentDirectory(repertoire_courant);
 		choix.showOpenDialog(null);
@@ -207,11 +205,6 @@ public class Grille_chargee extends JPanel implements GrilleInterface
     @Override
     public void cacherFenetre() {
         fenetre.setVisible(false);
-    }
-
-    @Override
-    public void addListener(ObservateurTouche observateurTouche) {
-        this.addKeyListener(observateurTouche);
     }
 
     @Override

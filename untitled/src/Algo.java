@@ -58,6 +58,21 @@ public class Algo {
         }
     }
 
+    public void deterministe() {
+        // a completer pour l'algo deterministe
+        if (grille.getMethode().equals(Choix.AUTO)) {
+            //si le choix est automatique
+
+            //timer est récupéré et lancé directement grace a start();
+            //et stopper dans le timer directement -> stop();
+            //on cache la fenetre dans la simuation automatique
+        }
+        else if (grille.getMethode().equals(Choix.MANUEL)){
+            //si le choix est manuel
+
+        }
+    }
+
     private void moyennealea() {
         //renvoi la moyenne des deplacements de thesees dans l'algo alea
        int moyenne = (nbDeplacement/100);
@@ -219,9 +234,7 @@ public class Algo {
         }
     }
 
-    public void deterministe() {
-        // a completer pour l'algo deterministe
-    }
+
 
     public void start() {
         if (grille.getAlgo().equals(Choix.ALEA)) {
