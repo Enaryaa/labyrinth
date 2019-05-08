@@ -216,13 +216,6 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	}
 
 	@Override
-	public void addListener(ObservateurTouche observateurTouche) {
-		/*
-		this.addKeyListener(observateurTouche);
-		*/
-	}
-
-	@Override
 	public List<Cell> getCells() {
 		return cells;
 	}

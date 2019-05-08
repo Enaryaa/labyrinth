@@ -10,5 +10,4 @@ public interface GrilleInterface {
      void setAlgo(String s);
      void setMethode(String s);
      void cacherFenetre();
-     void addListener(ObservateurTouche observateurTouche);
 }

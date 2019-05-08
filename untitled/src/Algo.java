@@ -1,4 +1,7 @@
+import com.sun.source.tree.NewArrayTree;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -17,6 +20,7 @@ public class Algo {
 
     private Position positionThesee;
     private Position positionSortie;
+    private boolean sortieTrouvee = false;
 
     public Algo(GrilleInterface grille) {
         this.grille = grille;
@@ -125,22 +129,49 @@ public class Algo {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Cell thesee = searchThesee();
-                Cell sortie = searchSortie();
                 //recherche la position de thesee das la grille a chaque deplacement
                 // (pour mettre à jour sa position)
-                if (sortie == null || thesee.getPosition().equals(sortie.getPosition()) ) {
-                    //si thesee est sur la sortie alors la simulation est finie
+                //sinon refait un deplacement
+                if (sortieTrouvee) {
+                    goToSortie(thesee);
                     JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,
                             "Fin", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    //sinon refait un deplacement
-                    deplacement(thesee);
+                    deplacementManuel(thesee);
                 }
                 timer.stop();
             }
         });
 
         return timer;
+    }
+
+    private void deplacementManuel(Cell thesee) {
+        Cell nextChemin = getCellNextChemin();
+        if (nextChemin != null) {
+            nextChemin.setPropriete(thesee.getPropriete());
+            thesee.setPropriete(new Chemin());
+            thesee = nextChemin;
+            deplacementPourMoyenne += 1;
+        }
+        Position.Direction direction = getRandomDirection(thesee);
+        Cell sortie = searchSortie();
+        if (deplacementValide(thesee, direction)) {
+            Cell next = getCellByPosition(thesee.getPosition().getNextPosition(direction));
+            if (next.getPosition().equals(sortie.getPosition())) {
+                sortieTrouvee = true;
+            } else {
+                next.setPropriete(new NextChemin());
+            }
+        } else {
+            deplacementManuel(thesee);
+        }
+    }
+
+    private void goToSortie(Cell thesee) {
+        Cell sortie = searchSortie();
+        sortie.setPropriete(thesee.getPropriete());
+        thesee.setPropriete(new Chemin());
     }
 
     private void deplacement(Cell thesee) {
@@ -187,8 +218,6 @@ public class Algo {
             return getRandomDirection(thesee);
         }
     }
-
-
 
     public void deterministe() {
         // a completer pour l'algo deterministe
@@ -241,6 +270,16 @@ public class Algo {
         //recupère la cellule en fonction de la position donnée par la direction (nord, sud , est , ouest)
         for (Cell cell : cells) {
             if (cell.getPosition().equals(position)) {
+                return cell;
+            }
+        }
+        return null;
+    }
+
+    private Cell getCellNextChemin() {
+        //recupère la cellule en fonction de la position donnée par la direction (nord, sud , est , ouest)
+        for (Cell cell : cells) {
+            if (cell.getPropriete() instanceof NextChemin) {
                 return cell;
             }
         }

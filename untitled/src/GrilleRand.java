@@ -339,12 +339,6 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     @Override
-    public void addListener(ObservateurTouche observateurTouche) {
-        /*this.setFocusable(true);
-        this.addKeyListener(observateurTouche);*/
-    }
-
-    @Override
     public List<Cell> getCells() {
         return cells;
     }
