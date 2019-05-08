@@ -5,11 +5,16 @@ import java.awt.event.ActionListener;
 public class GestionMenu implements ActionListener {
 
     private GrilleRand grillr;
+    private GrilleChargee grilleC;
     private GrilleInterface grille;
     private Grille gril;
 
     public GestionMenu(GrilleRand grillr){
         this.grillr = grillr;
+    }
+
+    public GestionMenu(GrilleChargee grilleC){
+        this.grilleC = grilleC;
     }
 
     public GestionMenu(Grille gril){

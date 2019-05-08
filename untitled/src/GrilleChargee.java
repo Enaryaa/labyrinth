@@ -4,9 +4,8 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class Grille_chargee extends JPanel implements GrilleInterface
+public class GrilleChargee extends JPanel implements GrilleInterface
 {
 	public static final int BITS_PER_BYTE = 8;
 	private static final int CHEMIN = 0;
@@ -14,6 +13,7 @@ public class Grille_chargee extends JPanel implements GrilleInterface
     private static final int THESEE = 2;
     private static final int SORTIE = 3;
 	private Fenetre fenetre;
+	private JPanel grille;
     private Element e;
     private String methode;
     private String algo;
@@ -24,7 +24,7 @@ public class Grille_chargee extends JPanel implements GrilleInterface
 	private byte[] sortie;
 	private char[] etats;
 
-	public Grille_chargee()
+	public GrilleChargee()
 	{
 		super();
 		box = new ArrayList<>();
@@ -98,6 +98,7 @@ public class Grille_chargee extends JPanel implements GrilleInterface
 			}
 			menuBarre(fenetre);
 			drawGrid(taille,thesee,sortie,etats);
+			jouer(fenetre);
 			/*Barre_action barre = new Barre_action(fenetre);
 			fenetre.add(barre);
 			Bouton bouton_sauvegarde = new Bouton(19);
@@ -105,7 +106,7 @@ public class Grille_chargee extends JPanel implements GrilleInterface
 			bouton_sauvegarde.addMouseListener(sauvegarde);
 			bouton_sauvegarde.setPreferredSize(new Dimension(fenetre.getWidth()-100,100));
 			fenetre.add(bouton_sauvegarde);*/
-			fenetre.repaint();
+			//fenetre.repaint();
 			fenetre.setVisible(true);
 		}
 		catch(IOException e)
@@ -118,10 +119,10 @@ public class Grille_chargee extends JPanel implements GrilleInterface
 	{
 		cells = new ArrayList<>();
 		
-		JPanel p = new JPanel();
-		p.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT));
+		this.grille = new JPanel();
+		grille.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT));
 		GridLayout gridLayout = new GridLayout(taille,taille);
-		p.setLayout(gridLayout);
+		grille.setLayout(gridLayout);
     	int index = 0;
     	for (int i = 0 ; i < taille ; i++)
 		{
@@ -129,43 +130,39 @@ public class Grille_chargee extends JPanel implements GrilleInterface
 			{
 				if ((j == thesee[1]) && i == thesee[0])
 				{
-					System.out.println(etats[(4*i)+j]);
 					Cell cell = new Cell(index, box.get(THESEE));
-					p.add(cell);
+					grille.add(cell);
 					cells.add(cell);
 				}
 				else if ((j == sortie[1]) && i == sortie[0])
 				{
-					System.out.println(etats[(4*i)+j]);
 					Cell cell = new Cell(index, box.get(SORTIE));
-					p.add(cell);
+					grille.add(cell);
 					cells.add(cell);
 				}
 				else if (etats[index] == '1')
 				{
-					System.out.println(etats[(4*i)+j]);
 					Cell cell = new Cell(index, box.get(MUR));
-					p.add(cell);
+					grille.add(cell);
 					cells.add(cell);
 				}
 
 				else
 				{
-					System.out.println(etats[(4*i)+j]);
 					Cell cell = new Cell(index, box.get(CHEMIN));
-					p.add(cell);
+					grille.add(cell);
 					cells.add(cell);
 				}
 			}
 		}
-		p.setFocusable(true);
-		p.requestFocus();
-		fenetre.getContentPane().add(p);
+		grille.setFocusable(true);
+		grille.requestFocus();
+		fenetre.getContentPane().add(grille);
 	}
 
 	private void menuBarre(Fenetre f)
 	{
-		/*JMenuBar barre = new JMenuBar();
+		JMenuBar barre = new JMenuBar();
 
         //Creation onglet fichier
 		JMenu fichier = new JMenu("Fichier");
@@ -181,8 +178,56 @@ public class Grille_chargee extends JPanel implements GrilleInterface
 		save.addActionListener(new GestionMenu(this));
 		repaint.addActionListener(new GestionMenu(this));
 
-		f.setJMenuBar(barre);*/
+		fenetre.setJMenuBar(barre);
 	}
+
+	private void jouer(Fenetre f) {
+        Choix choix = new Choix(this);
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT-100));
+
+        JRadioButton deter = new JRadioButton(Choix.DETER);
+        deter.addActionListener(choix);
+        panel.add(deter);
+        JRadioButton aleat = new JRadioButton(Choix.ALEA);
+        aleat.addActionListener(choix);
+        panel.add(aleat);
+
+        JPanel panel2 = new JPanel();
+        ButtonGroup choixalgo = new ButtonGroup();
+
+        choixalgo.add(deter);
+        choixalgo.add(aleat);
+
+        JRadioButton manuel = new JRadioButton(Choix.MANUEL);
+        manuel.addActionListener(choix);
+        panel2.add(manuel);
+        JRadioButton auto = new JRadioButton(Choix.AUTO);
+        auto.addActionListener(choix);
+        panel2.add(auto);
+
+        ButtonGroup choixjeu = new ButtonGroup();
+
+        choixjeu.add(auto);
+        choixjeu.add(manuel);
+
+        JPanel panel3 = new JPanel();
+        Bouton jouer = new Bouton(15);
+        jouer.setText("Démarrer");
+        jouer.addMouseListener(new ValidationChoix(this));
+        panel3.add(jouer);
+
+       JPanel panel4 = new JPanel();
+        Bouton deplacer = new Bouton(16);
+        deplacer.setText("Déplacer");
+        deplacer.addMouseListener(new ValidationChoix(this));
+        panel4.add(deplacer);
+
+        panel.add(panel2);
+        panel.add(panel3);
+        panel.add(panel4);
+        f.getContentPane().add(panel);
+    }
 
 	@Override
     public int getTaille(){
