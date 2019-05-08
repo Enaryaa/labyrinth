@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 		//fenetre.clearContent();
 			// a ce moment, ajouter les etapes de choix pour arriver à la grille
 		String fichier = "";
-		ChoixFichier choix = new ChoixFichier(".");
+		Choix_fichier choix = new Choix_fichier(".");
 		File repertoire_courant = new File(".");
 		choix.setCurrentDirectory(repertoire_courant);
 		choix.showOpenDialog(null);
@@ -171,8 +172,8 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 		JMenuItem repaint = new JMenuItem("Rafraichir");
 		fichier.add(repaint);
 
-		save.addActionListener(new GestionMenu(this));
-		repaint.addActionListener(new GestionMenu(this));
+		save.addActionListener(new GestionMenu(this,grille));
+		repaint.addActionListener(new GestionMenu(this,grille));
 
 		fenetre.setJMenuBar(barre);
 	}
@@ -255,6 +256,14 @@ public class GrilleChargee extends JPanel implements GrilleInterface
         fenetre.dispose();
     }
 
+<<<<<<< HEAD
+
+    public void addListener(ObservateurTouche observateurTouche) {
+        this.addKeyListener(observateurTouche);
+    }
+
+=======
+>>>>>>> d5f4cefc0003f651e60bf687aaec2902e777070f
     @Override
     public List<Cell> getCells() {
         return cells;
