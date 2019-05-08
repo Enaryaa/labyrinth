@@ -129,24 +129,29 @@ public class Grille_chargee extends JPanel implements GrilleInterface
 			{
 				if ((j == thesee[1]) && i == thesee[0])
 				{
+					System.out.println(etats[(4*i)+j]);
 					Cell cell = new Cell(index, box.get(THESEE));
 					p.add(cell);
+					cells.add(cell);
 				}
 				else if ((j == sortie[1]) && i == sortie[0])
 				{
+					System.out.println(etats[(4*i)+j]);
 					Cell cell = new Cell(index, box.get(SORTIE));
 					p.add(cell);
 					cells.add(cell);
 				}
-				else if (etats[j+(i*taille)] == 1)
+				else if (etats[index] == '1')
 				{
+					System.out.println(etats[(4*i)+j]);
 					Cell cell = new Cell(index, box.get(MUR));
 					p.add(cell);
 					cells.add(cell);
 				}
 
-				else if (etats[j+(i*taille)] == 0)
+				else
 				{
+					System.out.println(etats[(4*i)+j]);
 					Cell cell = new Cell(index, box.get(CHEMIN));
 					p.add(cell);
 					cells.add(cell);
@@ -209,7 +214,7 @@ public class Grille_chargee extends JPanel implements GrilleInterface
         fenetre.setVisible(false);
     }
 
-    @Override
+
     public void addListener(ObservateurTouche observateurTouche) {
         this.addKeyListener(observateurTouche);
     }
