@@ -93,8 +93,8 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		cells = new ArrayList<>();
 		this.grille = new JPanel();
 		grille.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT));
-		GridLayout grille = new GridLayout(colonnes,lignes);
-		grille.setLayout(grille);
+		GridLayout gestionnaire = new GridLayout(colonnes,lignes);
+		grille.setLayout(gestionnaire);
 		Coloration coloration = new Coloration(this);
 
 		for (int i = 0 ; i < (colonnes*lignes) ; i++)

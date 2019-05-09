@@ -36,7 +36,7 @@ public class GestionMenu implements ActionListener {
 
         if (nom == "Sauvegarder")
         {
-            JFrame fenetre_sauvegarde = new JFrame();
+            Fenetre fenetre_sauvegarde = new Fenetre();
             fenetre_sauvegarde.setSize(500, 200);
             //fenetre_sauvegarde.setLocationRelativeTo(griller);
             FlowLayout gestionnaire = new FlowLayout(FlowLayout.CENTER,0,0);

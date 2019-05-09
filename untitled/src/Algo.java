@@ -57,14 +57,7 @@ public class Algo {
 
     public void deterministe() {
         // a completer pour l'algo deterministe
-        if (grille.getMethode().equals(Choix.AUTO)) {
-            grille.cacherFenetre();
-
-        }
-        else if (grille.getMethode().equals(Choix.MANUEL)){
-            MazeDeterManuel().start();
-
-        }
+       
     }
 
   /*  public Timer MazeDeterManuel() {
