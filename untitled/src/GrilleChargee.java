@@ -40,16 +40,18 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 		FlowLayout div = new FlowLayout(FlowLayout.CENTER,0,0);
 		fenetre.setLayout(div);
 
-
 		this.thesee = new byte[2];
 		this.sortie = new byte[2];
 		int etats_int = 0;
 		byte etats_byte = 0;
 		int etats_unsigned = 0;
+<<<<<<< HEAD
 		fenetre.clearContent();
+=======
+>>>>>>> f5a2566b7d3e95e35bc307712eae3afdf3712543
 			// a ce moment, ajouter les etapes de choix pour arriver à la grille
 		String fichier = "";
-		Choix_fichier choix = new Choix_fichier(".");
+		ChoixFichier choix = new ChoixFichier(".");
 		File repertoire_courant = new File(".");
 		choix.setCurrentDirectory(repertoire_courant);
 		choix.showOpenDialog(null);
@@ -259,11 +261,14 @@ public class GrilleChargee extends JPanel implements GrilleInterface
         fenetre.setVisible(false);
     }
 
+<<<<<<< HEAD
 
     public void addListener(ObservateurTouche observateurTouche) {
         this.addKeyListener(observateurTouche);
     }
 
+=======
+>>>>>>> f5a2566b7d3e95e35bc307712eae3afdf3712543
     @Override
     public List<Cell> getCells() {
         return cells;
