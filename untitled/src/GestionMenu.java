@@ -40,7 +40,7 @@ public class GestionMenu implements ActionListener {
             choix.setPreferredSize(new Dimension(fenetre_sauvegarde.getWidth()-20,(fenetre_sauvegarde.getHeight()-34)/2));
             JTextField champ = new JTextField();
             champ.setPreferredSize(new Dimension(fenetre_sauvegarde.getWidth()-20,(fenetre_sauvegarde.getHeight()-34)/2));
-            Observateur_sauvegarde sauvegarde = new Observateur_sauvegarde(fenetre_sauvegarde,grille);
+            ObservateurSauvegarde sauvegarde = new ObservateurSauvegarde(fenetre_sauvegarde,grille);
             champ.addActionListener(sauvegarde);
             fenetre_sauvegarde.add(choix);
             fenetre_sauvegarde.add(champ);

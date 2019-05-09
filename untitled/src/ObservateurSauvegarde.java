@@ -7,10 +7,10 @@ public class ObservateurSauvegarde implements ActionListener
 {
 	public static final int BITS_PER_BYTE = 8;
 	private String nom;
-	private JFrame fenetre;
+	private Fenetre fenetre;
 	private Grille grille;
 
-	public ObservateurSauvegarde(JFrame f, Grille g)
+	public ObservateurSauvegarde(Fenetre f, Grille g)
 	{
 		super();
 		this.fenetre = f;

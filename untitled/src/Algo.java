@@ -67,7 +67,7 @@ public class Algo {
         }
     }
 
-    public Timer MazeDeterManuel() {
+  /*  public Timer MazeDeterManuel() {
         //conditions pour sortir du labyrinth
         Cell thesee = searchThesee();
         if (thesee != null) {
@@ -99,9 +99,9 @@ public class Algo {
         });
 
         return timer;
-    }
+    }*/
 
-    private void deplacementManuelDeter(Cell thesee) {
+   /* private void deplacementManuelDeter(Cell thesee) {
         Cell nextChemin = getCellNextChemin();
         if (nextChemin != null) {
             nextChemin.setPropriete(thesee.getPropriete());
@@ -121,7 +121,7 @@ public class Algo {
         } else {
             deplacementManuelDeter(thesee);
         }
-    }
+    }*/
 
     private void moyennealea() {
         //renvoi la moyenne des deplacements de thesees dans l'algo alea
