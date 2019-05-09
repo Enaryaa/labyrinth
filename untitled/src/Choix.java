@@ -15,7 +15,6 @@ public class Choix implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Choix");
         String choix = e.getActionCommand();
         if (choix.equals(DETER) || choix.equals(ALEA)) {
             grille.setAlgo(choix);

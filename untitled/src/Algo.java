@@ -56,8 +56,19 @@ public class Algo {
     }
 
     public void deterministe() {
-        // a completer pour l'algo deterministe
-       
+        //debut de l'algo aleatoire
+        if (grille.getMethode().equals(Choix.AUTO)) {
+            //si le choix est automatique
+            grille.cacherFenetre();
+            exitMazeAuto().start();
+            //timer est récupéré et lancé directement grace a start();
+            //et stopper dans le timer directement -> stop();
+            //on cache la fenetre dans la simuation automatique
+        }
+        else if (grille.getMethode().equals(Choix.MANUEL)){
+            //si le choix est manuel
+            exitMazeManuel().start();
+        }
     }
 
   /*  public Timer MazeDeterManuel() {
