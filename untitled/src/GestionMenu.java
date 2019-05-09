@@ -13,16 +13,21 @@ public class GestionMenu implements ActionListener {
     private JPanel grillep;
 
     public GestionMenu(GrilleRand grillr){
-        this.grillr = grillr;
+        /*this.grillr = grillr;
+        this.grillep = grillep;*/
+        this.grille = grillr;
     }
 
-    public GestionMenu(GrilleChargee grilleC, JPanel grille){
-        this.grilleC = grilleC;
-        this.grillep = grillep;
+    public GestionMenu(GrilleChargee grilleC){
+        /*this.grilleC = grilleC;
+        this.grillep = grillep;*/
+        this.grille = grilleC;
     }
 
     public GestionMenu(Grille gril){
-        this.gril = gril;
+        /*this.gril = gril;
+        this.grillep = grillep;*/
+        this.grille = gril;
     }
 
     @Override
@@ -33,14 +38,14 @@ public class GestionMenu implements ActionListener {
         {
             JFrame fenetre_sauvegarde = new JFrame();
             fenetre_sauvegarde.setSize(500, 200);
-            fenetre_sauvegarde.setLocationRelativeTo(grille);
+            //fenetre_sauvegarde.setLocationRelativeTo(griller);
             FlowLayout gestionnaire = new FlowLayout(FlowLayout.CENTER,0,0);
             fenetre_sauvegarde.setLayout(gestionnaire);
             JLabel choix = new JLabel("Nom du fichier de sauvegarde :");
             choix.setPreferredSize(new Dimension(fenetre_sauvegarde.getWidth()-20,(fenetre_sauvegarde.getHeight()-34)/2));
             JTextField champ = new JTextField();
             champ.setPreferredSize(new Dimension(fenetre_sauvegarde.getWidth()-20,(fenetre_sauvegarde.getHeight()-34)/2));
-            Observateur_sauvegarde sauvegarde = new Observateur_sauvegarde(fenetre_sauvegarde,grille);
+            ObservateurSauvegarde sauvegarde = new ObservateurSauvegarde(fenetre_sauvegarde,grille);
             champ.addActionListener(sauvegarde);
             fenetre_sauvegarde.add(choix);
             fenetre_sauvegarde.add(champ);

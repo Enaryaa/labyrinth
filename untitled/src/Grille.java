@@ -17,6 +17,7 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	private Element e;
 	private boolean theseeLa = false;
 	private boolean sortieLa = false;
+	private JPanel grille;
 
 	private List<Cell> cells;
 
@@ -90,19 +91,19 @@ public class Grille extends JPanel implements Action, GrilleInterface
 
 	public void createGrid(Fenetre f) {
 		cells = new ArrayList<>();
-		JPanel p = new JPanel();
-		p.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT));
+		this.grille = new JPanel();
+		grille.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT));
 		GridLayout grille = new GridLayout(colonnes,lignes);
-		p.setLayout(grille);
+		grille.setLayout(grille);
 		Coloration coloration = new Coloration(this);
 
 		for (int i = 0 ; i < (colonnes*lignes) ; i++)
 		{
 			Cell cell = new Cell(i,coloration);
 			cells.add(cell);
-			p.add(cell);
+			grille.add(cell);
 		}
-		f.getContentPane().add(p);
+		f.getContentPane().add(grille);
 	}
 
 	private void actionBarre(Fenetre f) {
@@ -219,4 +220,100 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	public List<Cell> getCells() {
 		return cells;
 	}
+
+	@Override
+    public byte getTheseeX()
+    {
+        byte theseex = 0;
+        /*for (int i = 0; i < colonnes; i++)
+        {
+            for (int j = 0; j < lignes; j++)
+            {
+                int current = grille[i][j];
+                if(current == THESEE)
+                {
+                    theseex = (byte) i;
+                }
+            }
+        }*/
+        return theseex;
+    }
+
+    @Override
+    public byte getTheseeY()
+    {
+        byte theseey = 0;
+        /*for (int i = 0; i < colonnes; i++)
+        {
+            for (int j = 0; j < lignes; j++)
+            {
+                int current = grille[i][j];
+                if(current == THESEE)
+                {
+                    theseey = (byte) j;
+                }
+            }
+        }*/
+        return theseey;
+    }
+
+    @Override
+    public byte getSortieX()
+    {
+        byte sortiex = 0;
+        /*for (int i = 0; i < colonnes; i++)
+        {
+            for (int j = 0; j < lignes; j++)
+            {
+                int current = grille[i][j];
+                if(current == SORTIE)
+                {
+                    sortiex = (byte) i;
+                }
+            }
+        }*/
+        return sortiex;
+    }
+
+    @Override
+    public byte getSortieY()
+    {
+        byte sortiey = 0;
+        /*for (int i = 0; i < colonnes; i++)
+        {
+            for (int j = 0; j < lignes; j++)
+            {
+                int current = grille[i][j];
+                if(current == SORTIE)
+                {
+                    sortiey = (byte) j;
+                }
+            }
+        }*/
+        return sortiey;
+    }
+	@Override
+    public char getEtat(int in)
+    {
+        int index = in;
+        int compteur = 0;
+        char etat = '0';
+        /*for (int i = 0; i < colonnes; i++)
+        {
+            for (int j = 0; j < lignes; j++)
+            {
+                int current = grille[i][j];
+                if (current == MUR && index == compteur)
+                {
+                    etat = '1';
+                }
+                else if (current != MUR && index == compteur)
+                {
+                    etat = '0';
+                }
+                compteur++;
+            }
+        }*/
+        return etat;
+    }
 }

@@ -46,7 +46,7 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 		int etats_int = 0;
 		byte etats_byte = 0;
 		int etats_unsigned = 0;
-		//fenetre.clearContent();
+		fenetre.clearContent();
 			// a ce moment, ajouter les etapes de choix pour arriver à la grille
 		String fichier = "";
 		Choix_fichier choix = new Choix_fichier(".");
@@ -155,6 +155,8 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 				}
 			}
 		}
+		grille.setFocusable(true);
+		grille.requestFocus();
 		fenetre.getContentPane().add(grille);
 	}
 
@@ -173,8 +175,8 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 		JMenuItem repaint = new JMenuItem("Rafraichir");
 		fichier.add(repaint);
 
-		save.addActionListener(new GestionMenu(this,grille));
-		repaint.addActionListener(new GestionMenu(this,grille));
+		save.addActionListener(new GestionMenu(this));
+		repaint.addActionListener(new GestionMenu(this));
 
 		fenetre.setJMenuBar(barre);
 	}
@@ -254,19 +256,46 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 
     @Override
     public void cacherFenetre() {
-        fenetre.dispose();
+        fenetre.setVisible(false);
     }
 
-<<<<<<< HEAD
 
     public void addListener(ObservateurTouche observateurTouche) {
         this.addKeyListener(observateurTouche);
     }
 
-=======
->>>>>>> d5f4cefc0003f651e60bf687aaec2902e777070f
     @Override
     public List<Cell> getCells() {
         return cells;
     }
+
+	@Override
+	public byte getTheseeX()
+	{
+		return thesee[0];
+	}
+
+	@Override
+	public byte getTheseeY()
+	{
+		return thesee[1];
+	}
+
+	@Override
+	public byte getSortieX()
+	{
+		return sortie[0];
+	}
+
+	@Override
+	public byte getSortieY()
+	{
+		return sortie[1];
+	}
+
+	@Override
+	public char getEtat(int i)
+	{
+		return etats[i];
+	}
 }
