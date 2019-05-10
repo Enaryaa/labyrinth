@@ -18,6 +18,7 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	private boolean theseeLa = false;
 	private boolean sortieLa = false;
 	private JPanel grille;
+	private Cell cellToRegister;
 
 	private List<Cell> cells;
 
@@ -222,98 +223,96 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	}
 
 	@Override
-    public byte getTheseeX()
-    {
-        byte theseex = 0;
-        /*for (int i = 0; i < colonnes; i++)
-        {
-            for (int j = 0; j < lignes; j++)
-            {
-                int current = grille[i][j];
-                if(current == THESEE)
-                {
-                    theseex = (byte) i;
-                }
-            }
-        }*/
-        return theseex;
-    }
+	public byte getTheseeX()
+	{
+		byte theseex = 0;
+		int compteur = 0;
+		for (int i = 0 ; i < lignes ; i++)
+		{
+			for (int j = 0 ; j < colonnes ; j++, compteur++)
+			{
+				cellToRegister = cells.get(compteur);
+				if (cellToRegister.getPropriete().getCouleur() == Color.BLUE)
+				{
+					return (byte) i;
+				}
+			}
+		}
+		return theseex;
+	}
 
-    @Override
-    public byte getTheseeY()
-    {
-        byte theseey = 0;
-        /*for (int i = 0; i < colonnes; i++)
-        {
-            for (int j = 0; j < lignes; j++)
-            {
-                int current = grille[i][j];
-                if(current == THESEE)
-                {
-                    theseey = (byte) j;
-                }
-            }
-        }*/
-        return theseey;
-    }
-
-    @Override
-    public byte getSortieX()
-    {
-        byte sortiex = 0;
-        /*for (int i = 0; i < colonnes; i++)
-        {
-            for (int j = 0; j < lignes; j++)
-            {
-                int current = grille[i][j];
-                if(current == SORTIE)
-                {
-                    sortiex = (byte) i;
-                }
-            }
-        }*/
-        return sortiex;
-    }
-
-    @Override
-    public byte getSortieY()
-    {
-        byte sortiey = 0;
-        /*for (int i = 0; i < colonnes; i++)
-        {
-            for (int j = 0; j < lignes; j++)
-            {
-                int current = grille[i][j];
-                if(current == SORTIE)
-                {
-                    sortiey = (byte) j;
-                }
-            }
-        }*/
-        return sortiey;
-    }
 	@Override
-    public char getEtat(int in)
-    {
-        int index = in;
-        int compteur = 0;
-        char etat = '0';
-        /*for (int i = 0; i < colonnes; i++)
-        {
-            for (int j = 0; j < lignes; j++)
-            {
-                int current = grille[i][j];
-                if (current == MUR && index == compteur)
-                {
-                    etat = '1';
-                }
-                else if (current != MUR && index == compteur)
-                {
-                    etat = '0';
-                }
-                compteur++;
-            }
-        }*/
-        return etat;
-    }
+	public byte getTheseeY()
+	{
+		byte theseey = 0;
+		int compteur = 0;
+		for (int i = 0 ; i < lignes ; i++)
+		{
+			for (int j = 0 ; j < colonnes ; j++, compteur++)
+			{
+				cellToRegister = cells.get(compteur);
+				if (cellToRegister.getPropriete().getCouleur() == Color.BLUE)
+				{
+					return (byte) j;
+				}
+			}
+		}
+		return theseey;
+	}
+
+	@Override
+	public byte getSortieX()
+	{
+		byte sortiex = 0;
+		int compteur = 0;
+		for (int i = 0 ; i < lignes ; i++)
+		{
+			for (int j = 0 ; j < colonnes ; j++, compteur++)
+			{
+				cellToRegister = cells.get(compteur);
+				if (cellToRegister.getPropriete().getCouleur() == Color.GREEN)
+				{
+					return (byte) i;
+				}
+			}
+		}
+		return sortiex;
+	}
+
+	@Override
+	public byte getSortieY()
+	{
+		byte sortiey = 0;
+		int compteur = 0;
+		for (int i = 0 ; i < lignes ; i++)
+		{
+			for (int j = 0 ; j < colonnes ; j++, compteur++)
+			{
+				cellToRegister = cells.get(compteur);
+				if (cellToRegister.getPropriete().getCouleur() == Color.GREEN)
+				{
+					return (byte) j;
+				}
+			}
+		}
+		return sortiey;
+	}
+
+	@Override
+	public char getEtat(int in)
+	{
+		int index = in;
+		char etat = '0';
+		cellToRegister = cells.get(index);
+		if (cellToRegister.getPropriete().getCouleur() == Color.WHITE)
+		{
+			etat = '0';
+		}
+		else if (cellToRegister.getPropriete().getCouleur() == Color.BLACK)
+		{
+			etat = '1';
+		}
+		return etat;
+	}
+
 }
