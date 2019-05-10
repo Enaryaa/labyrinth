@@ -13,20 +13,14 @@ public class GestionMenu implements ActionListener {
     private JPanel grillep;
 
     public GestionMenu(GrilleRand grillr){
-        /*this.grillr = grillr;
-        this.grillep = grillep;*/
         this.grille = grillr;
     }
 
     public GestionMenu(GrilleChargee grilleC){
-        /*this.grilleC = grilleC;
-        this.grillep = grillep;*/
         this.grille = grilleC;
     }
 
     public GestionMenu(Grille gril){
-        /*this.gril = gril;
-        this.grillep = grillep;*/
         this.grille = gril;
     }
 
