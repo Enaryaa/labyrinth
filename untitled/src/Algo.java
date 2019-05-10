@@ -119,7 +119,7 @@ public class Algo {
     private void moyennealea() {
         //renvoi la moyenne des deplacements de thesees dans l'algo alea
        int moyenne = (nbDeplacement/100);
-        JOptionPane.showMessageDialog(null, "La moyenne de deplacementAlea est de " +moyenne,
+        JOptionPane.showMessageDialog(null, "La moyenne de deplacement est de " +moyenne,
                 "Moyenne", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -191,7 +191,7 @@ public class Algo {
                 //sinon refait un deplacementAlea
                 if (sortieTrouvee) {
                     goToSortie(thesee);
-                    JOptionPane.showMessageDialog(null, "Le nombre de deplacementAlea est de "+deplacementPourMoyenne,
+                    JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,
                             "Fin", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     deplacementManuelAlea(thesee);

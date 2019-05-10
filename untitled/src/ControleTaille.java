@@ -18,10 +18,6 @@ public class ControleTaille implements MouseListener{
 		bout = 0;
 	}
 
-	public ControleTaille(){
-		bout = 0;
-	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
