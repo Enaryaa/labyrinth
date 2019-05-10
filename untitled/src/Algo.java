@@ -156,12 +156,10 @@ public class Algo {
                if (thesee.getPosition().equals(sortie.getPosition())) {
                    //si thesee est sur la sortie alors stop le timer
                    alea ++;
-                   System.out.println("sortie trouvée " + alea);
                    if (alea != NB_ALEA){
                         replacerThesee(thesee, sortie);
                        //reinitialiser les positions de sortie et de thesee
                       nbDeplacement += deplacementPourMoyenne;
-                      System.out.println(nbDeplacement);
                        //sinon stock le nb de deplacementAlea dans un tableau ou liste pour en faire la moyenne
                       deplacementPourMoyenne = 0;
                        //et remettre à 0 le deplacementpourmoyenne

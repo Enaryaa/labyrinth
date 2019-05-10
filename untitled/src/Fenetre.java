@@ -58,7 +58,7 @@ public void menu2(){
     this.setLayout(gestionnaire);
     JPanel panel = new JPanel();
 
-    JLabel etiquette = new JLabel("ValidationChoix de la nouvelle grille");
+    JLabel etiquette = new JLabel("Choix de la nouvelle grille");
 
     etiquette.setHorizontalAlignment(JLabel.CENTER);
     etiquette.setVerticalAlignment(JLabel.BOTTOM);

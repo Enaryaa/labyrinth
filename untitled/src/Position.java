@@ -11,6 +11,7 @@ public class Position {
         private Position position;
 
         Direction(int x, int y) {
+
             this.position = new Position(x, y);
         }
 

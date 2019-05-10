@@ -1,14 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
-import javax.naming.ldap.Control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GestionMenu implements ActionListener {
 
-    private GrilleRand grillr;
     private GrilleChargee grilleC;
     private GrilleInterface grille;
+    private GrilleRand grillr;
     private Grille gril;
     private JPanel grillep;
 
@@ -49,8 +48,8 @@ public class GestionMenu implements ActionListener {
             grille = new Grille(gril.getTaille(),gril.getTaille());
         }
 
-        if (nom == "Rafraichir"){
-           grille = new GrilleRand(grillr.getTaille(),grillr.getTaille());
+        if (nom.equals("Rafraichir")){
+            grille = new GrilleRand(grillr.getTaille(),grillr.getTaille());
         }
     }
 }
