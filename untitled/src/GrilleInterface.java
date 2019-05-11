@@ -10,9 +10,10 @@ public interface GrilleInterface {
      void setAlgo(String s);
      void setMethode(String s);
      void cacherFenetre();
-	 byte getTheseeX();
-	 byte getTheseeY();
-	 byte getSortieX();
-	 byte getSortieY();
-	 char getEtat(int i);
+	byte getTheseeX();
+	byte getTheseeY();
+	byte getSortieX();
+	byte getSortieY();
+	char getEtat(int i);
+     Fenetre getFenetre();
 }

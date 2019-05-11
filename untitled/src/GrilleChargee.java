@@ -292,4 +292,10 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 	{
 		return etats[i];
 	}
+
+	@Override
+	public Fenetre getFenetre()
+	{
+		return this.fenetre;
+	}
 }
