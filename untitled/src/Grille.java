@@ -315,4 +315,10 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		return etat;
 	}
 
+	@Override
+	public Fenetre getFenetre()
+	{
+		return this.f;
+	}
+
 }

@@ -45,11 +45,13 @@ public class GestionMenu implements ActionListener {
             fenetre_sauvegarde.setVisible(true);
         }
         if (nom == "Effacer"){
-            grille = new Grille(gril.getTaille(),gril.getTaille());
+            grille.getFenetre().dispose();
+            grille = new Grille(grille.getTaille(),grille.getTaille());
         }
 
         if (nom.equals("Rafraichir")){
-            grille = new GrilleRand(grillr.getTaille(),grillr.getTaille());
+            grille.getFenetre().dispose();
+            grille = new GrilleRand(grille.getTaille(),grille.getTaille());
         }
     }
 }

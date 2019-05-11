@@ -439,4 +439,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         }
         return etat;
     }
+
+    @Override
+    public Fenetre getFenetre()
+    {
+        return this.f;
+    }
 }

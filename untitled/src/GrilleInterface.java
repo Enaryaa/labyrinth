@@ -75,4 +75,6 @@ public interface GrilleInterface {
      * @return
      */
 	 char getEtat(int i);
+     
+     Fenetre getFenetre();
 }
