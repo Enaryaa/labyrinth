@@ -1,16 +1,34 @@
-import javax.swing.*;
-import java.awt.*;
+
 import java.awt.event.*;
 import java.io.*;
 
+/**
+ * @author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class ObservateurSauvegarde implements ActionListener
 {
+	/**
+	 *
+	 */
 	public static final int BITS_PER_BYTE = 8;
+	/**
+	 *
+	 */
 	private String nom;
-
+	/**
+	 *
+	 */
 	private Fenetre fenetre;
+	/**
+	 *
+	 */
 	private GrilleInterface grille;
 
+	/**
+	 *
+	 * @param f Fenetre
+	 * @param g GrilleInterface
+	 */
 	public ObservateurSauvegarde(Fenetre f, GrilleInterface g)
 
 	{
@@ -19,6 +37,10 @@ public class ObservateurSauvegarde implements ActionListener
 		this.grille = g;
 	}
 
+	/**
+	 *
+	 * @param e ActionEvent
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{

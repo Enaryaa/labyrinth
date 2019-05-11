@@ -1,18 +1,78 @@
 import java.util.List;
 
-//pour faciliter l'utilisation du listener, l'interface va representer grille ou grillerand
-//car similaire et différente donc il va prendre les similitudes pour les utiliser
+/**
+ *
+ */
 public interface GrilleInterface {
+    /**
+     *
+     * @return
+     */
      int getTaille();
+
+    /**
+     *
+     * @return
+     */
      List<Cell> getCells();
+
+    /**
+     *
+     * @return
+     */
      String getAlgo();
+
+    /**
+     *
+     * @return
+     */
      String getMethode();
+
+    /**
+     *
+     * @param s
+     */
      void setAlgo(String s);
+
+    /**
+     *
+     * @param s
+     */
      void setMethode(String s);
-     void cacherFenetre();
+
+    /**
+     *
+     */
+    void cacherFenetre();
+
+    /**
+     *
+     * @return
+     */
 	 byte getTheseeX();
+
+    /**
+     *
+     * @return
+     */
 	 byte getTheseeY();
+
+    /**
+     *
+     * @return
+     */
 	 byte getSortieX();
+
+    /**
+     *
+     * @return
+     */
 	 byte getSortieY();
+
+    /**
+     *
+     * @param i
+     * @return
+     */
 	 char getEtat(int i);
 }

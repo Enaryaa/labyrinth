@@ -1,13 +1,24 @@
 import javax.swing.filechooser.FileFilter;
 import java.io.*;
 
+/**
+ *@author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class FiltreFichier extends FileFilter
 {
+    /**
+     *
+     */
 	public FiltreFichier()
 	{
 		super();
 	}
 
+    /**
+     *
+     * @param f File
+     * @return boolean
+     */
 	public boolean accept(File f)
 	{
         if (f.isDirectory())
@@ -35,7 +46,11 @@ public class FiltreFichier extends FileFilter
         }
         return false;
     }
-   
+
+    /**
+     *
+     * @return String
+     */
     public String getDescription()
     {
         return "*.lab files";

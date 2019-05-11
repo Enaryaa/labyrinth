@@ -1,10 +1,20 @@
 import javax.swing.filechooser.*;
 import javax.swing.*;
 
+/**
+ *@author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class ChoixFichier extends JFileChooser
 {
+	/**
+	 *
+	 */
 	private String fichier;
 
+	/**
+	 *
+	 * @param repertoire String
+	 */
 	public ChoixFichier(String repertoire)
 	{
 		super();
