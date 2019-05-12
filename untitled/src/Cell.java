@@ -37,7 +37,7 @@ public class Cell extends JPanel
 		this.position = new Position(0,0);
 		//met element par defaut à chemin
 		this.cardinal = new boolean[4];
-		for (byte compteur = 0 ; compteur < 4 ; compteur++)
+		for (byte compteur = 0 ; compteur < 3 ; compteur++)
         {
         	this.cardinal[compteur] = false; // Tableau de directions Nord, Ouest, Sud, Est
         }
@@ -55,6 +55,11 @@ public class Cell extends JPanel
 		this.index = index;
 		this.setPropriete(elem);
 		//permet de récupérer les propriétés des elements
+		this.cardinal = new boolean[4];
+		for (byte compteur = 0 ; compteur < 3 ; compteur++)
+        {
+        	this.cardinal[compteur] = false; // Tableau de directions Nord, Ouest, Sud, Est
+        }
 	}
 
 	/**
@@ -106,6 +111,6 @@ public class Cell extends JPanel
     public void setCardinal(int i, boolean b)
     {
 
-    	cardinal[i] = b;
+    	this.cardinal[i] = b;
     }
 }

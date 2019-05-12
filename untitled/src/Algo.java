@@ -115,11 +115,11 @@ public class Algo {
         Cell nextChemin = getCellNextChemin();
         if (nextChemin != null)
         {
-            this.visited_cells.add(thesee);
-            this.treated_cells.add(thesee);
             nextChemin.setPropriete(thesee.getPropriete());
             thesee.setPropriete(new Chemin());
             thesee = nextChemin;
+            this.visited_cells.add(thesee);
+            this.treated_cells.push(thesee);
             deplacementPourMoyenne += 1;
         }
         Position.Direction direction = getDeterministDirection(thesee);
@@ -145,10 +145,17 @@ public class Algo {
         }
         else
         {
-            treated_cells.pop();
-            System.out.println("coucou");
-            thesee = treated_cells.peek();
-            deplacementManuelDeter(thesee);
+            thesee = treated_cells.pop();
+            if (treated_cells.empty()==true)
+            {
+                JFrame fenetre_coince = new JFrame();
+                fenetre_coince.setSize(500, 100);
+                JLabel message = new JLabel("Il n'y a pas de sortie, Thesee est condamné !");
+                fenetre_coince.add(message);
+                fenetre_coince.setVisible(true);
+            }
+            Cell next = treated_cells.pop();
+            next.setPropriete(new NextChemin());
         }
     }
 
