@@ -19,6 +19,8 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	private boolean sortieLa = false;
 	private JPanel grille;
 	private Cell cellToRegister;
+	Bouton deplacer;
+	Bouton jouer;
 
 	private List<Cell> cells;
 
@@ -73,15 +75,17 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		choixjeu.add(manuel);
 
 		JPanel panel3 = new JPanel();
-		Bouton jouer = new Bouton(15);
+		 jouer = new Bouton(15);
 		jouer.setText("Démarrer");
 		jouer.addMouseListener(new ValidationChoix(this));
+		jouer.setEnabled(false);
 		panel3.add(jouer);
 
 		JPanel panel4 = new JPanel();
-		Bouton deplacer = new Bouton(16);
+		 deplacer = new Bouton(16);
 		deplacer.setText("Déplacer");
 		deplacer.addMouseListener(new ValidationChoix(this));
+		deplacer.setEnabled(false);
 		panel4.add(deplacer);
 
 		panel.add(panel2);
@@ -320,6 +324,16 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	public Fenetre getFenetre()
 	{
 		return this.f;
+	}
+
+	@Override
+	public Bouton getBoutonDemarrer() {
+		return jouer;
+	}
+
+	@Override
+	public Bouton getBoutonDeplacer() {
+		return deplacer;
 	}
 
 }

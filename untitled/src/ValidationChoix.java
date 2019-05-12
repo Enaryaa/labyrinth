@@ -2,28 +2,30 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
+ * la classe <code>ValidationChoix</code> correspond au listener qui gère
+ * les boutons démarrer et déplacer, s'ils sont désactivés ou non
  *@author Anne-Sophie Besnard, Romain Lechartier
  */
 public class ValidationChoix implements MouseListener {
     /**
-     *
+     *composante GrilleInterface
      */
     private GrilleInterface grille;
     /**
-     *
+     *composante Bouton
      */
     private Bouton bouton;
     /**
-     *
+     *composante bout qui correspond à l'id du botou
      */
     private int bout;
     /**
-     *
+     *composante Algo
      */
     private Algo algo;
 
     /**
-     *
+     *Constructeur qui instancie Algo et rend publique GrilleInterface
      * @param grille GrilleInterface
      */
     public ValidationChoix(GrilleInterface grille){
@@ -41,14 +43,16 @@ public class ValidationChoix implements MouseListener {
     }
 
     /**
-     *
+     *methode qui gère l'action au clique de la souris faites par l'utilisateur
+     * appelle l'algorithme choisie dans le premier if (déterministe ou aléatoire)
+     * puis la méthode, automatique ou manuel
      * @param e MouseEvent
      */
     @Override
     public void mousePressed(MouseEvent e) {
-        //que se soit deterministe ou aleatoire -> appelle le bon algo (premier if)
-        //choisis la methode d'appelle,  si automatique -> affiche nb deplacement sinon appuie
-        //sur espace pour faire avancer l'algo
+        if (grille.getAlgo() == null && grille.getMethode() == null){
+            return;
+        }
         this.bouton = (Bouton ) e.getComponent();
         this.bout = bouton.getId();
         if (bout == 15){
@@ -70,10 +74,6 @@ public class ValidationChoix implements MouseListener {
         }
     }
 
-    /**
-     *
-     * @param e MouseEvent
-     */
     @Override
     public void mouseReleased(MouseEvent e) {
     }

@@ -81,4 +81,6 @@ public interface GrilleInterface {
      * @return Fenetre
      */
      Fenetre getFenetre();
+     Bouton getBoutonDemarrer();
+     Bouton getBoutonDeplacer();
 }

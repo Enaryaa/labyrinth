@@ -49,5 +49,9 @@ public class Choix implements ActionListener {
         if (choix.equals(MANUEL) || choix.equals(AUTO)){
             grille.setMethode(choix);
         }
+        if (grille.getAlgo() != null && grille.getMethode() != null){
+            grille.getBoutonDemarrer().setEnabled(true);
+            grille.getBoutonDeplacer().setEnabled(true);
+        }
     }
 }
