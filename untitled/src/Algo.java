@@ -45,7 +45,7 @@ public class Algo {
         }
     }
 
-    public void aleatoire() {
+    private void aleatoire() {
         //debut de l'algo aleatoire
         if (grille.getMethode().equals(Choix.AUTO)) {
             //si le choix est automatique
@@ -61,7 +61,7 @@ public class Algo {
         }
     }
 
-    public void deterministe() {
+    private void deterministe() {
         //debut de l'algo aleatoire
         if (grille.getMethode().equals(Choix.AUTO)) {
             //si le choix est automatique
@@ -77,7 +77,7 @@ public class Algo {
         }
     }
 
-    public Timer mazeDeterAuto() {
+    private Timer mazeDeterAuto() {
         //conditions pour sortir du labyrinth
         Cell thesee = searchThesee();
         if (thesee != null) {
@@ -97,14 +97,15 @@ public class Algo {
                 //recherche la position de thesee dans la grille a chaque deplacement
                 // (pour mettre à jour sa position)
                 //sinon refait un deplacement
-                if (sortieTrouvee) {
+                if (thesee.getPosition().equals(sortie.getPosition())) {
                     goToSortie(thesee);
                     JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,
-                        "Fin", JOptionPane.INFORMATION_MESSAGE);
+                            "Fin", JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println(deplacementPourMoyenne);
+                    timer.stop();
                 } else {
                     deplacementManuelDeter(thesee);
                 }
-                timer.stop();
             }
         });
 
@@ -192,6 +193,8 @@ public class Algo {
             next.setPropriete(new NextChemin());
         }
     }
+
+
 
     private Position.Direction getDeterministDirection(Cell thesee) {
         if (thesee.getPosition().getY() > 0 && thesee.getCardinal(0) == false && this.visited_cells.indexOf(getCellByPosition(thesee.getPosition().getNextPosition(Position.Direction.NORD)))==-1)
@@ -283,7 +286,7 @@ public class Algo {
        return timer;
    }
 
-   public Timer exitMazeManuel() {
+    public Timer exitMazeManuel() {
         //conditions pour sortir du labyrinth
     Cell thesee = searchThesee();
     if (thesee != null) {
