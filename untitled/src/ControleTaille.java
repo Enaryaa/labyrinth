@@ -49,7 +49,9 @@ public class ControleTaille implements MouseListener{
 	}
 
 	/**
-	 *
+	 *au clique de l'utilisateur sur le bouton générer,
+	 * affiche la grille avec les tailles demandées
+	 * sinon affiche une popup de warning
 	 * @param e MouseEvent
 	 */
 	@Override
@@ -58,51 +60,58 @@ public class ControleTaille implements MouseListener{
 		this.bouton = (Bouton ) e.getComponent();
 		this.bout = bouton.getId();
 		if (bout == 9){
-			cible.dispose();
 			taille = Integer.parseInt(text.getText());
-			Grille grille = new Grille(taille,taille);
+			if( taille >= 5 && taille <= 50) {
+				new Grille(taille, taille);
+				cible.dispose();
+			}
+			else {
+				this.popup();
+			}
 		}
 		else if (bout == 10){
-			cible.dispose();
 			taille = Integer.parseInt(text.getText());
-			GrilleRand grilleR = new GrilleRand(taille,taille);
+			if( taille >= 5 && taille <= 50) {
+				new GrilleRand(taille, taille);
+				cible.dispose();
+			}
+			else {
+				this.popup();
+			}
 		}
 	}
 	catch (NumberFormatException t){
-		JOptionPane.showMessageDialog(cible, "Taille non valide", "Erreur", JOptionPane.WARNING_MESSAGE);
+			this.popup();
 		}
 	}
 
 	/**
-	 *
+	 * affiche la popup pour l'erreur
+	 */
+	private void popup(){
+		JOptionPane.showMessageDialog(cible, "Taille non valide, minimum 5 et maximum 60",
+				"Erreur", JOptionPane.WARNING_MESSAGE);
+
+	}
+
+	/**
+	 *retourne la taille choisie par l'utilisateur
 	 * @return int
 	 */
 	public int getTaille(){
 		return taille;
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 
