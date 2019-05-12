@@ -17,7 +17,7 @@ public class ChoixFichier extends JFileChooser
 	private String fichier;
 
 	/**
-	 *
+	 * Constructeur de la classe ChoixFichier
 	 * @param repertoire String
 	 */
 	public ChoixFichier(String repertoire)

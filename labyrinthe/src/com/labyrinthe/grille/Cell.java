@@ -26,6 +26,12 @@ public class Cell extends JPanel
 	 *une position
 	 */
 	private Position position;
+
+	/**
+	 * Tableau représentant les points cardinaux par rapport à la case
+	 * Chaque point cardinal est évalué à true si déjà visité ou
+	 * ne peut être visité (mur/bord du labyrinthe/case déjà visitée)
+	 */
 	private boolean[] cardinal;
 
 	/**
@@ -43,6 +49,9 @@ public class Cell extends JPanel
 		setPropriete(new Chemin());
 		this.position = new Position(0,0);
 		//met element par defaut à chemin
+		/**
+	 	* Initialise tous les points cardinaux comme potentiellement visitable
+	 	*/
 		this.cardinal = new boolean[4];
 		for (byte compteur = 0 ; compteur < 3 ; compteur++)
         {
@@ -111,7 +120,8 @@ public class Cell extends JPanel
 	}
 
 	/**
-	 *
+	 * Permet d'obtenir le caractère visitable ou non d'une direction i
+	 * (=point cardinal) par rapport à la case
 	 * @param i int
 	 * @return boolean
 	 */
@@ -121,7 +131,7 @@ public class Cell extends JPanel
     }
 
 	/**
-	 *
+	 * Permet de rendre une direction i visitée ou non visitable
 	 * @param i int
 	 * @param b boolean
 	 */
