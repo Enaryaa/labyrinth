@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- *
+ *La classe <code>Cell</code> permet de de créer les cellules dans la grille
  * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public class Cell extends JPanel
@@ -38,7 +38,8 @@ public class Cell extends JPanel
 	}
 
 	/**
-	 *C
+	 *Constructeur qui permet de mettre l'élement passé en paramètre
+	 * dans la cellule choisie
 	 * @param index int
 	 * @param elem Element
 	 */
@@ -51,7 +52,7 @@ public class Cell extends JPanel
 	}
 
 	/**
-	 *
+	 *permet de getter l'index
 	 * @return index
 	 */
 	public int getIndex() {
@@ -59,7 +60,7 @@ public class Cell extends JPanel
 	}
 
 	/**
-	 *
+	 *met les propriétés de l'element dans la cellule, donc la couleur
 	 * @param elem Element
 	 */
 	public void setPropriete(Element elem){
@@ -68,16 +69,15 @@ public class Cell extends JPanel
 	}
 
 	/**
-	 *
+	 *récupère les propriétés de la cellule
 	 * @return
 	 */
 	public Element getPropriete(){
 		return elem;
-		//associé à la cellule
 	}
 
 	/**
-	 *
+	 *get la  position de la cellule
 	 * @return position
 	 */
 	public Position getPosition() {
@@ -85,7 +85,7 @@ public class Cell extends JPanel
 	}
 
 	/**
-	 *
+	 *set la position de la cellule
 	 * @param position Position
 	 */
 	public void setPosition(Position position) {

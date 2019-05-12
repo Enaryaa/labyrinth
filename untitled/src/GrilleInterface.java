@@ -1,42 +1,42 @@
 import java.util.List;
 
 /**
- *
+ * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public interface GrilleInterface {
     /**
      *
-     * @return
+     * @return int
      */
      int getTaille();
 
     /**
      *
-     * @return
+     * @return List
      */
      List<Cell> getCells();
 
     /**
      *
-     * @return
+     * @return String
      */
      String getAlgo();
 
     /**
      *
-     * @return
+     * @return String
      */
      String getMethode();
 
     /**
      *
-     * @param s
+     * @param s String
      */
      void setAlgo(String s);
 
     /**
      *
-     * @param s
+     * @param s String
      */
      void setMethode(String s);
 
@@ -47,34 +47,38 @@ public interface GrilleInterface {
 
     /**
      *
-     * @return
+     * @return byte
      */
 	 byte getTheseeX();
 
     /**
      *
-     * @return
+     * @return byte
      */
 	 byte getTheseeY();
 
     /**
      *
-     * @return
+     * @return byte
      */
 	 byte getSortieX();
 
     /**
      *
-     * @return
+     * @return byte
      */
 	 byte getSortieY();
 
     /**
      *
-     * @param i
-     * @return
+     * @param i inr
+     * @return char
      */
 	 char getEtat(int i);
-     
+
+    /**
+     *
+     * @return Fenetre
+     */
      Fenetre getFenetre();
 }

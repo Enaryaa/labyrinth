@@ -2,6 +2,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
+ *
  *@author Anne-Sophie Besnard, Romain Lechartier
  */
 public class Coloration implements MouseListener
@@ -12,7 +13,7 @@ public class Coloration implements MouseListener
 	private Action action;
 
 	/**
-	 *
+	 *Constructeur  qui prend une Action en paramètre
 	 * @param action Action
 	 */
 	public Coloration(Action action)
@@ -29,7 +30,9 @@ public class Coloration implements MouseListener
 	}
 
 	/**
-	 *
+	 *Lorsque le bouton est selectionné, on récupère l'element du bouton
+	 * puis l'applique dans la cellule.
+	 * on test aussi si la sortie et Thésée sont uniques
 	 * @param e MouseEvent
 	 */
 	@Override

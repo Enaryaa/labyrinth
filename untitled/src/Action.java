@@ -1,10 +1,12 @@
 /**
+ * L'interface <code>Action</code> permet de récupérer l'action faites
+ *par le boutons sélectionner et y appliquer l'element correspondant
 * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public interface Action {
     /**
      * sauvegarder l'element en cours pour l'utiliser dans le listener
-     * @param e
+     * @param e Element
      */
     void saveElem(Element e);
 
