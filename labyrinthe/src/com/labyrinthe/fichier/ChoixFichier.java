@@ -4,6 +4,9 @@ import javax.swing.filechooser.*;
 import javax.swing.*;
 
 /**
+ * La classe ChoixFichier permet à l'utilisateur
+ * de sélectionner le fichier qu'il désire ouvrir
+ * pour charger une grille
  *@author Anne-Sophie Besnard, Romain Lechartier
  */
 public class ChoixFichier extends JFileChooser
@@ -14,7 +17,7 @@ public class ChoixFichier extends JFileChooser
 	private String fichier;
 
 	/**
-	 *
+	 * Constructeur de la classe ChoixFichier
 	 * @param repertoire String
 	 */
 	public ChoixFichier(String repertoire)

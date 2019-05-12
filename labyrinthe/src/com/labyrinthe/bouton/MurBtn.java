@@ -14,6 +14,6 @@ public class MurBtn extends DefaultBtn {
      */
     public MurBtn(Action a){
         super(new Mur(), a);
-        this.setText("com.labyrinthe.element.Mur");
+        this.setText("Mur");
     }
 }

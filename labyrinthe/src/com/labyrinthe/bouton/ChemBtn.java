@@ -15,6 +15,6 @@ public class ChemBtn extends DefaultBtn {
     public ChemBtn(Action a){
 
         super(new Chemin(),a);
-        this.setText("com.labyrinthe.element.Chemin");
+        this.setText("Chemin");
     }
 }

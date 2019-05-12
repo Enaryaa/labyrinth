@@ -16,79 +16,92 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *@author Anne-Sophie Besnard, Romain Lechartier
+ * La classe Grillee sert à créer une grille manuellement
+ * et ensuite à simuler un algorithme suivant une méthode 
+ * sur cette même grille
+ * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public class Grille extends JPanel implements Action, GrilleInterface
 {
 	/**
-	 *
+	 * Constante désignant l'algorithme déterministe
 	 */
 	public static final int DETERMINISTE = 1;
 	/**
-	 *
+	 * Constante désignant l'algorithme aléatoire
 	 */
 	public static final int ALEA = 2;
 	/**
-	 *
+	 * Constante désignant la méthode manuelle
 	 */
 	public static final int MANUEL = 3;
 	/**
-	 *
+	 * Constante désignant la méthode automatique
 	 */
 	public static final int AUTO = 4;
 	/**
-	 *
+	 * Fenetre contenant la grille et les options
 	 */
 	private Fenetre f;
 	/**
-	 *
+	 * Algorithme qui va parcourir la grille :
+	 * deterministe ou aleatoire
 	 */
 	private String algo;
 	/**
-	 *
+	 * Methode selon laquelle l'algorithme va se réaliser :
+	 * manuel ou automatique
 	 */
 	private String methode;
 	/**
-	 *
+	 * Nombre de colonnes de la grille
 	 */
 	private int colonnes;
 	/**
-	 *
+	 * Nombre de lignes de la grille 
 	 */
 	private int lignes;
 	/**
-	 *
+	 * Element e de la grille (peut être Thésée, ou la sortie
+	 * ou un chemin ou un mur)
 	 */
 	private Element e;
 	/**
-	 *
+	 * Booleen représentant la présence ou non de Thésée à une 
+	 * certaine position
 	 */
 	private boolean theseeLa = false;
 	/**
-	 *
+	 * Booleen représentant la présence ou non de la sortie à une 
+	 * certaine position
 	 */
 	private boolean sortieLa = false;
 	/**
-	 *
+	 * Panneau représentant la grille de simulation
 	 */
 	private JPanel grille;
 	/**
-	 *
+	 * Sert à renvoyer une case cherchée
 	 */
 	private Cell cellToRegister;
 	/**
-	 *
+	 * Bouton qui sert à déplacer Thésée lorsque l'on utilise
+	 * la méthode manuelle
 	 */
 	Bouton deplacer;
 	/**
-	 *
+	 * Bouton qui sert à démarrer l'algorithme
 	 */
 	Bouton jouer;
-
+	/**
+	 * Liste des cellules de la grille
+	 */
 	private List<Cell> cells;
 
 	/**
-	 *
+	 * Constructeur de Grille en fonction du nombre de colonnes
+	 * et de lignes déterminés par la taille souhaités par
+	 * l'utilisateur
 	 * @param c int
 	 * @param l int
 	 */
