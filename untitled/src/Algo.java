@@ -66,7 +66,7 @@ public class Algo {
         if (grille.getMethode().equals(Choix.AUTO)) {
             //si le choix est automatique
             grille.cacherFenetre();
-            mazeDeterManuel().start();
+            mazeDeterAuto().start();
             //timer est récupéré et lancé directement grace a start();
             //et stopper dans le timer directement -> stop();
             //on cache la fenetre dans la simuation automatique
@@ -75,6 +75,40 @@ public class Algo {
             //si le choix est manuel
             mazeDeterManuel().start();
         }
+    }
+
+    public Timer mazeDeterAuto() {
+        //conditions pour sortir du labyrinth
+        Cell thesee = searchThesee();
+        if (thesee != null) {
+            positionThesee = thesee.getPosition();
+        }
+        //ici récupère la position de thesee après l'avoir cherché donc il est au debut
+        Cell sortie = searchSortie();
+        if (sortie != null) {
+            positionSortie = sortie.getPosition();
+        }
+        //récupère la position de la sortie après l'avoir cherchée
+
+        timer = new Timer(1, new ActionListener() { //nouvelle instance de timer
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Cell thesee = searchThesee();
+                //recherche la position de thesee dans la grille a chaque deplacement
+                // (pour mettre à jour sa position)
+                //sinon refait un deplacement
+                if (sortieTrouvee) {
+                    goToSortie(thesee);
+                    JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,
+                        "Fin", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    deplacementManuelDeter(thesee);
+                }
+                timer.stop();
+            }
+        });
+
+        return timer;
     }
 
     public Timer mazeDeterManuel() {
