@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -235,13 +236,6 @@ public class Algo {
         }
     }
 
-    private void moyennealea() {
-        //renvoi la moyenne des deplacements de thesees dans l'algo alea
-       int moyenne = (nbDeplacement/100);
-       JOptionPane.showMessageDialog(null, "La moyenne de deplacement est de " +moyenne,
-        "Moyenne", JOptionPane.INFORMATION_MESSAGE);
-   }
-
    private Timer exitMazeAuto() {
         //conditions pour sortir du labyrinth
     Cell thesee = searchThesee();
@@ -273,7 +267,7 @@ public class Algo {
                        //et remettre à 0 le deplacementpourmoyenne
                 }
                 else {
-                  moyennealea();
+                       popupFin();
                   timer.stop();
               }
           } else {
@@ -308,8 +302,7 @@ public class Algo {
                 //sinon refait un deplacementAlea
                 if (sortieTrouvee) {
                     goToSortie(thesee);
-                    JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,
-                        "Fin", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,"Fin", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     deplacementManuelAlea(thesee);
                 }
@@ -318,6 +311,30 @@ public class Algo {
         });
 
         return timer;
+    }
+
+    private void popupFin(){
+        int moyenne = (nbDeplacement/100);
+        JFrame popup = new JFrame();
+        popup.setSize(350, 100);
+        popup.setLocationRelativeTo(null);
+        popup.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        popup.setResizable(false);
+        JPanel panneau = new JPanel();
+        if(grille.getAlgo().equals(Choix.ALEA)) {
+            JLabel message = new JLabel("Le nombre de deplacement moyen est de " + moyenne);
+            panneau.add(message);
+        }
+        else {
+            JLabel message = new JLabel("Le nombre de deplacement est de " + deplacementPourMoyenne);
+            panneau.add(message);
+        }
+        Bouton quitter = new Bouton(20);
+        quitter.setText("Fermer");
+        quitter.addMouseListener(new ValidationChoix(grille));
+        panneau.add(quitter);
+        popup.add(panneau);
+        popup.setVisible(true);
     }
 
     private void deplacementManuelAlea(Cell thesee) {

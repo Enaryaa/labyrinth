@@ -55,6 +55,9 @@ public class ValidationChoix implements MouseListener {
         }
         this.bouton = (Bouton ) e.getComponent();
         this.bout = bouton.getId();
+        if (bout == 20){
+            System.exit(0);
+        }
         if (bout == 15){
             if(bouton.isEnabled()) {
                 algo.start();
@@ -73,6 +76,7 @@ public class ValidationChoix implements MouseListener {
             bouton.setEnabled(false);
         }
     }
+
 
     @Override
     public void mouseReleased(MouseEvent e) {
