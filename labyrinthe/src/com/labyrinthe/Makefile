@@ -14,19 +14,43 @@ JVM = java
 
 
 CLASSES = \
-	Main.java\
-    Fenetre.java \
-    $(wildcard /listener/*.java) \
-    $(wildcard /bouton/*.java) \
-    $(wildcard /grille/*.java) \
-    $(wildcard /element/*.java) \
-    $(wildcard /fichier/*.java) \
-    $(wildcard /algorithme/*.java) \
+		Main.java \
+        Fenetre.java \
+        bouton/Bouton.java \
+        bouton/SortieBtn.java \
+        bouton/MurBtn.java \
+        bouton/DefaultBtn.java \
+        listener/Selection.java \
+        bouton/ChemBtn.java \
+        bouton/TheseBtn.java \
+        bouton/Action.java \
+        listener/Coloration.java \
+        grille/Cell.java \
+        algorithme/Position.java \
+        listener/ValidationChoix.java \
+        element/Element.java \
+        element/Mur.java \
+        element/NextChemin.java \
+ 		element/Sortie.java \
+        element/Thesee.java \
+        element/Chemin.java \
+        fichier/ChoixFichier.java \
+        fichier/FiltreFichier.java \
+        listener/Observateur.java \
+        listener/ControleTaille.java \
+        grille/GrilleInterface.java \
+        grille/Grille.java \
+        grille/GrilleRand.java \
+        grille/GrilleChargee.java \
+        listener/ObservateurSauvegarde.java \
+        algorithme/Algo.java \
+        listener/Choix.java \
+        listener/GestionMenu.java \
 
 
 # MAIN is a variable with the name of the file containing the main method
 
-MAIN = com.labyrinthe.Main
+MAIN = com.labyrinthe Main
 
 # the default make target entry
 # for this example it is the target classes
