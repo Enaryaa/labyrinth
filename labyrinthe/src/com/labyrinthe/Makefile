@@ -3,9 +3,11 @@
 # define a variable for the compiler (JC)  
 # define a variable for the Java Virtual Machine (JVM)
 
-JFLAGS = -g -implicit:none -encoding UTF8
+JFLAGS = -g -implicit:none -encoding UTF8 
+CLASSPATH = -classpath ./../../
 JC = javac
-JVM = java 
+JVM = java
+RM = rm -rf
 
 .SUFFIXES: .java .class
 
@@ -50,7 +52,7 @@ CLASSES = \
 
 # MAIN is a variable with the name of the file containing the main method
 
-MAIN = com.labyrinthe Main
+MAIN = com.labyrinthe.Main
 
 # the default make target entry
 # for this example it is the target classes
@@ -73,7 +75,7 @@ classes: $(CLASSES:.java=.class)
 # $(JMV) y $(MAIN) are replaced by their values
 
 run: 
-	$(JVM) $(MAIN)
+	$(JVM) $(CLASSPATH) $(MAIN)
 
 # this line is to remove all unneeded files from
 # the directory when we are finished executing(saves space)
@@ -82,3 +84,9 @@ run:
 
 clean:
 	$(RM) *.class
+	$(RM) bouton/*.class
+	$(RM) listener/*.class
+	$(RM) algorithme/*.class
+	$(RM) grille/*.class
+	$(RM) element/*.class
+
