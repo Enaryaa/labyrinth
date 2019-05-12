@@ -105,6 +105,7 @@ public class Cell extends JPanel
 
     public void setCardinal(int i, boolean b)
     {
+
     	cardinal[i] = b;
     }
 }

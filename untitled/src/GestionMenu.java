@@ -3,22 +3,53 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * la classe <code>GestionMenu</code> permet de gérer le JMenuBarre dans la grille de jeu
+ * avec la sauvegarde, l'effacement de la grille ou la générartion d'une nouvelle grille
+ * @author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class GestionMenu implements ActionListener {
-
+    /**
+     *
+     */
     private GrilleChargee grilleC;
+    /**
+     *
+     */
     private GrilleInterface grille;
+    /**
+     *
+     */
     private GrilleRand grillr;
+    /**
+     *
+     */
     private Grille gril;
+    /**
+     *
+     */
     private JPanel grillep;
 
+    /**
+     *
+     * @param grillr GrilleRand
+     */
     public GestionMenu(GrilleRand grillr){
         this.grille = grillr;
     }
 
+    /**
+     *
+     * @param grilleC GrilleChargee
+     */
     public GestionMenu(GrilleChargee grilleC){
         this.grille = grilleC;
     }
 
+    /**
+     *
+     * @param gril Grille
+     */
     public GestionMenu(Grille gril){
         this.grille = gril;
     }
