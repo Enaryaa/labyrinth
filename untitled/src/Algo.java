@@ -90,21 +90,21 @@ public class Algo {
         }
         //récupère la position de la sortie après l'avoir cherchée
 
-        timer = new Timer(1, new ActionListener() { //nouvelle instance de timer
+        timer = new Timer(60, new ActionListener() { //nouvelle instance de timer
             @Override
             public void actionPerformed(ActionEvent e) {
                 Cell thesee = searchThesee();
                 //recherche la position de thesee dans la grille a chaque deplacement
                 // (pour mettre à jour sa position)
                 //sinon refait un deplacement
-                if (thesee.getPosition().equals(sortie.getPosition())) {
+                if (sortieTrouvee == true) {
                     goToSortie(thesee);
                     JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,
                             "Fin", JOptionPane.INFORMATION_MESSAGE);
-                    System.out.println(deplacementPourMoyenne);
                     timer.stop();
                 } else {
                     deplacementManuelDeter(thesee);
+                    
                 }
             }
         });
