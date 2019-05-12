@@ -1,21 +1,40 @@
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ *
+ *@author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class Coloration implements MouseListener
 {
+	/**
+	 *
+	 */
 	private Action action;
 
+	/**
+	 *Constructeur  qui prend une Action en paramètre
+	 * @param action Action
+	 */
 	public Coloration(Action action)
 	{
 		this.action = action;
 	}
 
+	/**
+	 *
+	 * @param e MouseEvent
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
 
+	/**
+	 *Lorsque le bouton est selectionné, on récupère l'element du bouton
+	 * puis l'applique dans la cellule.
+	 * on test aussi si la sortie et Thésée sont uniques
+	 * @param e MouseEvent
+	 */
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
@@ -58,16 +77,28 @@ public class Coloration implements MouseListener
 
 	}
 
+	/**
+	 *
+	 * @param e MouseEvent
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 
 	}
 
+	/**
+	 *
+	 * @param e MouseEvent
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 
 	}
 
+	/**
+	 *
+	 * @param e MouseEvent
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 

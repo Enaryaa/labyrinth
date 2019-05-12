@@ -1,12 +1,26 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class Fenetre extends JFrame {
-
+    /**
+     *
+     */
     private static final String APP_NAME = "Algorithme Ariane";
+    /**
+     *
+     */
     public static final int SCREEN_WIDTH = 300;
+    /**
+     *
+     */
     public static final int SCREEN_HEIGHT = 300;
 
+    /**
+     *
+     */
     public Fenetre() {
 
         this.setTitle(APP_NAME);
@@ -16,6 +30,12 @@ public class Fenetre extends JFrame {
         this.setResizable(false);
 
     }
+
+    /**
+     *
+     * @param width int
+     * @param height int
+     */
     public Fenetre(int width, int height){
         this.setTitle(APP_NAME);
         this.setSize(width, height);
@@ -24,6 +44,9 @@ public class Fenetre extends JFrame {
         this.setResizable(false);
     }
 
+    /**
+     *
+     */
   public void menu1() {
     GridLayout gestionnaire = new GridLayout(2, 1);
     this.setLayout(gestionnaire);
@@ -53,7 +76,10 @@ public class Fenetre extends JFrame {
     this.getContentPane().add(panel);
 }
 
-public void menu2(){
+    /**
+     *
+     */
+    public void menu2(){
     GridLayout gestionnaire = new GridLayout(2, 1);
     this.setLayout(gestionnaire);
     JPanel panel = new JPanel();
@@ -81,8 +107,10 @@ public void menu2(){
     this.getContentPane().add(panel);
 }
 
-
-public void saisi(){
+    /**
+     *
+     */
+    public void saisi(){
   GridLayout gestionnaire = new GridLayout(2, 1);
    this.setLayout(gestionnaire);
    JPanel panel = new JPanel();
@@ -108,6 +136,9 @@ public void saisi(){
    this.getContentPane().add(panel);
 }
 
+    /**
+     *
+     */
     public void saisiRand(){
         GridLayout gestionnaire = new GridLayout(2, 1);
         this.setLayout(gestionnaire);
@@ -134,10 +165,16 @@ public void saisi(){
         this.getContentPane().add(panel);
     }
 
+    /**
+     *
+     */
     public void visible() {
         this.setVisible(true);
     }
 
+    /**
+     *
+     */
     public void clearContent() {
         this.getContentPane().removeAll();
         this.setVisible(false);

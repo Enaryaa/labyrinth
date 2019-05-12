@@ -1,21 +1,44 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * @author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class Observateur implements MouseListener{
-
+	/**
+	 *
+	 */
 	private Bouton bouton;
+	/**
+	 *
+	 */
 	private int bout;
+	/**
+	 *
+	 */
 	private Fenetre cible;
 
+	/**
+	 *
+	 * @param cible Fenetre
+	 */
 	public Observateur (Fenetre cible){
 		this.cible = cible;
 		bout = 0;
 	}
 
+	/**
+	 *
+	 * @param e MouseEvent
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
 
+	/**
+	 *
+	 * @param e MouseEvent
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		this.bouton = (Bouton ) e.getComponent();
@@ -42,14 +65,26 @@ public class Observateur implements MouseListener{
 
 	}
 
+	/**
+	 *
+	 * @param e MouseEvent
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 	}
 
+	/**
+	 *
+	 * @param e MouseEvent
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 	}
 
+	/**
+	 *
+	 * @param e MouseEvent
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}
