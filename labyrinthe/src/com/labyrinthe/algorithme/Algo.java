@@ -14,24 +14,65 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Stack;
 
+/**
+ * la classe <code>Algo</code> est la classe qui controle les algorithmes déterministe et aléatoire
+ * ainsi que les comportements manuel et automatique
+ *@author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class Algo {
-
+    /**
+     *
+     */
     private static final int NB_ALEA = 100;
+    /**
+     *
+     */
     private int alea;
-
+    /**
+     *
+     */
     private GrilleInterface grille;
+    /**
+     *
+     */
     private int deplacementPourMoyenne;
+    /**
+     *
+     */
     private int nbDeplacement;
+    /**
+     *
+     */
     private List<Cell> cells;
+    /**
+     *
+     */
     private List<Cell> visited_cells;
+    /**
+     *
+     */
     private Stack<Cell> treated_cells;
-
+    /**
+     *
+     */
     public Timer timer;
-
+    /**
+     *
+     */
     private Position positionThesee;
+    /**
+     *
+     */
     private Position positionSortie;
+    /**
+     *
+     */
     private boolean sortieTrouvee = false;
 
+    /**
+     *
+     * @param grille GrilleInterface
+     */
     public Algo(GrilleInterface grille) {
         this.grille = grille;
         deplacementPourMoyenne = 0;
@@ -43,26 +84,30 @@ public class Algo {
         generatePosition();
     }
 
+    /**
+     *crée des positions pour les cellules dans le labyrinth pour générer les deplacements de thesee
+     */
     private void generatePosition() {
         int compteur = 0;
         for (int x = 0; x < grille.getTaille(); x ++) {
             for (int y = 0; y < grille.getTaille(); y ++) {
                 cells.get(compteur).setPosition(new Position(x, y));
                 compteur ++;
-                //crée des positions pour les cellules dans le labyrinth pour générer les deplacements de thesee
             }
         }
     }
 
+    /**
+     *Permet, si le choix de l'algorithme est aléatoire de faire le comportement
+     * correspondant soit à Automatique soit à Manuel.
+     * Les fonctions sont alors différentes
+     */
     private void aleatoire() {
         //debut de l'algo aleatoire
         if (grille.getMethode().equals(Choix.AUTO)) {
-            //si le choix est automatique
             grille.cacherFenetre();
             exitMazeAuto().start();
-            //timer est récupéré et lancé directement grace a start();
-            //et stopper dans le timer directement -> stop();
-            //on cache la fenetre dans la simuation automatique
+            //on ferme la fenetre dans la simuation automatique
         }
         else if (grille.getMethode().equals(Choix.MANUEL)){
             //si le choix est manuel
@@ -70,22 +115,26 @@ public class Algo {
         }
     }
 
+    /**
+     *Permet, si le choix de l'algorithme est déterministe de faire le comportement
+     * correspondant soit à Automatique soit à Manuel.
+     *
+     */
     private void deterministe() {
-        //debut de l'algo aleatoire
         if (grille.getMethode().equals(Choix.AUTO)) {
-            //si le choix est automatique
             grille.cacherFenetre();
             mazeDeterAuto().start();
-            //timer est récupéré et lancé directement grace a start();
-            //et stopper dans le timer directement -> stop();
-            //on cache la fenetre dans la simuation automatique
+
         }
         else if (grille.getMethode().equals(Choix.MANUEL)){
-            //si le choix est manuel
             mazeDeterManuel().start();
         }
     }
 
+    /**
+     *
+     * @return Timer
+     */
     private Timer mazeDeterAuto() {
         //conditions pour sortir du labyrinth
         Cell thesee = searchThesee();
@@ -99,7 +148,7 @@ public class Algo {
         }
         //récupère la position de la sortie après l'avoir cherchée
 
-        timer = new Timer(10, new ActionListener() { //nouvelle instance de timer
+        timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Cell thesee = searchThesee();
@@ -120,6 +169,10 @@ public class Algo {
         return timer;
     }
 
+    /**
+     *
+     * @return Timer
+     */
     public Timer mazeDeterManuel() {
         //conditions pour sortir du labyrinth
         Cell thesee = searchThesee();
@@ -154,6 +207,10 @@ public class Algo {
         return timer;
     }
 
+    /**
+     *
+     * @param thesee Cell
+     */
     private void deplacementManuelDeter(Cell thesee) {
         Cell nextChemin = getCellNextChemin();
         if (nextChemin != null)
@@ -203,7 +260,11 @@ public class Algo {
     }
 
 
-
+    /**
+     *
+     * @param thesee Cell
+     * @return Position.Direction
+     */
     private Position.Direction getDeterministDirection(Cell thesee) {
         if (thesee.getPosition().getY() > 0 && thesee.getCardinal(0) == false && this.visited_cells.indexOf(getCellByPosition(thesee.getPosition().getNextPosition(Position.Direction.NORD)))==-1)
         {
@@ -232,6 +293,13 @@ public class Algo {
         return null;
     }
 
+    /**
+     *permet de savoir si le prochain déplacement de Thésée choisi,
+     * en fonction de la direction, est possible ou non
+     * @param thesee Cell
+     * @param direction Position.Direction
+     * @return boolean
+     */
     private boolean deplacementValide(Cell thesee, Position.Direction direction) {
         //check si la direction choisi est possible
         Cell next = getCellByPosition(thesee.getPosition().getNextPosition(direction));
@@ -243,6 +311,10 @@ public class Algo {
         }
     }
 
+    /**
+     *
+     * @return Timer
+     */
    private Timer exitMazeAuto() {
         //conditions pour sortir du labyrinth
     Cell thesee = searchThesee();
@@ -287,6 +359,10 @@ public class Algo {
        return timer;
    }
 
+    /**
+     *
+     * @return Timer
+     */
     public Timer exitMazeManuel() {
         //conditions pour sortir du labyrinth
     Cell thesee = searchThesee();
@@ -320,6 +396,10 @@ public class Algo {
         return timer;
     }
 
+    /**
+     *méthode qui créer une popup de fin avec le nombre de déplacement
+     * le bouton permet de fermer le programme
+     */
     private void popupFin(){
         int moyenne = (nbDeplacement/100);
         JFrame popup = new JFrame();
@@ -344,6 +424,11 @@ public class Algo {
         popup.setVisible(true);
     }
 
+    /**
+     *Permet de faire le déplacement  de l'algorithme aléatoire en manuel
+     * la prochaine position choisie par Thésée sera alors affichée en Cyan
+     * @param thesee Cell
+     */
     private void deplacementManuelAlea(Cell thesee) {
         Cell nextChemin = getCellNextChemin();
         if (nextChemin != null) {
@@ -366,32 +451,44 @@ public class Algo {
         }
     }
 
+    /**
+     *permet de mettre Thésée à la position sortie,
+     * son ancienne position est redevenu un chemin et la simulation s'arrête
+     * @param thesee Cell
+     */
     private void goToSortie(Cell thesee) {
         Cell sortie = searchSortie();
         sortie.setPropriete(thesee.getPropriete());
         thesee.setPropriete(new Chemin());
     }
 
+    /**
+     *appelle la direction random (nord, sud,est,ouest), si  la methode deplacementAlea est possible
+     *récupère la prochaine cellule où thesee se rend,lui donne les propriété de thesee
+     * (donc thesee se trouve sur la cellule)
+     *   l'ancienne position de thesee redevient un chemin
+     * @param thesee Cell
+     */
     private void deplacementAlea(Cell thesee) {
         Position.Direction direction = getRandomDirection(thesee);
-        //appelle la direction random (nord, sud,est,ouest)
         if (deplacementValide(thesee, direction)) {
-            //si deplacementAlea possible
             Cell next = getCellByPosition(thesee.getPosition().getNextPosition(direction));
-            //récupère la prochaine cellule où thesee se rend
             next.setPropriete(thesee.getPropriete());
-            //lui donne les propriété de thesee (donc thesee se trouve sur la cellule)
             thesee.setPropriete(new Chemin());
-            //l'ancienne position de thesee redevient un chemin
             deplacementPourMoyenne += 1;
         } else {
             deplacementAlea(thesee);
         }
     }
 
+    /**
+     * en fonction du resultat du rand (1,2,3 ou 4) et test la position de thesee
+     * pour savoir si le deplacementAlea est possible
+     * @param thesee Cell
+     * @return Position.Direction
+     */
     private Position.Direction getRandomDirection(Cell thesee) {
-        //en fonction du resultat du rand (1,2,3 ou 4) et test la position de thesee
-        //pour savoir si le deplacementAlea est possible
+
         int rand = (int) (Math.random() * (4)) +1;
         if (rand == 1 && thesee.getPosition().getY() > 0 ) {
             return Position.Direction.NORD;
@@ -406,6 +503,10 @@ public class Algo {
         }
     }
 
+    /**
+     *permet de choisir la méthode appelée en fonction du choix
+     * de l'algorithme
+     */
     public void start() {
         if (grille.getAlgo().equals(Choix.ALEA)) {
             aleatoire();
@@ -418,19 +519,26 @@ public class Algo {
         }
     }
 
+    /**
+     * recupère la position initiale de thesee
+     * et remet  la propriete de thesee sur la cellule
+     * @param thesee Cell
+     * @param sortie Cell
+     */
     private void replacerThesee(Cell thesee, Cell sortie){
         for (Cell cell : cells){
             if (cell.getPosition().equals(positionThesee)){
-                //recupère la position initiale de thesee
                 cell.setPropriete(thesee.getPropriete());
-                //remet propriete de thesee sur la cellule
                 sortie.setPropriete(new Sortie());
             }
         }
     }
 
+    /**
+     *Permet de rechercher la sortie dans la grille
+     * @return Cell
+     */
     private Cell searchSortie() {
-        //recherche la sortie dans la grille
         for (Cell cell : cells) {
             if (cell.getPropriete() instanceof Sortie) {
                 return cell;
@@ -439,8 +547,11 @@ public class Algo {
         return null;
     }
 
+    /**
+     * Permet de rechercher thesee dans la grille
+     * @return Cell
+     */
     private Cell searchThesee() {
-        //recherche thesee dans la grille
         for (Cell cell : cells) {
             if (cell.getPropriete() instanceof Thesee) {
                 return cell;
@@ -449,8 +560,12 @@ public class Algo {
         return null;
     }
 
+    /**
+     * recupère la cellule en fonction de la position donnée par la direction (nord, sud , est , ouest)
+     * @param position Position
+     * @return Cell
+     */
     private Cell getCellByPosition(Position position) {
-        //recupère la cellule en fonction de la position donnée par la direction (nord, sud , est , ouest)
         for (Cell cell : cells) {
             if (cell.getPosition().equals(position)) {
                 return cell;
@@ -459,8 +574,11 @@ public class Algo {
         return null;
     }
 
+    /**
+     * recupère la cellule qui sera la prochaine case où Thésée se rendra
+     * @return Cell
+     */
     private Cell getCellNextChemin() {
-        //recupère la cellule en fonction de la position donnée par la direction (nord, sud , est , ouest)
         for (Cell cell : cells) {
             if (cell.getPropriete() instanceof NextChemin) {
                 return cell;

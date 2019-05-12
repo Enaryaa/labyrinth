@@ -9,10 +9,7 @@ import java.awt.event.MouseListener;
  * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public class Selection implements MouseListener {
-    /**
-     *
-     * @param e MouseEvent
-     */
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -28,28 +25,17 @@ public class Selection implements MouseListener {
         defaultbtn.setEleminAction();
     }
 
-    /**
-     *
-     * @param e MouseEvent
-     */
+
     @Override
     public void mouseReleased(MouseEvent e) {
 
     }
 
-    /**
-     *
-     * @param e MouseEvent
-     */
+
     @Override
     public void mouseEntered(MouseEvent e) {
 
     }
-
-    /**
-     *
-     * @param e MouseEvent
-     */
     @Override
     public void mouseExited(MouseEvent e) {
 

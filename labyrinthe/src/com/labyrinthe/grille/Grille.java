@@ -15,27 +15,83 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *@author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class Grille extends JPanel implements Action, GrilleInterface
 {
+	/**
+	 *
+	 */
 	public static final int DETERMINISTE = 1;
+	/**
+	 *
+	 */
 	public static final int ALEA = 2;
+	/**
+	 *
+	 */
 	public static final int MANUEL = 3;
+	/**
+	 *
+	 */
 	public static final int AUTO = 4;
+	/**
+	 *
+	 */
 	private Fenetre f;
+	/**
+	 *
+	 */
 	private String algo;
+	/**
+	 *
+	 */
 	private String methode;
+	/**
+	 *
+	 */
 	private int colonnes;
+	/**
+	 *
+	 */
 	private int lignes;
+	/**
+	 *
+	 */
 	private Element e;
+	/**
+	 *
+	 */
 	private boolean theseeLa = false;
+	/**
+	 *
+	 */
 	private boolean sortieLa = false;
+	/**
+	 *
+	 */
 	private JPanel grille;
+	/**
+	 *
+	 */
 	private Cell cellToRegister;
+	/**
+	 *
+	 */
 	Bouton deplacer;
+	/**
+	 *
+	 */
 	Bouton jouer;
 
 	private List<Cell> cells;
 
+	/**
+	 *
+	 * @param c int
+	 * @param l int
+	 */
 	public Grille(int c, int l)
 	{
 		this.e = new Chemin();
@@ -56,6 +112,10 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		f.setVisible(true);
 	}
 
+	/**
+	 *
+	 * @param f Fenetre
+	 */
 	private void jouer(Fenetre f) {
 		Choix choix = new Choix(this);
 		JPanel panel = new JPanel();
@@ -106,6 +166,10 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		f.getContentPane().add(panel);
 	}
 
+	/**
+	 *
+	 * @param f Fenetre
+	 */
 	public void createGrid(Fenetre f) {
 		cells = new ArrayList<>();
 		this.grille = new JPanel();
@@ -123,6 +187,10 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		f.getContentPane().add(grille);
 	}
 
+	/**
+	 *
+	 * @param f Fenetre
+	 */
 	private void actionBarre(Fenetre f) {
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(Fenetre.SCREEN_WIDTH,Fenetre.SCREEN_HEIGHT-250));
@@ -147,6 +215,10 @@ public class Grille extends JPanel implements Action, GrilleInterface
 		f.getContentPane().add(panel);
 	}
 
+	/**
+	 *
+	 * @param f Fenetre
+	 */
 	private void menuBarre(Fenetre f){
 		JMenuBar barre = new JMenuBar();
 

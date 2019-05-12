@@ -83,9 +83,19 @@ public interface GrilleInterface {
 
     /**
      *
-     * @return com.labyrinthe.Fenetre
+     * @return Fenetre
      */
      Fenetre getFenetre();
+
+    /**
+     *
+     * @return Bouton
+     */
      Bouton getBoutonDemarrer();
+
+    /**
+     *
+     * @return Bouton
+     */
      Bouton getBoutonDeplacer();
 }

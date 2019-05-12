@@ -13,32 +13,104 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class GrilleRand extends JPanel implements GrilleInterface {
+    /**
+     *
+     */
     private int colonnes;
+    /**
+     *
+     */
     private int lignes;
+    /**
+     *
+     */
     private Fenetre f;
+    /**
+     *
+     */
     private Element e;
+    /**
+     *
+      */
     private List<Element> box;
+    /**
+     *
+     */
     private int[][] grille;
+    /**
+     *
+     */
     private boolean[][] visited;
+    /**
+     *
+     */
     private static final int CHEMIN = 0;
+    /**
+     *
+     */
     private static final int MUR = 1;
+    /**
+     *
+     */
     private static final int THESEE = 2;
+    /**
+     *
+     */
     private static final int SORTIE = 3;
+    /**
+     *
+     */
     private String methode;
+    /**
+     *
+     */
     private String algo;
+    /**
+     *
+     */
     private int posx;
+    /**
+     *
+      */
     private int posy;
+    /**
+     *
+     */
     private int theseex;
+    /**
+     *
+     */
     private int theseey;
+    /**
+     *
+     */
     private int sortiex;
+    /**
+     *
+     */
     private int sortiey;
+    /**
+     *
+      */
     Bouton deplacer;
+    /**
+     *
+      */
     Bouton jouer;
-
-
+    /**
+     *
+     */
     private List<Cell> cells;
 
+    /**
+     *
+     * @param c int
+     * @param l int
+     */
     public GrilleRand(int c, int l) {
         super();
         box = new ArrayList<>();
@@ -64,6 +136,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         f.setVisible(true);
     }
 
+    /**
+     *
+     * @param f Fenetre
+     */
     private void jouer(Fenetre f) {
         Choix choix = new Choix(this);
         JPanel panel = new JPanel();
@@ -114,7 +190,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         f.getContentPane().add(panel);
     }
 
-
+    /**
+     *
+     * @param f Fenetre
+     */
     private void menuBarre(Fenetre f) {
         JMenuBar barre = new JMenuBar();
 
@@ -135,6 +214,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         f.setJMenuBar(barre);
     }
 
+    /**
+     *
+     * @param f Fenetre
+     */
     private void drawGrid(Fenetre f) {
         cells = new ArrayList<>();
         grille = arrayFill();
@@ -180,6 +263,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
 
     }
 
+    /**
+     *
+     * @return int
+     */
     private int[][] arrayFill() {
         grille = new int[colonnes][lignes];
         visited = new boolean[colonnes][lignes];
@@ -197,6 +284,9 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         return grille;
     }
 
+    /**
+     *
+     */
     private void placerThesee(){
         posx = (int) (Math.random()*(colonnes-1));
         posy = (int) (Math.random()*(lignes-1));
@@ -207,6 +297,9 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         theseey = posy;
     }
 
+    /**
+     *
+     */
     private void placerSortie(){
         posx = (int) (Math.random()*(colonnes-1));
         posy = (int) (Math.random()*(lignes-1));
@@ -221,6 +314,9 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         sortiey = posy;
     }
 
+    /**
+     *
+     */
     private void deplacement(){
         //algorithme qui crée un chemin aléatoire afin d'avoir au moins un chemin possible
         //entre thesee et la sortie, la sortie est placée aleatoirement sur les chemins de ce chemin
@@ -263,6 +359,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         }
     }
 
+    /**
+     *
+     * @return boolean
+     */
     private boolean moveLeft() {
         int  rand = (int) (Math.random()*((colonnes/2)))+1;
         for (int i = 0; i < colonnes-rand; i ++) {
@@ -277,6 +377,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         return true;
     }
 
+    /**
+     *
+     * @return boolean
+     */
     private boolean moveRight() {
         int rand = (int) (Math.random()*((colonnes/2)))+1;
         for (int i = 0; i < colonnes-rand; i ++) {
@@ -291,6 +395,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         return true;
     }
 
+    /**
+     *
+     * @return boolean
+     */
     private boolean moveUp() {
         int  rand = (int) (Math.random()*((colonnes/2)))+1;
         for (int i = 0; i < colonnes-rand; i ++) {
@@ -306,6 +414,10 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         return true;
     }
 
+    /**
+     *
+     * @return boolean
+     */
     private boolean moveDown() {
         int rand = (int) (Math.random()*((colonnes/2)))+1;
         for (int i = 0; i < colonnes-rand; i ++) {

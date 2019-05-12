@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * la classe <code>com.labyrinthe.listener.Choix</code>  permet de récupérer l'algorithme que l'utilisateur
+ * la classe <code>Choix</code>  permet de récupérer l'algorithme que l'utilisateur
  * souhaite appliquer ainsi que la méthode de simulation
  *@author Anne-Sophie Besnard, Romain Lechartier
  */
@@ -20,21 +20,21 @@ public class Choix implements ActionListener {
      */
     public static final  String DETER = "Déterministe";
     /**
-     *défini la constante en aléatoire
+     *défini la constante  aléatoire
      */
     public static final String ALEA = "Aléatoire";
     /**
-     *
+     *definie la constante Manuel
      */
     public static final String MANUEL = "Manuel";
     /**
-     *
+     *definie la constante Automatique
      */
     public static final String AUTO = "Automatique";
 
     /**
-     *
-     * @param grille com.labyrinthe.grille.GrilleInterface
+     *Constructeur prend en paramètre une grilleInterface qu'elle rend publique
+     * @param grille GrilleInterface
      */
     public Choix(GrilleInterface grille){
         this.grille = grille;

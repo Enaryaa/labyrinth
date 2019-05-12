@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- *La classe <code>com.labyrinthe.grille.Cell</code> permet de de créer les cellules dans la grille
+ *La classe <code>Cell</code> permet de de créer les cellules dans la grille
  * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public class Cell extends JPanel
@@ -54,7 +54,7 @@ public class Cell extends JPanel
 	 *Constructeur qui permet de mettre l'élement passé en paramètre
 	 * dans la cellule choisie
 	 * @param index int
-	 * @param elem com.labyrinthe.element.Element
+	 * @param elem Element
 	 */
 	public Cell (int index, Element elem){
 		super();
@@ -70,7 +70,7 @@ public class Cell extends JPanel
 	}
 
 	/**
-	 *permet de getter l'index
+	 *permet de get l'index
 	 * @return index
 	 */
 	public int getIndex() {
@@ -79,7 +79,7 @@ public class Cell extends JPanel
 
 	/**
 	 *met les propriétés de l'element dans la cellule, donc la couleur
-	 * @param elem com.labyrinthe.element.Element
+	 * @param elem Element
 	 */
 	public void setPropriete(Element elem){
 		this.elem = elem;
@@ -104,17 +104,27 @@ public class Cell extends JPanel
 
 	/**
 	 *set la position de la cellule
-	 * @param position com.labyrinthe.algorithme.Position
+	 * @param position Position
 	 */
 	public void setPosition(Position position) {
 		this.position = position;
 	}
 
+	/**
+	 *
+	 * @param i int
+	 * @return boolean
+	 */
 	public boolean getCardinal(int i)
     {
     	return cardinal[i];
     }
 
+	/**
+	 *
+	 * @param i int
+	 * @param b boolean
+	 */
     public void setCardinal(int i, boolean b)
     {
 

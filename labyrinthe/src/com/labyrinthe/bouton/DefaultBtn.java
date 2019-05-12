@@ -6,6 +6,8 @@ import com.labyrinthe.listener.Selection;
 import javax.swing.*;
 
 /**
+ * la classe <code>DefaultBtn</code> hérite de JRadioButton afin de l'adapter pour permettre
+ * la création de la grille vide en lui attribuant un element et une action
  *@author Anne-Sophie Besnard, Romain Lechartier
  */
 public class DefaultBtn extends JRadioButton {
@@ -14,8 +16,8 @@ public class DefaultBtn extends JRadioButton {
 
     /**
      *Constructeur destiné à la création des variables publiques
-     * @param elem com.labyrinthe.element.Element
-     * @param action com.labyrinthe.bouton.Action
+     * @param elem Element
+     * @param action Action
      */
     public DefaultBtn(Element elem, Action action){
         this.elem = elem;

@@ -8,24 +8,27 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * la classe <code>Fenetre</code> permet de générer les premières fenetres de l'application.
+ * ainsi les fenetres de saisies de la taille, de choix de la grille chargée ou non
+ * et le choix de la grille aléatoire ou vide.
  * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public class Fenetre extends JFrame {
     /**
-     *
+     *constante donnant le nom à l'application
      */
     private static final String APP_NAME = "Algorithme Ariane";
     /**
-     *
+     *constante ayant la largeur de la fenetre
      */
     public static final int SCREEN_WIDTH = 300;
     /**
-     *
+     *constante ayant la hauteur de la fenetre
      */
     public static final int SCREEN_HEIGHT = 300;
 
     /**
-     *
+     *Constructeur de base de la Fenetre
      */
     public Fenetre() {
 
@@ -38,7 +41,7 @@ public class Fenetre extends JFrame {
     }
 
     /**
-     *
+     *Constructeur avec les tailles de la fenetre
      * @param width int
      * @param height int
      */
@@ -51,7 +54,7 @@ public class Fenetre extends JFrame {
     }
 
     /**
-     *
+     *méthode contenant le menu avec le choix du chargement et de la nouvelle grille
      */
   public void menu1() {
     GridLayout gestionnaire = new GridLayout(2, 1);
@@ -83,7 +86,7 @@ public class Fenetre extends JFrame {
 }
 
     /**
-     *
+     *méthode avec le choix de la nouvelle grille: vide ou aléatoire
      */
     public void menu2(){
     GridLayout gestionnaire = new GridLayout(2, 1);
@@ -114,7 +117,7 @@ public class Fenetre extends JFrame {
 }
 
     /**
-     *
+     *méthode avec la saisie de la taille pour la grille vide
      */
     public void saisi(){
   GridLayout gestionnaire = new GridLayout(2, 1);
@@ -143,7 +146,7 @@ public class Fenetre extends JFrame {
 }
 
     /**
-     *
+     *méthode avec la saisie de la taille pour la grille aléatoire
      */
     public void saisiRand(){
         GridLayout gestionnaire = new GridLayout(2, 1);
@@ -172,14 +175,15 @@ public class Fenetre extends JFrame {
     }
 
     /**
-     *
+     *permet de rendre visible une fenetre
      */
     public void visible() {
+
         this.setVisible(true);
     }
 
     /**
-     *
+     *permet de vider la fenetre de tous ces panels
      */
     public void clearContent() {
         this.getContentPane().removeAll();

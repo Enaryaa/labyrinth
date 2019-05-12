@@ -9,7 +9,7 @@ import javax.swing.*;
 public class ChoixFichier extends JFileChooser
 {
 	/**
-	 *
+	 *composante fichier
 	 */
 	private String fichier;
 

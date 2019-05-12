@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
+ *
  * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public class ControleTaille implements MouseListener{

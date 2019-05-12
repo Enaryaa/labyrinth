@@ -30,8 +30,8 @@ public class ObservateurSauvegarde implements ActionListener
 
 	/**
 	 *
-	 * @param f com.labyrinthe.Fenetre
-	 * @param g com.labyrinthe.grille.GrilleInterface
+	 * @param f Fenetre
+	 * @param g GrilleInterface
 	 */
 	public ObservateurSauvegarde(Fenetre f, GrilleInterface g)
 

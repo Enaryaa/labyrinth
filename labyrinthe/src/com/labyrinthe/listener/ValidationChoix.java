@@ -14,25 +14,25 @@ import java.awt.event.MouseListener;
  */
 public class ValidationChoix implements MouseListener {
     /**
-     *composante com.labyrinthe.grille.GrilleInterface
+     *composante GrilleInterface
      */
     private GrilleInterface grille;
     /**
-     *composante com.labyrinthe.bouton.Bouton
+     *composante Bouton
      */
     private Bouton bouton;
     /**
-     *composante bout qui correspond à l'id du botou
+     *composante bout qui correspond à l'id du bouton
      */
     private int bout;
     /**
-     *composante com.labyrinthe.algorithme.Algo
+     *composante Algo
      */
     private Algo algo;
 
     /**
-     *Constructeur qui instancie com.labyrinthe.algorithme.Algo et rend publique com.labyrinthe.grille.GrilleInterface
-     * @param grille com.labyrinthe.grille.GrilleInterface
+     *Constructeur qui instancie Algo et rend publique GrilleInterface
+     * @param grille GrilleInterface
      */
     public ValidationChoix(GrilleInterface grille){
         this.grille = grille;
@@ -40,10 +40,7 @@ public class ValidationChoix implements MouseListener {
         algo = new Algo(grille);
     }
 
-    /**
-     *
-     * @param e MouseEvent
-     */
+
     @Override
     public void mouseClicked(MouseEvent e) {
     }
@@ -88,18 +85,10 @@ public class ValidationChoix implements MouseListener {
     public void mouseReleased(MouseEvent e) {
     }
 
-    /**
-     *
-     * @param e MouseEvent
-     */
     @Override
     public void mouseEntered(MouseEvent e) {
     }
 
-    /**
-     *
-     * @param e MouseEvent
-     */
     @Override
     public void mouseExited(MouseEvent e) {
     }

@@ -29,10 +29,6 @@ public class Coloration implements MouseListener
 		this.action = action;
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
@@ -85,28 +81,16 @@ public class Coloration implements MouseListener
 
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 

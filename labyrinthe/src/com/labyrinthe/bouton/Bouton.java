@@ -3,6 +3,8 @@ package com.labyrinthe.bouton;
 import javax.swing.*;
 
 /**
+ * La classe <code>Bouton</code> hérite de JButton afin de pouvoir mettre un id
+ * sur chaque bouton
  *@author Anne-Sophie Besnard, Romain Lechartier
  */
 public class Bouton extends JButton{
@@ -12,7 +14,7 @@ public class Bouton extends JButton{
 	private int id;
 
 	/**
-	 *Constructeur qui rend public
+	 *Constructeur qui rend public l'id
 	 * @param id int
 	 */
 	public Bouton(int id){
@@ -21,7 +23,7 @@ public class Bouton extends JButton{
 	}
 
 	/**
-	 *getter pour récupérer l'identifiant du bouton
+	 *permet de récupérer l'identifiant du bouton
 	 * @return int
 	 */
 	public int getId(){

@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
+ * la classe <code>Observateur</code> contient un MouseListener qui permet
+ * de gérer les boutons des menus de selection des grilles
  * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public class Observateur implements MouseListener{
@@ -33,10 +35,6 @@ public class Observateur implements MouseListener{
 		bout = 0;
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
@@ -71,26 +69,16 @@ public class Observateur implements MouseListener{
 
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
+
 	@Override
 	public void mouseEntered(MouseEvent e) {
 	}
 
-	/**
-	 *
-	 * @param e MouseEvent
-	 */
+
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}

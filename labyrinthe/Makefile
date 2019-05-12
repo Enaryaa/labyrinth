@@ -2,8 +2,6 @@
 # define a variable for compiler flags (JFLAGS)
 # define a variable for the compiler (JC)  
 # define a variable for the Java Virtual Machine (JVM)
-# define a variable for a parameter. When you run make, you could use:
-
 
 JFLAGS = -g -implicit:none -encoding UTF8
 JC = javac
@@ -14,10 +12,6 @@ JVM = java
 .java.class:
 		$(JC) $(JFLAGS) $(CLASSES)
 
-
-# CLASSES is a macro consisting of N words (one for each java source file)
-# When a single line is too long, use \<return> to split lines that then will be
-# considered as a single line.
 
 CLASSES = \
 		com.labyrinthe.Main.java \
@@ -52,7 +46,6 @@ CLASSES = \
 		com.labyrinthe.algorithme.Algo.java \
 		com.labyrinthe.listener.Choix.java \
 		com.labyrinthe.listener.GestionMenu.java \
-
 
 
 # MAIN is a variable with the name of the file containing the main method

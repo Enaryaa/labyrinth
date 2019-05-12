@@ -14,27 +14,88 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Anne-Sophie Besnard, Romain Lechartier
+ */
 public class GrilleChargee extends JPanel implements GrilleInterface
 {
+	/**
+	 *
+ 	 */
 	public static final int BITS_PER_BYTE = 8;
+	/**
+	 *
+	 */
 	private static final int CHEMIN = 0;
+	/**
+	 *
+	 */
     private static final int MUR = 1;
-    private static final int THESEE = 2;
+
+	/**
+	 *
+	 */
+	private static final int THESEE = 2;
+	/**
+	 *
+	 */
     private static final int SORTIE = 3;
+	/**
+	 *
+	 */
 	private Fenetre fenetre;
+	/**
+	 *
+	 */
 	private JPanel grille;
+	/**
+	 *
+	 */
     private Element e;
+	/**
+	 *
+	 */
     private String methode;
-    private String algo;
+	/**
+	 *
+	 */
+	private String algo;
+	/**
+	 *
+	 */
     private List<Element> box;
-    private List<Cell> cells;
+	/**
+	 *
+	 */
+	private List<Cell> cells;
+	/**
+	 *
+	 */
 	private byte taille;
+	/**
+	 *
+	 */
 	private byte[] thesee;
+	/**
+	 *
+	 */
 	private byte[] sortie;
+	/**
+	 *
+	 */
 	private char[] etats;
+	/**
+	 *
+	 */
 	Bouton jouer;
+	/**
+	 *
+	 */
 	Bouton deplacer;
 
+	/**
+	 *
+	 */
 	public GrilleChargee()
 	{
 		super();
@@ -124,6 +185,13 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 		}
 	}
 
+	/**
+	 *
+	 * @param taille byte
+	 * @param thesee byte
+	 * @param sortie byte
+	 * @param etats char
+	 */
 	private void drawGrid(byte taille, byte[] thesee, byte[] sortie, char[] etats)
 	{
 		cells = new ArrayList<>();
@@ -169,6 +237,10 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 		fenetre.getContentPane().add(grille);
 	}
 
+	/**
+	 *
+	 * @param f Fenetre
+	 */
 	private void menuBarre(Fenetre f)
 	{
 		JMenuBar barre = new JMenuBar();
@@ -190,6 +262,10 @@ public class GrilleChargee extends JPanel implements GrilleInterface
 		fenetre.setJMenuBar(barre);
 	}
 
+	/**
+	 *
+	 * @param f Fenetre
+	 */
 	private void jouer(Fenetre f) {
         Choix choix = new Choix(this);
         JPanel panel = new JPanel();
