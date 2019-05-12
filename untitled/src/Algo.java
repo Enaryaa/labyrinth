@@ -146,9 +146,16 @@ public class Algo {
         else
         {
             thesee = treated_cells.pop();
+            if (treated_cells.empty()==true)
+            {
+                JFrame fenetre_coince = new JFrame();
+                fenetre_coince.setSize(500, 100);
+                JLabel message = new JLabel("Il n'y a pas de sortie, Thesee est condamné !");
+                fenetre_coince.add(message);
+                fenetre_coince.setVisible(true);
+            }
             Cell next = treated_cells.pop();
             next.setPropriete(new NextChemin());
-            
         }
     }
 
@@ -176,7 +183,6 @@ public class Algo {
             thesee.setCardinal(3,true);
             return Position.Direction.EST;
         }
-        System.out.println("repaire");
         thesee.setCardinal(3,true);
         return null;
     }
