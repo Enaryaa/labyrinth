@@ -152,39 +152,28 @@ public class Algo {
     }
 
     private Position.Direction getDeterministDirection(Cell thesee) {
-        //mettre ici algo deterministe
-        /*Put current node on stack
-        In a while loop pop the stack if not empty
-        visit (popped node)
-        push all Unvisited and NotVisiting neighbors of popped node on the stack
-        End while*/
-        /*if(thesee.getPosition().getY() > 0 && thesee)
+        if (thesee.getPosition().getY() > 0 && thesee.getCardinal(0) == false && this.visited_cells.indexOf(getCellByPosition(thesee.getPosition().getNextPosition(Position.Direction.NORD)))==-1)
         {
-            
-        }*/
-        
-        if (thesee.getPosition().getY() > 0 && thesee.getCardinal(0) == false)
-        {
-            thesee.setCardinal(0,true);
             return Position.Direction.NORD;
         }
-
-        else if (thesee.getPosition().getX() > 0 && thesee.getCardinal(1) == false)
+        thesee.setCardinal(0,true);
+        if (thesee.getPosition().getX() > 0 && thesee.getCardinal(1) == false && this.visited_cells.indexOf(getCellByPosition(thesee.getPosition().getNextPosition(Position.Direction.OUEST)))==-1)
         {
-            thesee.setCardinal(1,true);
+            
             return Position.Direction.OUEST;
         }
-        
-        else if (thesee.getPosition().getY() < (grille.getTaille()-1) && thesee.getCardinal(2) == false)
+        thesee.setCardinal(1,true);
+        if (thesee.getPosition().getY() < (grille.getTaille()-1) && thesee.getCardinal(2) == false && this.visited_cells.indexOf(getCellByPosition(thesee.getPosition().getNextPosition(Position.Direction.SUD)))==-1)
         {
-            thesee.setCardinal(2,true);
+            
             return Position.Direction.SUD;
         }
-        else if (thesee.getPosition().getX() < (grille.getTaille()-1) && thesee.getCardinal(3) == false)
+        thesee.setCardinal(2,true);
+        if (thesee.getPosition().getX() < (grille.getTaille()-1) && thesee.getCardinal(3) == false && this.visited_cells.indexOf(getCellByPosition(thesee.getPosition().getNextPosition(Position.Direction.EST)))==-1)
         {
-            thesee.setCardinal(3,true);
             return Position.Direction.EST;
         }
+        thesee.setCardinal(3,true);
         return null;
     }
 
