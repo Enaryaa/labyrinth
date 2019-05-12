@@ -91,7 +91,7 @@ public class Algo {
         }
         //récupère la position de la sortie après l'avoir cherchée
 
-        timer = new Timer(60, new ActionListener() { //nouvelle instance de timer
+        timer = new Timer(10, new ActionListener() { //nouvelle instance de timer
             @Override
             public void actionPerformed(ActionEvent e) {
                 Cell thesee = searchThesee();
@@ -100,8 +100,7 @@ public class Algo {
                 //sinon refait un deplacement
                 if (sortieTrouvee == true) {
                     goToSortie(thesee);
-                    JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,
-                            "Fin", JOptionPane.INFORMATION_MESSAGE);
+                    popupFin();
                     timer.stop();
                 } else {
                     deplacementManuelDeter(thesee);
