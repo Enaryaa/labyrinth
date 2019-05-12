@@ -4,12 +4,14 @@ import javax.swing.filechooser.FileFilter;
 import java.io.*;
 
 /**
+ * La classe FiltreFichier sert à choisir les 
+ * fichiers qui seront visible dans le JFileChooser
  *@author Anne-Sophie Besnard, Romain Lechartier
  */
 public class FiltreFichier extends FileFilter
 {
     /**
-     *
+     * Constructeur de la classe FiltreFichier
      */
 	public FiltreFichier()
 	{
