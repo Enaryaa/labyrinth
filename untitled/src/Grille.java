@@ -209,6 +209,7 @@ public class Grille extends JPanel implements Action, GrilleInterface
 
 	@Override
 	public void setMethode(String methode) {
+		
 		this.methode = methode;
 	}
 

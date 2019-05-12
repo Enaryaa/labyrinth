@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Stack;
 
 public class Algo {
 
@@ -12,6 +14,8 @@ public class Algo {
     private int deplacementPourMoyenne;
     private int nbDeplacement;
     private List<Cell> cells;
+    private List<Cell> visited_cells;
+    private Stack<Cell> treated_cells;
 
     public Timer timer;
 
@@ -25,6 +29,8 @@ public class Algo {
         nbDeplacement = 0;
         alea = 0;
         this.cells = grille.getCells(); // contient les Cell (avec element) du labyrinthe
+        this.visited_cells = new ArrayList<Cell>();
+        this.treated_cells = new Stack<Cell>(); // contient les Cell traitées (pour retenir l'ordre de traitement)
         generatePosition();
     }
 
@@ -60,18 +66,18 @@ public class Algo {
         if (grille.getMethode().equals(Choix.AUTO)) {
             //si le choix est automatique
             grille.cacherFenetre();
-            exitMazeAuto().start();
+            mazeDeterManuel().start();
             //timer est récupéré et lancé directement grace a start();
             //et stopper dans le timer directement -> stop();
             //on cache la fenetre dans la simuation automatique
         }
         else if (grille.getMethode().equals(Choix.MANUEL)){
             //si le choix est manuel
-            exitMazeManuel().start();
+            mazeDeterManuel().start();
         }
     }
 
-  /*  public Timer MazeDeterManuel() {
+    public Timer mazeDeterManuel() {
         //conditions pour sortir du labyrinth
         Cell thesee = searchThesee();
         if (thesee != null) {
@@ -88,13 +94,13 @@ public class Algo {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Cell thesee = searchThesee();
-                //recherche la position de thesee das la grille a chaque deplacementAlea
+                //recherche la position de thesee dans la grille a chaque deplacement
                 // (pour mettre à jour sa position)
-                //sinon refait un deplacementAlea
+                //sinon refait un deplacement
                 if (sortieTrouvee) {
                     goToSortie(thesee);
-                    JOptionPane.showMessageDialog(null, "Le nombre de deplacementAlea est de "+deplacementPourMoyenne,
-                            "Fin", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,
+                        "Fin", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     deplacementManuelDeter(thesee);
                 }
@@ -103,48 +109,114 @@ public class Algo {
         });
 
         return timer;
-    }*/
+    }
 
-   /* private void deplacementManuelDeter(Cell thesee) {
+    private void deplacementManuelDeter(Cell thesee) {
         Cell nextChemin = getCellNextChemin();
-        if (nextChemin != null) {
+        if (nextChemin != null)
+        {
+            this.visited_cells.add(thesee);
+            this.treated_cells.add(thesee);
             nextChemin.setPropriete(thesee.getPropriete());
             thesee.setPropriete(new Chemin());
             thesee = nextChemin;
             deplacementPourMoyenne += 1;
         }
         Position.Direction direction = getDeterministDirection(thesee);
-        Cell sortie = searchSortie();
-        if (deplacementValide(thesee, direction)) {
-            Cell next = getCellByPosition(thesee.getPosition().getNextPosition(direction));
-            if (next.getPosition().equals(sortie.getPosition())) {
-                sortieTrouvee = true;
-            } else {
-                next.setPropriete(new NextChemin());
+        if (direction!=null)
+        {
+            Cell sortie = searchSortie();
+            if (deplacementValide(thesee, direction))
+            {
+                Cell next = getCellByPosition(thesee.getPosition().getNextPosition(direction));
+                if (next.getPosition().equals(sortie.getPosition()))
+                {
+                    sortieTrouvee = true;
+                }
+                else
+                {
+                    next.setPropriete(new NextChemin());
+                }
             }
-        } else {
+            else
+            {
+                deplacementManuelDeter(thesee);
+            }
+        }
+        else
+        {
+            treated_cells.pop();
+            thesee = treated_cells.peek();
             deplacementManuelDeter(thesee);
         }
-    }*/
+    }
+
+    private Position.Direction getDeterministDirection(Cell thesee) {
+        //mettre ici algo deterministe
+        /*Put current node on stack
+        In a while loop pop the stack if not empty
+        visit (popped node)
+        push all Unvisited and NotVisiting neighbors of popped node on the stack
+        End while*/
+        /*if(thesee.getPosition().getY() > 0 && thesee)
+        {
+            
+        }*/
+        
+        if (thesee.getPosition().getY() > 0 && thesee.getCardinal(0) == false)
+        {
+            thesee.setCardinal(0,true);
+            return Position.Direction.NORD;
+        }
+
+        else if (thesee.getPosition().getX() > 0 && thesee.getCardinal(1) == false)
+        {
+            thesee.setCardinal(1,true);
+            return Position.Direction.OUEST;
+        }
+        
+        else if (thesee.getPosition().getY() < (grille.getTaille()-1) && thesee.getCardinal(2) == false)
+        {
+            thesee.setCardinal(2,true);
+            return Position.Direction.SUD;
+        }
+        else if (thesee.getPosition().getX() < (grille.getTaille()-1) && thesee.getCardinal(3) == false)
+        {
+            thesee.setCardinal(3,true);
+            return Position.Direction.EST;
+        }
+        return null;
+    }
+
+    private boolean deplacementValide(Cell thesee, Position.Direction direction) {
+        //check si la direction choisi est possible
+        Cell next = getCellByPosition(thesee.getPosition().getNextPosition(direction));
+        if (next != null && !(next.getPropriete() instanceof Mur)) {
+            //si null == en dehors de la grille
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     private void moyennealea() {
         //renvoi la moyenne des deplacements de thesees dans l'algo alea
        int moyenne = (nbDeplacement/100);
-        JOptionPane.showMessageDialog(null, "La moyenne de deplacement est de " +moyenne,
-                "Moyenne", JOptionPane.INFORMATION_MESSAGE);
-    }
+       JOptionPane.showMessageDialog(null, "La moyenne de deplacement est de " +moyenne,
+        "Moyenne", JOptionPane.INFORMATION_MESSAGE);
+   }
 
-    private Timer exitMazeAuto() {
+   private Timer exitMazeAuto() {
         //conditions pour sortir du labyrinth
-        Cell thesee = searchThesee();
-        if (thesee != null) {
-            positionThesee = thesee.getPosition();
-        }
+    Cell thesee = searchThesee();
+    if (thesee != null) {
+        positionThesee = thesee.getPosition();
+    }
         //ici récupère la position de thesee après l'avoir cherché donc il est au debut
-        Cell sortie = searchSortie();
-        if (sortie != null) {
-            positionSortie = sortie.getPosition();
-        }
+    Cell sortie = searchSortie();
+    if (sortie != null) {
+        positionSortie = sortie.getPosition();
+    }
         //récupère la position de la sortie après l'avoir cherchée
 
        timer = new Timer(1, new ActionListener() { //nouvelle instance de timer
@@ -157,38 +229,38 @@ public class Algo {
                    //si thesee est sur la sortie alors stop le timer
                    alea ++;
                    if (alea != NB_ALEA){
-                        replacerThesee(thesee, sortie);
+                    replacerThesee(thesee, sortie);
                        //reinitialiser les positions de sortie et de thesee
-                      nbDeplacement += deplacementPourMoyenne;
+                    nbDeplacement += deplacementPourMoyenne;
                        //sinon stock le nb de deplacementAlea dans un tableau ou liste pour en faire la moyenne
-                      deplacementPourMoyenne = 0;
+                    deplacementPourMoyenne = 0;
                        //et remettre à 0 le deplacementpourmoyenne
-                   }
-                  else {
-                      moyennealea();
-                      timer.stop();
-                  }
-               } else {
+                }
+                else {
+                  moyennealea();
+                  timer.stop();
+              }
+          } else {
                    //sinon refait un deplacementAlea
-                   deplacementAlea(thesee);
-               }
-           }
-       });
+           deplacementAlea(thesee);
+       }
+   }
+});
 
        return timer;
-    }
+   }
 
-    public Timer exitMazeManuel() {
+   public Timer exitMazeManuel() {
         //conditions pour sortir du labyrinth
-        Cell thesee = searchThesee();
-        if (thesee != null) {
-            positionThesee = thesee.getPosition();
-        }
+    Cell thesee = searchThesee();
+    if (thesee != null) {
+        positionThesee = thesee.getPosition();
+    }
         //ici récupère la position de thesee après l'avoir cherché donc il est au debut
-        Cell sortie = searchSortie();
-        if (sortie != null) {
-            positionSortie = sortie.getPosition();
-        }
+    Cell sortie = searchSortie();
+    if (sortie != null) {
+        positionSortie = sortie.getPosition();
+    }
         //récupère la position de la sortie après l'avoir cherchée
 
         timer = new Timer(60, new ActionListener() { //nouvelle instance de timer
@@ -201,7 +273,7 @@ public class Algo {
                 if (sortieTrouvee) {
                     goToSortie(thesee);
                     JOptionPane.showMessageDialog(null, "Le nombre de deplacement est de "+deplacementPourMoyenne,
-                            "Fin", JOptionPane.INFORMATION_MESSAGE);
+                        "Fin", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     deplacementManuelAlea(thesee);
                 }
@@ -256,27 +328,6 @@ public class Algo {
             deplacementAlea(thesee);
         }
     }
-
-    private boolean deplacementValide(Cell thesee, Position.Direction direction) {
-        //check si la direction choisi est possible
-        Cell next = getCellByPosition(thesee.getPosition().getNextPosition(direction));
-        if (next != null && !(next.getPropriete() instanceof Mur)) {
-            //si null == en dehors de la grille
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-   /* private Position.Direction getDeterministDirection(Cell thesee) {
-        //mettre ici algo deterministe
-        /*Put current node on stack
-        In a while loop pop the stack if not empty
-        visit (popped node)
-        push all Unvisited and NotVisiting neighbors of popped node on the stack
-        End while
-
-    }*/
 
     private Position.Direction getRandomDirection(Cell thesee) {
         //en fonction du resultat du rand (1,2,3 ou 4) et test la position de thesee

@@ -33,8 +33,11 @@ public class ValidationChoix implements MouseListener {
             }
         }
         if(grille.getMethode().equals(Choix.MANUEL)){
-            if (bout == 16) {
+            if (bout == 16 && grille.getMethode()=="Aléatoire") {
                 algo.exitMazeManuel().start();
+            }
+            else if(bout == 16 && grille.getMethode()=="Manuel") {
+                algo.mazeDeterManuel().start();
             }
         }
         else {
