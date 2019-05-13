@@ -7,6 +7,9 @@ import java.awt.event.*;
 import java.io.*;
 
 /**
+ * la classe <code>ObservateurSauvegarde</code> est un listener qui permet
+ *
+ *
  * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public class ObservateurSauvegarde implements ActionListener
@@ -16,20 +19,20 @@ public class ObservateurSauvegarde implements ActionListener
 	 */
 	public static final int BITS_PER_BYTE = 8;
 	/**
-	 *
+	 *composante qui stocke un nom
 	 */
 	private String nom;
 	/**
-	 *
+	 *composante Fenetre
 	 */
 	private Fenetre fenetre;
 	/**
-	 *
+	 *composante GrilleInterface
 	 */
 	private GrilleInterface grille;
 
 	/**
-	 *
+	 *Constructeur
 	 * @param f Fenetre
 	 * @param g GrilleInterface
 	 */

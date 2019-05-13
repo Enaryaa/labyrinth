@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * La classe GrilleRand crée une grille remplie aléatoirement
+ * La classe <code>GrilleRand</code> crée une grille remplie aléatoirement
  * avec une taille préalablement définie par l'utilisateur
  * @author Anne-Sophie Besnard, Romain Lechartier
  */
@@ -70,48 +70,49 @@ public class GrilleRand extends JPanel implements GrilleInterface {
      */
     private String methode;
     /**
-     *
+     *choix de l'algorithme : déterministe ou aléatoire
      */
     private String algo;
     /**
-     *
+     *position x de la cellule
      */
     private int posx;
     /**
-     *
+     *position y de la cellule
       */
     private int posy;
     /**
-     *
+     *position x de thesee
      */
     private int theseex;
     /**
-     *
+     *position y de thesee
      */
     private int theseey;
     /**
-     *
+     *position x de l'element sortie
      */
     private int sortiex;
     /**
-     *
+     *position y de l'element sortie
      */
     private int sortiey;
     /**
-     *
+     *bouton déplacer avec un id
       */
     Bouton deplacer;
     /**
-     *
+     * bouton jouet avec un id
       */
     Bouton jouer;
     /**
-     *
+     *liste des cellules
      */
     private List<Cell> cells;
 
     /**
-     *
+     *Constructeur qui prend en paramètre la taille de la grille que l'utilisateur
+     * choisie (ligne et colonne)
      * @param c int
      * @param l int
      */
@@ -141,7 +142,8 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     /**
-     *
+     *Composante de la fenetre où se trouve les boutons de selection de l'algorithme
+     * de la méthode et des boutons jouer et déplacer
      * @param f Fenetre
      */
     private void jouer(Fenetre f) {
@@ -195,7 +197,7 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     /**
-     *
+     *Composante qui créer et gère la barre de menu de la fenetre
      * @param f Fenetre
      */
     private void menuBarre(Fenetre f) {
@@ -219,7 +221,7 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     /**
-     *
+     *Permet de dessiner la grille en associant chaque element aux Cell
      * @param f Fenetre
      */
     private void drawGrid(Fenetre f) {
@@ -261,14 +263,11 @@ public class GrilleRand extends JPanel implements GrilleInterface {
         }
         p.setFocusable(true);
         p.requestFocus();
-
-
         f.getContentPane().add(p);
-
     }
 
     /**
-     *
+     *Permet de créer la grille où chaque Cell est soit un Mur soit un Chemin non visité
      * @return int
      */
     private int[][] arrayFill() {
@@ -289,7 +288,8 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     /**
-     *
+     *place aléatoirement Thesée sur la grille en fonction de la taille de la grille
+     * et récupère sa position
      */
     private void placerThesee(){
         posx = (int) (Math.random()*(colonnes-1));
@@ -302,7 +302,8 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     /**
-     *
+     *place aléatoirement la Sortie sur la grille en fonction de la taille de la grille
+     * si le chemin a été visité.
      */
     private void placerSortie(){
         posx = (int) (Math.random()*(colonnes-1));
@@ -319,11 +320,11 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     /**
-     *
+     *Algorithme qui crée un chemin aléatoire afin d'avoir au moins un chemin possible
+     *entre thesee et la sortie, la sortie est placée aleatoirement sur les chemins visités
      */
     private void deplacement(){
-        //algorithme qui crée un chemin aléatoire afin d'avoir au moins un chemin possible
-        //entre thesee et la sortie, la sortie est placée aleatoirement sur les chemins de ce chemin
+        //a
         int nbchemin = (colonnes+lignes);
         boolean randDirect;
 
@@ -364,7 +365,7 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     /**
-     *
+     *méthode qui gère le déplacement aleatoire à gauche du chemin possible
      * @return boolean
      */
     private boolean moveLeft() {
@@ -382,7 +383,7 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     /**
-     *
+     *méthode qui gère le déplacement aleatoire à droite du chemin possible
      * @return boolean
      */
     private boolean moveRight() {
@@ -400,7 +401,7 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     /**
-     *
+     *méthode qui gère le déplacement aleatoire en haut du chemin possible
      * @return boolean
      */
     private boolean moveUp() {
@@ -419,7 +420,7 @@ public class GrilleRand extends JPanel implements GrilleInterface {
     }
 
     /**
-     *
+     *méthode qui gère le déplacement aleatoire en bas du chemin possible
      * @return boolean
      */
     private boolean moveDown() {

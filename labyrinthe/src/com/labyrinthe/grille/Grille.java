@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * La classe Grillee sert à créer une grille manuellement
+ * La classe <code>Grillee</code> sert à créer une grille manuellement
  * et ensuite à simuler un algorithme suivant une méthode 
  * sur cette même grille
  * @author Anne-Sophie Besnard, Romain Lechartier
@@ -126,7 +126,8 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	}
 
 	/**
-	 *
+	 *Composante de la fenetre où se trouve les boutons de selection de l'algorithme
+	 * de la méthode et des boutons jouer et déplacer
 	 * @param f Fenetre
 	 */
 	private void jouer(Fenetre f) {
@@ -180,7 +181,8 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	}
 
 	/**
-	 *
+	 *Permet de créer la grille contenant des Cell, ce qui permet d'y appliquer les propriétés
+	 * des elements
 	 * @param f Fenetre
 	 */
 	public void createGrid(Fenetre f) {
@@ -201,7 +203,8 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	}
 
 	/**
-	 *
+	 *Composante de la fenetre qui contient les boutons permettant de placer
+	 * les elements dans la grille
 	 * @param f Fenetre
 	 */
 	private void actionBarre(Fenetre f) {
@@ -229,7 +232,7 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	}
 
 	/**
-	 *
+	 *Composante qui créer et gère la barre de menu de la fenetre
 	 * @param f Fenetre
 	 */
 	private void menuBarre(Fenetre f){
@@ -266,7 +269,6 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	public void theseeLa(boolean bool) {
 
 		theseeLa = bool;
-		//permet de determiner si thesee est deja present sur la grille
 	}
 
 	@Override
@@ -285,7 +287,6 @@ public class Grille extends JPanel implements Action, GrilleInterface
 	public boolean isSortieLa() {
 
 		return sortieLa;
-		//return si false (non present) ou  true (present)
 	}
 
 	@Override

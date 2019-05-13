@@ -18,28 +18,28 @@ import java.awt.event.ActionListener;
  */
 public class GestionMenu implements ActionListener {
     /**
-     *
+     *composante de GrilleChargee
      */
     private GrilleChargee grilleC;
     /**
-     *
+     *composante de GrilleInterface
      */
     private GrilleInterface grille;
     /**
-     *
+     *composante de GrilleRand
      */
     private GrilleRand grillr;
     /**
-     *
+     *composante Grille
      */
     private Grille gril;
     /**
-     *
+     *composante JPanel
      */
     private JPanel grillep;
 
     /**
-     *
+     *Constructeur de la grille aleatoire
      * @param grillr GrilleRand
      */
     public GestionMenu(GrilleRand grillr){
@@ -47,7 +47,7 @@ public class GestionMenu implements ActionListener {
     }
 
     /**
-     *
+     *constructeur de la grille chargée
      * @param grilleC GrilleChargee
      */
     public GestionMenu(GrilleChargee grilleC){
@@ -55,13 +55,21 @@ public class GestionMenu implements ActionListener {
     }
 
     /**
-     *
+     *constructeur de la grille vide
      * @param gril Grille
      */
     public GestionMenu(Grille gril){
         this.grille = gril;
     }
 
+    /**
+     * listener qui permet de gérer les items dans le JMenuBarre
+     * avec la sauvegarde, qui ouvre une boite de dialogue,
+     * effacer qui  appelle une autre grille vide, afin de reprendre à 0 la composition de la grille
+     * rafraichir qui permet de regénérer aléatoirement une grille
+     * tout en récupérant la taille qui a été passée par l'utilisateur
+     * @param e ActionEvent
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String nom = e.getActionCommand();

@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * la classe <code>com.labyrinthe.listener.ValidationChoix</code> correspond au listener qui gère
+ * la classe <code>ValidationChoix</code> correspond au listener qui gère
  * les boutons démarrer et déplacer, s'ils sont désactivés ou non
  *@author Anne-Sophie Besnard, Romain Lechartier
  */

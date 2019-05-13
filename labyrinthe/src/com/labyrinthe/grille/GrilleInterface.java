@@ -6,7 +6,7 @@ import com.labyrinthe.bouton.Bouton;
 import java.util.List;
 
 /**
- * L'interface GrilleInterface est utilisée pour nommer
+ * L'interface <code>GrilleInterface</code> est utilisée pour nommer
  * des méthodes communes aux différentes grilles
  * @author Anne-Sophie Besnard, Romain Lechartier
  */

@@ -14,21 +14,21 @@ import java.awt.event.MouseListener;
  */
 public class Observateur implements MouseListener{
 	/**
-	 *
+	 *composant Bouton
 	 */
 	private Bouton bouton;
 	/**
-	 *
+	 *composante qui stocke l'id du bouton
 	 */
 	private int bout;
 	/**
-	 *
+	 *composante Fenetre
 	 */
 	private Fenetre cible;
 
 	/**
-	 *
-	 * @param cible com.labyrinthe.Fenetre
+	 *constructeur qui prend une Fenetre en paramètre
+	 * @param cible Fenetre
 	 */
 	public Observateur (Fenetre cible){
 		this.cible = cible;
@@ -40,7 +40,10 @@ public class Observateur implements MouseListener{
 	}
 
 	/**
-	 *
+	 *Permet d'appeler la méthode qui affiche le bon menu
+	 * en fonction du choix de l'utilisateur
+	 * cest un rafraichissement de la fenetre, ce que contient la fenetre
+	 * est effacée et est remplacée par les composantes de la méthode appelée
 	 * @param e MouseEvent
 	 */
 	@Override

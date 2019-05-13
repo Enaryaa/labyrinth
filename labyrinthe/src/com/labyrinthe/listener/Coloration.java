@@ -10,19 +10,20 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- *
+ *la classe <code>Coloration</code> permet de "colorier" la cellule selectionnée
+ * en y appliquant les propriétés de l'Element choisie via le bouton
  *@author Anne-Sophie Besnard, Romain Lechartier
  */
 public class Coloration implements MouseListener
 {
 	/**
-	 *
+	 *Composante Action
 	 */
 	private Action action;
 
 	/**
-	 *Constructeur  qui prend une com.labyrinthe.bouton.Action en paramètre
-	 * @param action com.labyrinthe.bouton.Action
+	 *Constructeur  qui prend une Action en paramètre
+	 * @param action Action
 	 */
 	public Coloration(Action action)
 	{

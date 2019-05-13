@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  */
 public class Choix implements ActionListener {
     /**
-     *
+     *composante GrilleInterface
      */
     private GrilleInterface grille;
     /**
@@ -41,7 +41,10 @@ public class Choix implements ActionListener {
     }
 
     /**
-     *
+     *permet de set l'algorithme et la methode choisie pour ensuite
+     * les utiliser dans la classe Algo
+     * puis rend utilisable les boutons demarrer et deplacer une fois que l'algorithme
+     * et la méthode on été choisie
      * @param e ActionEvent
      */
     @Override

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * La classe GrilleChargee sert à créer une grille à partir 
+ * La classe <code>GrilleChargee</code> sert à créer une grille à partir
  * d'un fichier de données et ensuite à simuler un algorithme
  * suivant une méthode sur cette même grille
  * @author Anne-Sophie Besnard, Romain Lechartier

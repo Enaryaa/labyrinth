@@ -10,34 +10,36 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- *
+ *la classe <code>ControleTaille</code> qui permet de récupérer la taille entrée par l'utilisateur
+ * dans la fenetre correspondante et de charger la grille vide ou aléatoire avec cette taille
  * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public class ControleTaille implements MouseListener{
 	/**
-	 *
+	 *composante bouton
 	 */
 	private Bouton bouton;
 	/**
-	 *
+	 *composante qui stocke l'id du Bouton
 	 */
 	private int bout;
 	/**
-	 *
+	 *composante Fenetre
 	 */
 	private Fenetre cible;
 	/**
-	 *
+	 *composante JTextField
 	 */
 	private JTextField text;
 	/**
-	 *
+	 *composante qui stocke la taille
 	 */
 	private int taille;
 
 	/**
-	 *
-	 * @param cible com.labyrinthe.Fenetre
+	 *Constructeur qui prend le JTextField en paramètre pour récupérer
+	 * ce qui est écrit
+	 * @param cible Fenetre
 	 * @param text JTextField
 	 */
 	public ControleTaille(Fenetre cible, JTextField text){
@@ -93,7 +95,7 @@ public class ControleTaille implements MouseListener{
 	}
 
 	/**
-	 * affiche la popup pour l'erreur
+	 * affiche la popup pour gérer l'erreur
 	 */
 	private void popup(){
 		JOptionPane.showMessageDialog(cible, "Taille non valide, minimum 5 et maximum 60",
