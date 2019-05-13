@@ -14,55 +14,59 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * La classe GrilleRand crée une grille remplie aléatoirement
+ * avec une taille préalablement définie par l'utilisateur
  * @author Anne-Sophie Besnard, Romain Lechartier
  */
 public class GrilleRand extends JPanel implements GrilleInterface {
     /**
-     *
+     * Nombre de colonnes de la grille
      */
     private int colonnes;
     /**
-     *
+     * Nombre de lignes de la grille
      */
     private int lignes;
     /**
-     *
+     * Fenetre contenant la grille et les options
      */
     private Fenetre f;
     /**
-     *
+     * Element e de la grille (peut être Thésée, ou la sortie
+     * ou un chemin ou un mur)
      */
     private Element e;
     /**
-     *
-      */
+     * Liste d'éléments
+     */
     private List<Element> box;
     /**
-     *
+     * Tableau représentant chaque position de case dans la grille
      */
     private int[][] grille;
     /**
-     *
+     * Tableau représentant l'état visité ou non de chaque case
      */
     private boolean[][] visited;
     /**
-     *
+     * Constante représentant un chemin
      */
     private static final int CHEMIN = 0;
     /**
-     *
+     * Constante représentant un mur
      */
     private static final int MUR = 1;
     /**
-     *
+     * Constante représentant un Thesee
      */
     private static final int THESEE = 2;
     /**
-     *
+     * Constante représentant un sortie
      */
     private static final int SORTIE = 3;
     /**
-     *
+     * Methode selon laquelle l'algorithme va se réaliser :
+     * manuel ou automatique
      */
     private String methode;
     /**
