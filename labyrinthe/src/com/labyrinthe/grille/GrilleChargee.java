@@ -457,140 +457,91 @@ public class GrilleChargee extends JPanel implements GrilleInterface
         f.getContentPane().add(panel);
     }
 
-    /**
-	* La méthode getTaille() sert à obtenir la taille de la grille
-	*/
+
 	@Override
     public int getTaille(){
         return this.taille;
     }
 
-    /**
-	* La méthode getAlgo() sert à obtenir l'algorithme choisi
-	* par l'utilisateur
-	*/
+
     @Override
     public String getAlgo() {
         return algo;
     }
 
-    /**
-	* La méthode getMethode() sert à obtenir la méthode choisie
-	* par l'utilisateur
-	*/
     @Override
     public String getMethode() {
         return methode;
     }
 
-    /**
-	* La méthode setAlgo() sert à paramétrer l'algorithme choisi
-	* par l'utilisateur
-	*/
     @Override
     public void setAlgo(String algo) {
         this.algo = algo;
     }
 
-    /**
-	* La méthode setMethode() sert à paramétrer la méthode choisie
-	* par l'utilisateur
-	*/
+
     @Override
     public void setMethode(String methode) {
         this.methode = methode;
     }
 
-    /**
-	* La méthode cacherFenetre() sert à ......
-	* Cacher la fenêtre !!
-	*/
+
     @Override
     public void cacherFenetre() {
         fenetre.setVisible(false);
     }
 
-    /**
-	* La méthode getCells() sert à obtenir la liste
-	* des cases constituant la grille
-	*/
+
     @Override
     public List<Cell> getCells() {
         return cells;
     }
 
-    /**
-	* La méthode getTheseeX() sert à obtenir l'abscisse
-	* de la postion de Thésée
-	*/
+
 	@Override
 	public byte getTheseeX()
 	{
 		return thesee[0];
 	}
 
-	/**
-	* La méthode getTheseeY() sert à obtenir l'ordonnée
-	* de la postion de Thésée
-	*/
+
 	@Override
 	public byte getTheseeY()
 	{
 		return thesee[1];
 	}
 
-	/**
-	* La méthode getSortieX() sert à obtenir l'abscisse
-	* de la postion de Thésée
-	*/
+
 	@Override
 	public byte getSortieX()
 	{
 		return sortie[0];
 	}
 
-	/**
-	* La méthode getSortieY() sert à obtenir l'ordonnée
-	* de la postion de Thésée
-	*/
 	@Override
 	public byte getSortieY()
 	{
 		return sortie[1];
 	}
 
-	/**
-	* La méthode getEtat() sert à obtenir l'état de la case
-	* d'index i
-	*/
+
 	@Override
 	public char getEtat(int i)
 	{
 		return etats[i];
 	}
 
-	/**
-	* La méthode getFenetre() sert à récupérer la fenêtre de la
-	* simulation
-	*/
 	@Override
 	public Fenetre getFenetre()
 	{
 		return this.fenetre;
 	}
 
-	/**
-	* La méthode getBoutonDemarrer() sert à récupérer l'attente du commencement de
-	* la partie
-	*/
 	@Override
 	public Bouton getBoutonDemarrer() {
 		return jouer;
 	}
 
-	/**
-	* La méthode getBoutonDeplacer() sert à récupérer l'attente de deplacement
-	*/
 	@Override
 	public Bouton getBoutonDeplacer() {
 		return deplacer;
