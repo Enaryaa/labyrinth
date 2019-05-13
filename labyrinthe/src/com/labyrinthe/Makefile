@@ -16,7 +16,7 @@ RM = rm -rf
 
 
 CLASSES = \
-		Main.java \
+				Main.java \
         Fenetre.java \
         bouton/Bouton.java \
         bouton/SortieBtn.java \
@@ -33,7 +33,7 @@ CLASSES = \
         element/Element.java \
         element/Mur.java \
         element/NextChemin.java \
- 		element/Sortie.java \
+ 				element/Sortie.java \
         element/Thesee.java \
         element/Chemin.java \
         fichier/ChoixFichier.java \
